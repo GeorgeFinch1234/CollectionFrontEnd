@@ -7,16 +7,16 @@ defineProps(['name','player','description','imgAlt','img'])
 <template>
     <div class="p-[20px] bg-secondary w-[200px] h-[400px] rounded-lg flex flex-col">
        <img :src=img :alt=imgAlt /> 
-        <div class="flex flex-col justify-between overflow-hidden gap-[10px]">
+        <div class="flex flex-col justify-between overflow-hidden gap-[5px] items-center">
             
-            <h2 class="text-center">{{ name }}</h2>
+            <h2 class="text-center underline pt-[10px]">{{ name }}</h2>
           
             <p class="text-center">player count = {{ player }}</p>
             
-                <p class=" overflow-scroll text-center">
+                <p class=" overflow-scroll text-center border-b-[2px]">
                 {{description}}
                 </p>
-                <a  class=text-center>
+                <a  class="text-center bg-primary text-white w-[70px] text-center rounded-full ">
                 options
                 </a>
             
