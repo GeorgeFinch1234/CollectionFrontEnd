@@ -14,19 +14,18 @@ let imgAlt=ref("boardGameImg")
                   description.value=json.description;
             imgRef.value=json.base64
             imgAlt.value=json.imgAlt
-            console.log(imgRef.value)
-            console.log(json)
+            
             } )
             
 </script>
 
 <template>
-<main class="flex flex-col justify-center items-center gap-[20px]">
-    <div class="flex flex-col justify-center items-center">
-    <h1 class="text-white mt-[20px]">Collection</h1>
+<main class="flex flex-col justify-center items-center gap-[20px] sm:grid  sm:gap-4 sm:grid-cols-[repeat(auto-fit,_minmax(200px,auto))] sm:mx-[10px] sm:pt-[40px]  ">
+    <div class="flex flex-col justify-center items-center sm:col-span-full">
+    <h1 class="text-white mt-[20px] sm:text-2xl">Collection</h1>
     <div class="bg-alt w-[150px] h-[5px]"></div>
     </div>
     
-<GameCard  v-for="n in 10" :name=name :player=player :description=description :img=imgRef :imgAlt=imgAlt ></GameCard>
+<GameCard  v-for="n in 10" :name=name :player=player :description=description :img=imgRef :imgAlt=imgAlt class="sm:justify-self-center"></GameCard>
 </main>
 </template>
