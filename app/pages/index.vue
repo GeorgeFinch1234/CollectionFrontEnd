@@ -21,7 +21,12 @@ let imgAlt=ref("boardGameImg")
 </script>
 
 <template>
-<div class="bg-primary h-screen w-full">
-<GameCard :name=name :player=player :description=description :img=imgRef :imgAlt=imgAlt ></GameCard>
-</div>
+<main class="flex flex-col justify-center items-center gap-[20px]">
+    <div class="flex flex-col justify-center items-center">
+    <h1 class="text-white mt-[20px]">Collection</h1>
+    <div class="bg-alt w-[150px] h-[5px]"></div>
+    </div>
+    <P class="fixed top-[10px] right-[10px] text-white "> &#9776</P>
+<GameCard  v-for="n in 10" :name=name :player=player :description=description :img=imgRef :imgAlt=imgAlt ></GameCard>
+</main>
 </template>
