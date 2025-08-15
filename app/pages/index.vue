@@ -15,6 +15,12 @@ let imgAlt=ref("boardGameImg")
             imgRef.value=json.base64
             imgAlt.value=json.imgAlt
             
+            },() =>{
+              name.value="failed to load";
+                 player.value="failed";
+                  description.value="failed";
+            imgRef.value=""
+            imgAlt.value="failed to load"  
             } )
             
 </script>

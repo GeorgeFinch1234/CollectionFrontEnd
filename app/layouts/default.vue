@@ -1,6 +1,13 @@
 <script setup>
 let show=ref(false)
-addEventListener("resize",()=>{show.value = true})
+
+function handleResize() {
+  show.value = true
+}
+
+onMounted(() => {
+  window.addEventListener('resize', handleResize)
+})
 </script>
 
 <template>
