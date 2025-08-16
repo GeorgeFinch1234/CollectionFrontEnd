@@ -19,10 +19,14 @@ module.exports = {
         primary: '#496580',      // you can now use bg-primary, text-primary
         secondary: '#BADDFF',
         alt :'#FFDBBB'
-        
+        //change the button to top, so secondary, and whn hover stronger
+ primary: '#ADBBDA',      // you can now use bg-primary, text-primary
+        secondary: '#D9D9D9',
+        alt :'#265277'
+
         */
        primary: '#496580',      // you can now use bg-primary, text-primary
-        secondary: '#BADDFF',
+        secondary: '#D9D9D9',
         alt :'#FFDBBB'
         
       },
