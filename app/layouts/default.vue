@@ -17,7 +17,7 @@ onMounted(() => {
         <NuxtLink to="/" class="text-[25px] hover:bg-alt w-[300px] self-center rounded-md duration-[1.5s] bg-secondary text-center sm:bg-alt sm:text-[20px] sm:w-[100px] sm:hover:bg-secondary">browse</NuxtLink>
         <NuxtLink to="/" class="text-[25px] hover:bg-alt w-[300px] self-center rounded-md duration-[1.5s] bg-secondary text-center sm:bg-alt sm:text-[20px] sm:w-[100px] sm:hover:bg-secondary" >message</NuxtLink>
         <NuxtLink to="/" class="text-[25px] hover:bg-alt w-[300px] self-center rounded-md duration-[1.5s] bg-secondary text-center sm:bg-alt sm:text-[20px] sm:w-[100px] sm:hover:bg-secondary">wishlist</NuxtLink>
-        <NuxtLink to="/" class="text-[25px] hover:bg-alt w-[300px] self-center rounded-md duration-[1.5s] bg-secondary text-center sm:bg-alt sm:text-[20px] sm:w-[100px] sm:hover:bg-secondary">logout</NuxtLink>
+        <NuxtLink to="/login" class="text-[25px] hover:bg-alt w-[300px] self-center rounded-md duration-[1.5s] bg-secondary text-center sm:bg-alt sm:text-[20px] sm:w-[100px] sm:hover:bg-secondary">logout</NuxtLink>
 
     </div>
 </Transition> 
