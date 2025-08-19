@@ -26,7 +26,7 @@ class Dot {
 
 
 
-/*
+/* remove
 function circle() {
     ctx.beginPath()
     ctx.arc(circleX, circleY, 200, 0, Math.PI * 2)
@@ -77,7 +77,7 @@ function createDots(){
 }
 
 
-function setup() {
+function run() {
 canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
     createDots()
@@ -85,7 +85,7 @@ canvas.width = window.innerWidth;
 }
 
 function draw() {
-    console.log(dots.length)
+    
     ctx.fillStyle = "#496580"
     ctx.fillRect(0, 0, window.innerWidth, window.innerHeight)
 
@@ -162,7 +162,7 @@ function draw() {
 
 
 
-                /*
+                /* don't keep
                                 if (((inCircle.x - dotsInCircle[i].x) < 20  
                                 && (inCircle.x - dotsInCircle[i].x) > -20 )
                                 || ((inCircle.y - dotsInCircle[i].y) < 20 
@@ -223,30 +223,37 @@ canvas.width = window.innerWidth;
      createDots()
     
 })
-setup();
+run();
 
 
 });
+
 </script>
 
 <template>
     
-    <canvas id="canvas" role="presentational" class="bg-primary w-screen h-screen ">
+    <canvas id="canvas" role="presentational" class=" bg-primary w-screen h-screen z-0">
 
     </canvas>
-    
+  
     <!--transform-[translate(0%,-50%)]-->
-    <main class="flex flex-col items-center fixed top-[50vh] left-[50vw]  translate-y-[-50%] translate-x-[-50%]  bg-secondary w-[300px] h-[400px] rounded-lg p-[20px]">
+    
+    <main class="p-[20px] gap-[20px] bg-secondary w-[300px] h-[350px]  rounded-lg absolute top-[50vh] left-[50vw] translate-y-[-50%] translate-x-[-50%] ">
     <div>
         <h1 class="text-center">Welcome</h1>
     <div class="bg-alt w-[150px] h-[5px] sm:w-[200px]"></div>
     </div>
    <!--post not get so the password now in the url-->
-    <form action="" method="post" class="flex flex-col">
-        <input v-model="user" placeholder="user name"/>
-        <input v-model="password" placeholder="password" type="password"/>
-        <input type="submit" class="bg-primary"></input>
-        <input type="button" class="bg-primary" value="sign up"/>
+    <form action="" method="post" class="flex flex-col gap-[40px] lg:flex-row">
+        <div class="flex flex-col gap-[20px]">
+            <input v-model="user" placeholder="user name" class="rounded-md lg:h-[50px]"/>
+            <input v-model="password" placeholder="password" type="password" class="rounded-md"/>
+        </div>
+        <div class="flex flex-col gap-[20px]">
+            <input type="submit" class="bg-primary rounded-md text-white"></input>
+            <input type="button" class="bg-primary rounded-md text-white" value="sign up"/>
+        </div>
     </form>
     </main>
+    
 </template>
