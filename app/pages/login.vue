@@ -5,7 +5,7 @@ let password = ref("");
 
 onMounted(() => {
     //code taken from old project, dot connection, on same github
-  const canvas = document.getElementById("canvas");
+const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
 let circleX = 0
 let circleY = 0
@@ -23,21 +23,6 @@ class Dot {
         this.VY = initialVY
     }
 }
-
-
-
-/* remove
-function circle() {
-    ctx.beginPath()
-    ctx.arc(circleX, circleY, 200, 0, Math.PI * 2)
-    ctx.fillStyle = "rgb(40 42 54 / 10%)"
-    ctx.fill();
-
-}
-
-
-*/
-
 
 
 
@@ -162,33 +147,7 @@ function draw() {
 
 
 
-                /* don't keep
-                                if (((inCircle.x - dotsInCircle[i].x) < 20  
-                                && (inCircle.x - dotsInCircle[i].x) > -20 )
-                                || ((inCircle.y - dotsInCircle[i].y) < 20 
-                                && (inCircle.y - dotsInCircle[i].y) > -20)) {
-                                    ctx.beginPath()
-                                    ctx.moveTo(inCircle.x, inCircle.y)
-                                    ctx.lineTo(dotsInCircle[i].x, dotsInCircle[i].y)
-                                    ctx.strokeStyle = "rgba(255, 255, 255, 0.1)"
-                                    ctx.stroke()
-                
-                
-                                }
-                  
-                                if (((circleX - dotsInCircle[i].x) < 20  
-                                && (circleX - dotsInCircle[i].x) > -20 )
-                                || ((circleY - dotsInCircle[i].y) < 20 
-                                && (circleY - dotsInCircle[i].y) > -20)) {
-                                    ctx.beginPath()
-                                    ctx.moveTo(circleX, circleY)
-                                    ctx.lineTo(dotsInCircle[i].x, dotsInCircle[i].y)
-                                    ctx.strokeStyle = "rgba(255, 255, 255, 0.1)"
-                                    ctx.stroke()
-                
-                
-                                }
-                */
+              
 
             }
 
@@ -227,6 +186,32 @@ run();
 
 
 });
+function sendData() {
+  const xhttp = new XMLHttpRequest();
+  xhttp.open("POST", "http://localhost:8080/login");
+  xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  xhttp.onload = function() {
+console.log(this.responseText)   
+}
+  xhttp.send("username="+user.value + "&password="+password.value);
+  }
+
+onMounted(()=>{
+ const submit = document.getElementById("loginSubmit");
+submit.addEventListener("click",(event)=>{
+event.preventDefault()
+
+sendData()
+
+
+
+
+
+ 
+
+})
+
+})
 
 </script>
 
@@ -238,20 +223,20 @@ run();
   
     <!--transform-[translate(0%,-50%)]-->
     
-    <main class="p-[20px] gap-[20px] bg-secondary w-[300px] h-[350px]  rounded-lg absolute top-[50vh] left-[50vw] translate-y-[-50%] translate-x-[-50%] ">
-    <div>
-        <h1 class="text-center">Welcome</h1>
-    <div class="bg-alt w-[150px] h-[5px] sm:w-[200px]"></div>
+    <main class="p-[20px] gap-[20px] bg-secondary w-[300px] h-[300px]  rounded-lg absolute top-[50vh] left-[50vw] translate-y-[-50%] translate-x-[-50%] sm:w-[600px]">
+    <div class="flex flex-col justify-center items-center">
+        <h1 class="text-center text-2xl">Welcome</h1>
+    <div class="bg-alt w-[150px] h-[5px] "></div>
     </div>
    <!--post not get so the password now in the url-->
-    <form action="" method="post" class="flex flex-col gap-[40px] lg:flex-row">
-        <div class="flex flex-col gap-[20px]">
-            <input v-model="user" placeholder="user name" class="rounded-md lg:h-[50px]"/>
-            <input v-model="password" placeholder="password" type="password" class="rounded-md"/>
+    <form action="" method="POST" class="flex flex-col gap-[40px]  pt-[20px]">
+        <div class="flex flex-col gap-[10px]">
+            <input v-model="user" placeholder="user name" class="rounded-md  text-xl"/>
+            <input v-model="password" placeholder="password" type="password" class="rounded-md text-xl"/>
         </div>
-        <div class="flex flex-col gap-[20px]">
-            <input type="submit" class="bg-primary rounded-md text-white"></input>
-            <input type="button" class="bg-primary rounded-md text-white" value="sign up"/>
+        <div class="flex flex-col gap-[10px]">
+            <input type="submit" class="bg-primary rounded-md text-white text-xl" id="loginSubmit"></input>
+            <input type="button" class="bg-primary rounded-md text-white text-xl" value="sign up"/>
         </div>
     </form>
     </main>
