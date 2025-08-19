@@ -29,10 +29,10 @@ elem.addEventListener('change', function () {
 
 
 <template>
-    <main class="bg-secondary flex flex-col justify-center items-center w-[70vw] relative top-[50vh] left-[50vw] translate-y-[-50%] translate-x-[-50%] rounded-lg">
+    <main class="bg-secondary flex flex-col justify-center w-[70vw] relative top-[50vh] left-[50vw] translate-y-[-50%] translate-x-[-50%] rounded-lg p-[20px] items-center">
 <!--h1 empty, so that it can be dynamically changed depending on where it comes from. -->
-    <h1>test</h1>
-
+    <h1 class="text-2xl">test</h1>
+<div class="bg-alt w-[100px] h-[5px] "></div>
  <!--
     name 
     img 
@@ -42,30 +42,36 @@ elem.addEventListener('change', function () {
     
     
     -->
-    <div class="flex">
-    <form class="grid">
-        
+    <div class="w-[100%] lg:flex">
+    <form class="flex flex-col gap-[20px] grow">
+        <div class="flex flex-col">
             <label for="gameName">game name</label>
-            <input id="gameName"></input>
-        
+            <input id="gameName" class=""></input>
+        </div>
+        <div class="flex flex-col">
       
             <label for="description">description</label>
             <input id="description"></input>
-        
+        </div>
+        <div class="flex flex-col">
             <label for="playerCount">player count </label>
             <input id="playerCount" type="number"></input>
-        
+</div>
+        <div class="flex flex-col">
             <label for="imageDescription">img alt</label>
             <input id="imageDescription"></input>
-        
+        </div>
+       <div class="flex flex-col">
             <label for="imgFileSelection">img</label>
             <input id="imgFileSelection"type="file" name="image" accept=".png,.jpg" ></input>
-        <div class="flex justify-between ">
-            <p>submit</p>
-            <p>cancel</p>
+        </div>
+        
+            <div class="flex justify-between ">
+            <p class="text-center bg-primary text-white w-[70px] text-center rounded-full">submit</p>
+            <p class="text-center bg-primary text-white w-[70px] text-center rounded-full">cancel</p>
         </div>
     </form>
-    <img id="CreateDisplayImg" alt="potential img"/> 
+    <img id="CreateDisplayImg" alt="unselectedImg" class="basis-3xl lg:grow "/> 
 </div>
 </main>
 </template>
