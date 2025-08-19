@@ -1,11 +1,14 @@
 <script setup>
+import CollectionOptions from './collectionOptions.vue';
+let show=ref(false)
 
 defineProps(['name','player','description','imgAlt','img'])
 
 
+
 </script>
 <template>
-    <div class="p-[20px] bg-secondary w-[200px] h-[400px] rounded-lg flex flex-col">
+    <div class="p-[20px] bg-secondary w-[200px] h-[400px] rounded-lg flex flex-col relative">
        <img :src=img :alt=imgAlt /> 
         <div class="flex flex-col justify-between overflow-hidden gap-[5px] items-center">
             
@@ -16,10 +19,13 @@ defineProps(['name','player','description','imgAlt','img'])
                 <p class=" overflow-scroll text-center border-b-[2px]">
                 {{description}}
                 </p>
-                <a  class="text-center bg-primary text-white w-[70px] text-center rounded-full ">
+                <a @click="show = !show" class="text-center bg-primary text-white w-[70px] text-center rounded-full ">
                 options
                 </a>
             
         </div>
+        <CollectionOptions v-if="show" @closeMenu="show=!show">
+    </CollectionOptions>
     </div>
+  
 </template>
