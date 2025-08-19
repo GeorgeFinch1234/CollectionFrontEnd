@@ -186,6 +186,10 @@ run();
 
 
 });
+/*
+done this was to make yii2 and nuxt work together, 
+else other way couldnt get access to var in $_POST
+*/
 function sendData() {
   const xhttp = new XMLHttpRequest();
   xhttp.open("POST", "http://localhost:8080/login");
@@ -231,6 +235,7 @@ sendData()
    <!--post not get so the password now in the url-->
     <form action="" method="POST" class="flex flex-col gap-[40px]  pt-[20px]">
         <div class="flex flex-col gap-[10px]">
+           <!--need labals for aria-->
             <input v-model="user" placeholder="user name" class="rounded-md  text-xl"/>
             <input v-model="password" placeholder="password" type="password" class="rounded-md text-xl"/>
         </div>
