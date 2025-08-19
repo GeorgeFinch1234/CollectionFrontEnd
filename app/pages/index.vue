@@ -33,5 +33,6 @@ let imgAlt=ref("boardGameImg")
     </div>
     
 <GameCard  v-for="n in 10" :name=name :player=player :description=description :img=imgRef :imgAlt=imgAlt class="sm:justify-self-center"></GameCard>
+
 </main>
 </template>
