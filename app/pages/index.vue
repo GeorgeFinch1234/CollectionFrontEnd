@@ -12,7 +12,7 @@ const ctx = canvas.getContext("2d");
 let circleX = 0
 let circleY = 0
 let dotsInCircle = []
-let circleSize;
+
 let dotCount;
 let dots = [];
 //they move in a strught line, when hit the wall they change direction
@@ -192,12 +192,27 @@ run();
 done this was to make yii2 and nuxt work together, 
 else other way couldnt get access to var in $_POST
 */
-function sendData() {
+ function sendData() {
   const xhttp = new XMLHttpRequest();
   xhttp.open("POST", "http://localhost:8080/login");
   xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
   xhttp.onload = function() {
-console.log(this.responseText)   
+//as it returns "" from php, which get intptreted as "\"\""
+if(this.responseText == "\"\""){  
+    //redirects if successful.
+return navigateTo('/collection')
+}else{
+    /*
+
+    temp, rember to remove it.
+
+    */
+    alert(this.responseText)
+}
+
+
+
+
 }
   xhttp.send("username="+user.value + "&password="+password.value);
   }
