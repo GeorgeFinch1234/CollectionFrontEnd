@@ -1,25 +1,143 @@
 <script setup>
 
 
-onMounted(()=>{
+const elem = useTemplateRef("imgSelectRef")
+const displayImg = useTemplateRef("imgRef")
 
-const elem = document.getElementById("imgFileSelection")
-const displayImg = document.getElementById("CreateDisplayImg")
+
+
+async function save(){
+   /*
+  // base64(elem.value.files[0]);
+  const file = elem.value.files[0];
+if (!file) return;
+
+const arrayBuffer = await file.arrayBuffer();
+const byteArray = new Uint8Array(arrayBuffer);
+
+function byteArrayToBase64(byteArray) {
+  let binary = '';
+  for (let i = 0; i < byteArray.length; i++) {
+    binary += String.fromCharCode(byteArray[i]);
+  }
+  return btoa(binary);
+}
+
+const base64String = byteArrayToBase64(byteArray);
+console.log("Base64:", base64String);
+   
+*/
+/*
+   
+    const test = elem.value.files[0]
+    const byteArray = test.bytes
+console.log("Byte array:", byteArray);
+ */
+  
+ const getBase64StringFromDataURL = (dataURL) =>{
+    dataURL.replace('data:', '').replace(/^.+,/, '');
+ }
+
+      
+     
+
+ console.log("------------------------------")
+ console.log()
+ 
+ getDataUrl(elem.value.files[0])
+    
+}
+
+
+
+
+function getDataUrl(file) {
+    return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = () => {
+            console.log("----------------------")
+            console.log(reader.result)
+
+ fetch("http://localhost:8080/create?name="+gameName.value+"&playerCount="+playerCount.value+"&imgRef="+ reader.result  +"&imgAlt="+imageDescription.value+"&description="+description.value)
+ 
+
+
+
+            resolve(reader.result)};
+        reader.onerror = reject;
+        reader.readAsDataURL(file);
+
+        
+    });
+}
+
+
+/*
+async function base64(url){
+    
+       // Convert file (Blob) to ArrayBuffer
+    const arrayBuffer = await url.arrayBuffer();
+
+    // Convert ArrayBuffer → Uint8Array (byte array)
+    const byteArray = new Uint8Array(arrayBuffer);
+
+    console.log("Byte array:", byteArray);
+
+    
+
+
+
+
+    
+
+    /*
+fetch in here so when img in base64 string it then get sent, as await has no effect
+    */
+     /*
+    fetch("http://localhost:8080/create?name="+gameName.value+"&playerCount="+playerCount.value+"&imgRef="+ byteArray  +"&imgAlt="+imageDescription.value+"&description="+description.value)
+  
+
+
+}
+*/
+
+
+
+
 
 //browed from stack overflow
-elem.addEventListener('change', function () {
-    const file = elem.files[0];
+async function imgChange () {
+    const file = elem.value.files[0];
+    
+    
     if (file) {
         const reader = new FileReader();
         reader.onload = function (e) {
-            displayImg.src = e.target.result;
+            displayImg.value.src = e.target.result;
+         
+           
+
+            
         };
-        reader.readAsDataURL(file);
-    }
-});
+        reader.readAsDataURL(file)
+
+        }
 
 
-})
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -46,32 +164,32 @@ elem.addEventListener('change', function () {
     <form class="flex flex-col gap-[20px] grow">
         <div class="flex flex-col">
             <label for="gameName">game name</label>
-            <input id="gameName" class=""></input>
+            <input id="gameName" v-model="gameName"></input>
         </div>
         <div class="flex flex-col">
       
             <label for="description">description</label>
-            <input id="description"></input>
+            <input id="description" v-model="description"></input>
         </div>
         <div class="flex flex-col">
             <label for="playerCount">player count </label>
-            <input id="playerCount" type="number"></input>
+            <input id="playerCount" type="number" v-model="playerCount"></input>
 </div>
         <div class="flex flex-col">
             <label for="imageDescription">img alt</label>
-            <input id="imageDescription"></input>
+            <input id="imageDescription" v-model="imageDescription"></input>
         </div>
        <div class="flex flex-col">
             <label for="imgFileSelection">img</label>
-            <input id="imgFileSelection"type="file" name="image" accept=".png,.jpg" ></input>
+            <input @change="imgChange()" id="imgFileSelection" ref="imgSelectRef"type="file" name="image" accept=".png,.jpg" ></input>
         </div>
         
             <div class="flex justify-between ">
-            <p class="text-center bg-primary text-white w-[70px] text-center rounded-full">submit</p>
+            <p @click="save()" class="text-center bg-primary text-white w-[70px] text-center rounded-full">submit</p>
             <p class="text-center bg-primary text-white w-[70px] text-center rounded-full">cancel</p>
         </div>
     </form>
-    <img id="CreateDisplayImg" alt="unselectedImg" class="basis-3xl lg:grow "/> 
+    <img id="CreateDisplayImg" ref="imgRef" alt="unselectedImg" class="basis-3xl lg:grow object-scale-down max-w-[100%] h-auto"/> 
 </div>
 </main>
 </template>

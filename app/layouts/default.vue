@@ -29,7 +29,7 @@ onMounted(() => {
     </div>
 </Transition> 
   
-<P class="fixed top-[10px] right-[10px] text-white z-3 sm:hidden" @click="show = !show"> &#9776</P>
+<p class="fixed top-[10px] right-[10px] text-white z-3 sm:hidden" @click="show = !show"> &#9776</P>
 
 </template>
 <style>
