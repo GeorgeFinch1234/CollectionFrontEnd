@@ -198,17 +198,20 @@ else other way couldnt get access to var in $_POST
   xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
   xhttp.onload = function() {
 //as it returns "" from php, which get intptreted as "\"\""
-if(this.responseText == "\"\""){  
+
+
+if(JSON.parse(this.responseText).error == ""){  
     //redirects if successful.
 return navigateTo('/collection')
 }else{
-    spinnyWheelShow = false;
+    spinnyWheelShow.value = false;
     /*
 
     temp, rember to remove it.
 
     */
     alert(this.responseText)
+
 }
 
 
@@ -222,7 +225,7 @@ onMounted(()=>{
  const submit = document.getElementById("loginSubmit");
 submit.addEventListener("click",(event)=>{
 event.preventDefault()
-spinnyWheelShow = true;
+spinnyWheelShow.value = true;
 sendData()
 
 
@@ -232,6 +235,8 @@ sendData()
  
 
 })
+
+
 
 })
 
