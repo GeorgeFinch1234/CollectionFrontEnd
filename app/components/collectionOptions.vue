@@ -1,7 +1,9 @@
 <script setup>
+let show=ref(false)
 
-
-
+function loadEdit(){
+return navigateTo('/gameCreation')
+}
 
 </script>
 <template>
@@ -12,9 +14,10 @@
     <div class="bg-alt w-[150px] h-[5px] "></div>
     </div>
     <div class="flex flex-col justify-start h-[100%] gap-[40px] p-[20px]">
-    <a class="bg-primary rounded-md text-center text-white w-[100px] text-2xl">Eddit</a>
-    <a class="bg-primary rounded-md text-center text-white w-[100px] text-2xl">Delete</a>
+    <a @click ="loadEdit()"class="bg-primary rounded-md text-center text-white w-[100px] text-2xl">Eddit</a>
+    <a @click="show = !show" class="bg-primary rounded-md text-center text-white w-[100px] text-2xl">Delete</a>
     <p @click="$emit('closeMenu')" class="bg-primary rounded-md text-center text-white w-[100px] text-2xl">Close</p>
     </div>
     </div>
+    <delete v-if="show" @cancel="show=!show"></delete>
 </template>

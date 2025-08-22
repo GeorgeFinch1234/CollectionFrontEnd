@@ -1,5 +1,5 @@
 <script setup>
-let show=ref(false)
+let show=ref(true)
 
 function handleResize() {
   show.value = true
@@ -12,7 +12,7 @@ onMounted(() => {
 
 <template>
 
-<div class="w-screen h-screen bg-primary relative" >
+<div class="w-[100%] h-[100%] bg-primary relative" >
     <slot/>
 </div>
 

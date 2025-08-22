@@ -4,7 +4,9 @@
 const elem = useTemplateRef("imgSelectRef")
 const displayImg = useTemplateRef("imgRef")
 
-
+function cancel (){
+    navigateTo('/collection')
+}
 
 async function save(){
    /*
@@ -45,7 +47,7 @@ console.log("Byte array:", byteArray);
  console.log()
  
  getDataUrl(elem.value.files[0])
-    
+    //cancel ()
 }
 
 
@@ -72,38 +74,6 @@ function getDataUrl(file) {
 }
 
 
-/*
-async function base64(url){
-    
-       // Convert file (Blob) to ArrayBuffer
-    const arrayBuffer = await url.arrayBuffer();
-
-    // Convert ArrayBuffer → Uint8Array (byte array)
-    const byteArray = new Uint8Array(arrayBuffer);
-
-    console.log("Byte array:", byteArray);
-
-    
-
-
-
-
-    
-
-    /*
-fetch in here so when img in base64 string it then get sent, as await has no effect
-    */
-     /*
-    fetch("http://localhost:8080/create?name="+gameName.value+"&playerCount="+playerCount.value+"&imgRef="+ byteArray  +"&imgAlt="+imageDescription.value+"&description="+description.value)
-  
-
-
-}
-*/
-
-
-
-
 
 //browed from stack overflow
 async function imgChange () {
@@ -125,17 +95,6 @@ async function imgChange () {
 
 
 }
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -186,7 +145,7 @@ async function imgChange () {
         
             <div class="flex justify-between ">
             <p @click="save()" class="text-center bg-primary text-white w-[70px] text-center rounded-full">submit</p>
-            <p class="text-center bg-primary text-white w-[70px] text-center rounded-full">cancel</p>
+            <p @click="cancel" class="text-center bg-primary text-white w-[70px] text-center rounded-full">cancel</p>
         </div>
     </form>
     <img id="CreateDisplayImg" ref="imgRef" alt="unselectedImg" class="basis-3xl lg:grow object-scale-down max-w-[100%] h-auto"/> 

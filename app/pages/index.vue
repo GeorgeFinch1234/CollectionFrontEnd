@@ -1,7 +1,7 @@
 <script setup>
 let user = ref("");
 let password = ref("");
-
+let spinnyWheelShow = ref(false);
 definePageMeta({
   layout: 'login'
 })
@@ -202,6 +202,7 @@ if(this.responseText == "\"\""){
     //redirects if successful.
 return navigateTo('/collection')
 }else{
+    spinnyWheelShow = false;
     /*
 
     temp, rember to remove it.
@@ -221,7 +222,7 @@ onMounted(()=>{
  const submit = document.getElementById("loginSubmit");
 submit.addEventListener("click",(event)=>{
 event.preventDefault()
-
+spinnyWheelShow = true;
 sendData()
 
 
@@ -261,6 +262,8 @@ sendData()
             <input type="button" class="bg-primary rounded-md text-white text-xl" value="sign up"/>
         </div>
     </form>
-    </main>
     
+
+    </main>
+    <img v-if="spinnyWheelShow" src="/assets/shinyGengar.png" alt="spinny wheel" class="z-100 fixed top-[50vh] left-[50vw]  w-[400px] translate-x-[-50%] -translate-y-[+50%] animate-spinCentered"></img>
 </template>
