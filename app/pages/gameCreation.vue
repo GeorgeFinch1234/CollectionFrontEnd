@@ -1,4 +1,5 @@
 <script setup>
+ import {useTokenStore} from'~/utils/test.js'
 
 
 const elem = useTemplateRef("imgSelectRef")
@@ -9,45 +10,13 @@ function cancel (){
 }
 
 async function save(){
-   /*
-  // base64(elem.value.files[0]);
-  const file = elem.value.files[0];
-if (!file) return;
-
-const arrayBuffer = await file.arrayBuffer();
-const byteArray = new Uint8Array(arrayBuffer);
-
-function byteArrayToBase64(byteArray) {
-  let binary = '';
-  for (let i = 0; i < byteArray.length; i++) {
-    binary += String.fromCharCode(byteArray[i]);
-  }
-  return btoa(binary);
-}
-
-const base64String = byteArrayToBase64(byteArray);
-console.log("Base64:", base64String);
    
-*/
-/*
-   
-    const test = elem.value.files[0]
-    const byteArray = test.bytes
-console.log("Byte array:", byteArray);
- */
   
- const getBase64StringFromDataURL = (dataURL) =>{
-    dataURL.replace('data:', '').replace(/^.+,/, '');
- }
+ 
 
-      
-     
-
- console.log("------------------------------")
- console.log()
  
  getDataUrl(elem.value.files[0])
-    //cancel ()
+    
 }
 
 
@@ -60,12 +29,34 @@ function getDataUrl(file) {
             console.log("----------------------")
             console.log(reader.result)
 
- fetch("http://localhost:8080/create?name="+gameName.value+"&playerCount="+playerCount.value+"&imgRef="+ reader.result  +"&imgAlt="+imageDescription.value+"&description="+description.value)
- 
+const tokenStore = useTokenStore()
+console.log("****"+tokenStore.token)
+console.log("----------------------")
+
+ const formData = new FormData();
+formData.append("name", gameName.value);
+formData.append("playerCount", playerCount.value);
+formData.append("imgRef", reader.result);
+formData.append("imgAlt", imageDescription.value);
+formData.append("description", description.value);
+formData.append("token",tokenStore.token );
 
 
 
-            resolve(reader.result)};
+
+fetch('http://localhost:8080/create', {
+  method: "POST",
+  body: formData
+}).then(res=>res.json()).then(json=>{
+    console.log(json)   
+})
+
+
+
+
+
+
+        resolve(reader.result)};
         reader.onerror = reject;
         reader.readAsDataURL(file);
 

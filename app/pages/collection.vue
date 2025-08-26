@@ -1,9 +1,30 @@
 <script setup >
 let Games = ref(null)
 let spinnyWheelShow = ref(true)
- fetch('http://localhost:8080/games')
-            .then(res=>res.json())            
+
+import {useTokenStore} from'~/utils/test.js'
+
+//need else nuxt will try to access local stroange on sever side
+onMounted(()=>{
+    //this so that it will show in php $_POST stuff
+ const formData = new FormData();
+
+ const tokenStore = useTokenStore()
+console.log("**++"+tokenStore.token)
+console.log("----------------------")
+formData.append("token", tokenStore.token);
+
+fetch('http://localhost:8080/games', {
+  method: "POST",
+  body: formData
+})
+            .then(res=>{console.log("hello world")
+return res.json()
+
+            })            
             .then(json=>{
+
+                console.log("hit")
              console.log(json)
              console.log("hit")
                Games.value = json;
@@ -15,10 +36,14 @@ let spinnyWheelShow = ref(true)
             imgRef.value=json.base64
             imgAlt.value=json.imgAlt
             */
+            },()=>{
+                console.log("fail")
             } )
    function loadEdit(){
 return navigateTo('/gameCreation')
-}         
+}    
+
+})
 </script>
 
 <template>
@@ -32,7 +57,7 @@ return navigateTo('/gameCreation')
     <div class="bg-alt w-[150px] h-[5px] sm:w-[200px]"></div>
     </div>
     
-<GameCard  v-for="game in Games" :name=game.Game2.name :player=game.Game2.playerCount :description=game.Game2.description :img=game.Game2.imgRef :imgAlt=game.Game2.imgAlt class="sm:justify-self-center"></GameCard>
+<GameCard  v-for="game in Games" :name=game.name :player=game.playerCount :description=game.description :img=game.imgRef :imgAlt=game.imgAlt class="sm:justify-self-center"></GameCard>
 
 </main>
 <img v-if="spinnyWheelShow"src="/assets/shinyGengar.png" alt="spinny wheel" class="z-100 fixed top-[50vh] left-[50vw]  w-[400px] translate-x-[-50%] -translate-y-[+50%] animate-spinCentered"></img>

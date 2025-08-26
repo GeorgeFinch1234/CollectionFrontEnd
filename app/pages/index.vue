@@ -1,10 +1,27 @@
 <script setup>
+
+
+//test
+import {useTokenStore} from'~/utils/test.js'
+
+
 let user = ref("");
 let password = ref("");
 let spinnyWheelShow = ref(false);
+
+
 definePageMeta({
   layout: 'login'
 })
+
+
+
+
+
+
+
+
+
 onMounted(() => {
     //code taken from old project, dot connection, on same github
 const canvas = document.getElementById("canvas");
@@ -193,7 +210,7 @@ done this was to make yii2 and nuxt work together,
 else other way couldnt get access to var in $_POST
 */
  function sendData() {
-  const xhttp = new XMLHttpRequest();
+   const xhttp = new XMLHttpRequest();
   xhttp.open("POST", "http://localhost:8080/login");
   xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
   xhttp.onload = function() {
@@ -202,6 +219,9 @@ else other way couldnt get access to var in $_POST
 
 if(JSON.parse(this.responseText).error == ""){  
     //redirects if successful.
+
+const tokenStore = useTokenStore()
+tokenStore.token=JSON.parse(this.responseText).token
 return navigateTo('/collection')
 }else{
     spinnyWheelShow.value = false;
@@ -221,7 +241,7 @@ return navigateTo('/collection')
   xhttp.send("username="+user.value + "&password="+password.value);
   }
 
-onMounted(()=>{
+  onMounted(()=>{
  const submit = document.getElementById("loginSubmit");
 submit.addEventListener("click",(event)=>{
 event.preventDefault()
@@ -229,7 +249,7 @@ spinnyWheelShow.value = true;
 sendData()
 
 
-
+});
 
 
  
@@ -237,8 +257,10 @@ sendData()
 })
 
 
+function signUp (){
+    navigateTo('/signup')
+}
 
-})
 
 </script>
 
@@ -264,7 +286,7 @@ sendData()
         </div>
         <div class="flex flex-col gap-[10px]">
             <input type="submit" class="bg-primary rounded-md text-white text-xl" id="loginSubmit"></input>
-            <input type="button" class="bg-primary rounded-md text-white text-xl" value="sign up"/>
+            <input @click="signUp()" type="button" class="bg-primary rounded-md text-white text-xl" value="sign up"/>
         </div>
     </form>
     
