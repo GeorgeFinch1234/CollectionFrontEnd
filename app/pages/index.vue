@@ -3,12 +3,13 @@
 
 //test
 import {useTokenStore} from'~/utils/test.js'
-
+import {userEndValidation} from'~/utils/frontEndValidation.js'
 
 let user = ref("");
 let password = ref("");
 let spinnyWheelShow = ref(false);
-
+const signInUserName = ref(null)
+const signInPassword = ref(null)
 
 definePageMeta({
   layout: 'login'
@@ -29,6 +30,7 @@ const ctx = canvas.getContext("2d");
 let circleX = 0
 let circleY = 0
 let dotsInCircle = []
+let error=ref(false)
 
 let dotCount;
 let dots = [];
@@ -242,26 +244,40 @@ return navigateTo('/collection')
   xhttp.send("username="+user.value + "&password="+password.value);
   }
 
-  onMounted(()=>{
- const submit = document.getElementById("loginSubmit");
-submit.addEventListener("click",(event)=>{
-event.preventDefault()
+ 
+    /*
+
+need to make in to vue style not normal js style
+    */
+
+function submitHandler(){
+
+ 
+ 
+
+
+if(!signInUserName.value.checkValidity() ||!signInPassword.value.checkValidity() ){
+   signInUserName.value.reportValidity()
+   signInPassword.value.reportValidity()
+}else{
 spinnyWheelShow.value = true;
 sendData()
+}
+
+   
+}
 
 
-});
 
 
  
 
-})
+
 
 
 function signUp (){
     navigateTo('/signup')
 }
-
 
 </script>
 
@@ -282,11 +298,12 @@ function signUp (){
     <form action="" method="POST" class="flex flex-col gap-[40px]  pt-[20px]">
         <div class="flex flex-col gap-[10px]">
            <!--need labals for aria-->
-            <input v-model="user" placeholder="user name" class="rounded-md  text-xl"/>
-            <input v-model="password" placeholder="password" type="password" class="rounded-md text-xl"/>
+            <input @input="e=>userEndValidation(e.target)" v-model="user" placeholder="user name" class="rounded-md  text-xl" ref="signInUserName" required />
+            <input @input="e=>userEndValidation(e.target)" v-model="password" placeholder="password" type="password" class="rounded-md text-xl" ref="signInPassword" required />
         </div>
+       
         <div class="flex flex-col gap-[10px]">
-            <input type="submit" class="bg-primary rounded-md text-white text-xl" id="loginSubmit"></input>
+            <input @click.prevent ="submitHandler" type="submit" class="bg-primary rounded-md text-white text-xl" id="loginSubmit"></input>
             <input @click="signUp()" type="button" class="bg-primary rounded-md text-white text-xl" value="sign up"/>
         </div>
     </form>

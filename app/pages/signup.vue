@@ -4,7 +4,16 @@ let password = ref("")
 let passwordCheck = ref("");
 let spinnyWheelShow = ref(false);
 
+const signInUserName = ref(null)
+const signInPassword = ref(null)
+
+
 import {useTokenStore} from'~/utils/test.js'
+/*
+for user input validation
+*/
+import {userEndValidation} from'~/utils/frontEndValidation.js'
+
 
 definePageMeta({
   layout: 'login'
@@ -13,14 +22,30 @@ function login (){
     navigateTo('/')
 }
 function submit(event){
-    event.preventDefault();
+ 
+if(password.value != passwordCheck.value){
+
+signInPassword.value.setCustomValidity("passwords don't match")
+
+}
+
+
+if(!signInUserName.value.checkValidity() ||!signInPassword.value.checkValidity() ){
+   signInUserName.value.reportValidity()
+   signInPassword.value.reportValidity()
+}else{
+
+
+
+
+
+
     spinnyWheelShow.value=true;
     const formData = new FormData();
     const tokenStore = useTokenStore()
 
-if(password.value != passwordCheck.value){
-    alert("passwords dont match")
-}else{
+
+   
     formData.append("username", user.value);
     formData.append("password", password.value);
     
@@ -58,12 +83,12 @@ navigateTo('/collection')
     <form action="" method="POST" class="flex flex-col gap-[40px]  pt-[20px]">
         <div class="flex flex-col gap-[10px]">
            <!--need labals for aria-->
-            <input v-model="user" placeholder="user name" class="rounded-md  text-xl"/>
-            <input v-model="password" placeholder="password" type="password" class="rounded-md text-xl" />
-            <input v-model="passwordCheck" placeholder="Confrim password" type="password" class="rounded-md text-xl" />
+            <input @input="e=>userEndValidation(e.target)" v-model="user" placeholder="user name" class="rounded-md  text-xl" ref="signInUserName" required/>
+            <input @input="e=>userEndValidation(e.target)" v-model="password" placeholder="password" type="password" class="rounded-md text-xl" ref ="signInPassword" required/>
+            <input @input="e=>userEndValidation(e.target)" v-model="passwordCheck" placeholder="Confrim password" type="password" class="rounded-md text-xl" />
               </div>
         <div class="flex flex-col gap-[10px]">
-            <input @click="submit" type="submit" class="bg-primary rounded-md text-white text-xl" id="loginSubmit" value="Sign Up"></input>
+            <input @click.prevent="submit()" type="submit" class="bg-primary rounded-md text-white text-xl" id="loginSubmit" value="Sign Up"></input>
             <input @click="login()" type="button" class="bg-primary rounded-md text-white text-xl" value="Login"/>
         </div>
     </form>
@@ -72,5 +97,8 @@ navigateTo('/collection')
     </main>
     <!--need to implment-->
     <img v-if="spinnyWheelShow" src="/assets/shinyGengar.png" alt="spinny wheel" class="z-100 fixed top-[50vh] left-[50vw]  w-[400px] translate-x-[-50%] -translate-y-[+50%] animate-spinCentered"></img>
+
+
+
 </template>
    

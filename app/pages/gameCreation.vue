@@ -97,10 +97,17 @@ async function imgChange () {
 
 
 <template>
-    <main class="bg-secondary flex flex-col justify-center w-[70vw] relative top-[50vh] left-[50vw] translate-y-[-50%] translate-x-[-50%] rounded-lg p-[20px] items-center">
-<!--h1 empty, so that it can be dynamically changed depending on where it comes from. -->
+    <!--
+    
+    translate-y-[-50%] translate-x-[-50%]
+relative top-[50vh] left-[50vw]
+    -->
+    <main class="bg-secondary flex flex-col justify-center w-[70vw] mr-auto ml-auto mt-[50px] mb-[50px] rounded-lg p-[20px] items-center overflow-hidden">
+
+  
+        <!--h1 empty, so that it can be dynamically changed depending on where it comes from. -->
     <h1 class="text-2xl">test</h1>
-<div class="bg-alt w-[100px] h-[5px] "></div>
+<div class="bg-alt w-[100px] h-[5px] overflow-hidden "></div>
  <!--
     name 
     img 
@@ -110,7 +117,7 @@ async function imgChange () {
     
     
     -->
-    <div class="w-[100%] lg:flex">
+    <div class="w-[100%] flex flex-col lg:flex-row">
     <form class="flex flex-col gap-[20px] grow">
         <div class="flex flex-col">
             <label for="gameName">game name</label>
@@ -124,7 +131,7 @@ async function imgChange () {
         <div class="flex flex-col">
             <label for="playerCount">player count </label>
             <input id="playerCount" type="number" v-model="playerCount"></input>
-</div>
+    </div>
         <div class="flex flex-col">
             <label for="imageDescription">img alt</label>
             <input id="imageDescription" v-model="imageDescription"></input>
@@ -139,7 +146,10 @@ async function imgChange () {
             <p @click="cancel" class="text-center bg-primary text-white w-[70px] text-center rounded-full">cancel</p>
         </div>
     </form>
-    <img id="CreateDisplayImg" ref="imgRef" alt="unselectedImg" class="basis-3xl lg:grow object-scale-down max-w-[100%] h-auto"/> 
+    <div class="max-w-[100%] max-h-[400px] flex items-center justify-center m-[10px] border-2 border-dashed border-[#496580] p-[10px] overflow-hidden">
+       <!--in here so it stops being massive--> 
+    <img id="CreateDisplayImg" ref="imgRef" alt="Select an image" class=" object-scale-down w-[100%] max-h-[400px] object-scale-down"/> 
+    </div>
 </div>
 </main>
 </template>
