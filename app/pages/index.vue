@@ -222,6 +222,7 @@ if(JSON.parse(this.responseText).error == ""){
 
 const tokenStore = useTokenStore()
 tokenStore.token=JSON.parse(this.responseText).token
+
 return navigateTo('/collection')
 }else{
     spinnyWheelShow.value = false;

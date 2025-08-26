@@ -31,8 +31,8 @@ if(password.value != passwordCheck.value){
         console.log(json)
         if (json.error==''){
             tokenStore.token=json.token
-
-            navigateTo('/collection')
+          
+navigateTo('/collection')
         }else{
             alert("signup failed")
             spinnyWheelShow.value=false;
