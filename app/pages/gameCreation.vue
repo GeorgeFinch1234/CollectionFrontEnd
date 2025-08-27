@@ -1,21 +1,25 @@
 <script setup>
  import {useTokenStore} from'~/utils/test.js'
+import {userEndValidation, bigStringUserInputValidation, playCount} from'~/utils/frontEndValidation.js'
+
 /**
  * 
  * so can pass it to php so it can find it so if update name no issues
  * 
  */
 let orginalName = ref("");
+const gameNameInput = ref(null)
+const gameDescription = ref(null)
+const gamePlayerCount = ref(null)
+const gameImgDescription = ref(null)
+const imgSelectRef = ref(null);
+
 
 const props = defineProps(['name'])
-
 const elem = useTemplateRef("imgSelectRef")
 const displayImg = useTemplateRef("imgRef")
-
-
-
 const route = useRoute()
-console.log(route.query.name)
+
 
 
 
@@ -33,6 +37,22 @@ function cancel (){
 
 async function save(){
    
+
+if(!gameNameInput.value.checkValidity() ||
+ !gameDescription.value.checkValidity()|| 
+ !gamePlayerCount.value.checkValidity() ||
+ !gameImgDescription.value.checkValidity()||
+!imgSelectRef.value.checkValidity()  ){
+   
+    gameNameInput.value.reportValidity() 
+ gameDescription.value.reportValidity() 
+ gamePlayerCount.value.reportValidity() 
+ gameImgDescription.value.reportValidity() 
+ imgSelectRef.value.reportValidity()
+   
+}else{
+
+
   
  if(route.query.name != 'Edit'){
 
@@ -126,7 +146,7 @@ return navigateTo('/collection')
         
     });
 
-
+}
 }
 
 
@@ -220,24 +240,24 @@ relative top-[50vh] left-[50vw]
     <form class="flex flex-col gap-[20px] grow">
         <div class="flex flex-col">
             <label for="gameName">Game name</label>
-            <input id="gameName" v-model="gameName"></input>
+            <input @input="e=>userEndValidation(e.target)" id="gameName" v-model="gameName" ref="gameNameInput" required ></input>
         </div>
         <div class="flex flex-col">
       
             <label for="description">Description</label>
-            <input id="description" v-model="description"></input>
+            <input @input="e=>bigStringUserInputValidation(e.target)" id="description" v-model="description" required ref="gameDescription"></input>
         </div>
         <div class="flex flex-col">
             <label for="playerCount">Player count </label>
-            <input id="playerCount" type="number" v-model="playerCount"></input>
+            <input @input="e=>playCount(e.target)" id="playerCount" type="number" v-model="playerCount" required ref="gamePlayerCount"></input>
     </div>
         <div class="flex flex-col">
             <label for="imageDescription">Image alt</label>
-            <input id="imageDescription" v-model="imageDescription"></input>
+            <input @input="e=>bigStringUserInputValidation(e.target)" id="imageDescription" v-model="imageDescription" required ref="gameImgDescription"></input>
         </div>
        <div class="flex flex-col">
             <label for="imgFileSelection">Image</label>
-            <input @change="imgChange()" id="imgFileSelection" ref="imgSelectRef"type="file" name="image" accept=".png,.jpg" ></input>
+            <input @change="imgChange()" id="imgFileSelection" ref="imgSelectRef"type="file" name="image" accept=".png,.jpg" required ></input>
         </div>
         
             <div class="flex justify-between ">
