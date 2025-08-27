@@ -61,7 +61,7 @@ return res.json()
     <h1 class="text-white mt-[20px] text-2xl sm:text-4xl">Collection</h1>
     <div class="bg-alt w-[150px] h-[5px] sm:w-[200px]"></div>
     </div>
-    <main class="flex flex-col justify-center items-center gap-[20px] sm:flex  sm:gap-4 sm:flex-row sm:flex-wrap sm:mx-[10px] sm:pt-[40px]  ">
+    <main class="flex flex-col justify-center items-center gap-[20px] sm:flex  sm:gap-4 sm:flex-row sm:flex-wrap sm:mx-[10px]  m-[10px]  ">
     
     
 <GameCard  v-for="game in Games" :name=game.name :player=game.playerCount :description=game.description :img=game.imgRef :imgAlt=game.imgAlt class="sm:justify-self-center"@reload="loadGames()"></GameCard>

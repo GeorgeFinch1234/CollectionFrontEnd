@@ -25,7 +25,7 @@ console.log(props.img.replace(/ /g, '+'));
           
             <p class="text-center">player count = {{ player }}</p>
             
-                <p class=" overflow-scroll text-center border-b-[2px]">
+                <p class="overflow-y-auto text-center border-b-[2px]">
                 {{description}}
                 </p>
                 <a @click="show = !show" class="text-center bg-primary text-white w-[70px] text-center rounded-full ">
