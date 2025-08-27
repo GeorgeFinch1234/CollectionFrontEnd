@@ -4,7 +4,7 @@ let show=ref(false)
 function loadEdit(){
 return navigateTo('/gameCreation')
 }
-
+defineProps(['name'])
 </script>
 <template>
     <div class="p-[20px] bg-secondary w-[200px] h-[400px] rounded-lg flex flex-col absolute top-[0] right-[0] items-center ">
@@ -19,5 +19,5 @@ return navigateTo('/gameCreation')
     <p @click="$emit('closeMenu')" class="bg-primary rounded-md text-center text-white w-[100px] text-2xl">Close</p>
     </div>
     </div>
-    <delete v-if="show" @cancel="show=!show"></delete>
+    <delete :name=name v-if="show" @cancel="show=!show"></delete>
 </template>

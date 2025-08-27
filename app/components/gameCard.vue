@@ -33,7 +33,7 @@ console.log(props.img.replace(/ /g, '+'));
                 </a>
             
         </div>
-        <CollectionOptions v-if="show" @closeMenu="show=!show">
+        <CollectionOptions :name=name v-if="show" @closeMenu="show=!show">
     </CollectionOptions>
     </div>
   
