@@ -2,9 +2,12 @@
 let show=ref(false)
 
 function loadEdit(){
-return navigateTo('/gameCreation')
-}
-defineProps(['name'])
+return navigateTo({name:'gameCreation', query:{name:"Edit", gameName:props.name}})
+} 
+
+
+
+const props = defineProps(['name'])
 </script>
 <template>
     <div class="p-[20px] bg-secondary w-[200px] h-[400px] rounded-lg flex flex-col absolute top-[0] right-[0] items-center ">

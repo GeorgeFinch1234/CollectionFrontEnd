@@ -1,9 +1,31 @@
 <script setup>
  import {useTokenStore} from'~/utils/test.js'
+/**
+ * 
+ * so can pass it to php so it can find it so if update name no issues
+ * 
+ */
+let orginalName = ref("");
 
+const props = defineProps(['name'])
 
 const elem = useTemplateRef("imgSelectRef")
 const displayImg = useTemplateRef("imgRef")
+
+
+
+const route = useRoute()
+console.log(route.query.name)
+
+
+
+
+
+
+
+
+
+
 
 function cancel (){
     navigateTo('/collection')
@@ -12,26 +34,64 @@ function cancel (){
 async function save(){
    
   
- 
+ if(route.query.name != 'Edit'){
 
  
- getDataUrl(elem.value.files[0])
-    
+ getDataUrl(elem.value.files[0], "create")
+ }else{
+/**
+ * 
+ * like this so that no issue with user not picking an img
+ */
+    if(elem.value.files[0] == null){
+//if no img selected
+
+const tokenStore = useTokenStore()
+
+
+ const formData = new FormData();
+formData.append("name", gameName.value);
+formData.append("playerCount", playerCount.value);
+//formData.append("imgRef", reader.result);
+formData.append("imgAlt", imageDescription.value);
+formData.append("description", description.value);
+formData.append("token",tokenStore.token );
+formData.append("imgPresent","false" );
+formData.append("orginalGameName",orginalName.value );
+
+
+
+
+fetch('http://localhost:8080/edit', {
+  method: "POST",
+  body: formData
+}).then(res=>res.json()).then(json=>{
+    console.log(json) 
+return navigateTo('/collection')
+})
+
+
+
+    }else{
+//if an img is selected
+getDataUrl(elem.value.files[0], "edit")
+    }
+
+
+ }
 }
 
 
 
 
-function getDataUrl(file) {
+function getDataUrl(file, createOrEdit) {
     return new Promise((resolve, reject) => {
         const reader = new FileReader();
         reader.onload = () => {
-            console.log("----------------------")
-            console.log(reader.result)
+            
 
 const tokenStore = useTokenStore()
-console.log("****"+tokenStore.token)
-console.log("----------------------")
+
 
  const formData = new FormData();
 formData.append("name", gameName.value);
@@ -40,15 +100,17 @@ formData.append("imgRef", reader.result);
 formData.append("imgAlt", imageDescription.value);
 formData.append("description", description.value);
 formData.append("token",tokenStore.token );
+formData.append("imgPresent","true" );
+formData.append("orginalGameName",orginalName.value );
 
 
 
-
-fetch('http://localhost:8080/create', {
+fetch('http://localhost:8080/'+createOrEdit, {
   method: "POST",
   body: formData
 }).then(res=>res.json()).then(json=>{
-    console.log(json)   
+    console.log(json) 
+return navigateTo('/collection')
 })
 
 
@@ -57,11 +119,14 @@ fetch('http://localhost:8080/create', {
 
 
         resolve(reader.result)};
+
         reader.onerror = reject;
         reader.readAsDataURL(file);
 
         
     });
+
+
 }
 
 
@@ -87,7 +152,41 @@ async function imgChange () {
 
 }
 
+onMounted(()=>{
 
+if(route.query.name == 'Edit'){
+
+    const formData = new FormData();
+    const tokenStore = useTokenStore()
+
+
+   
+    formData.append("Token", tokenStore.token);
+    formData.append("Game", route.query.gameName);
+    
+    fetch('http://localhost:8080/game/data', {
+      method: "POST",
+      body: formData
+    }).then(res=>res.json()).then(json=>{
+       
+        document.getElementById("gameName").value=json.name
+        document.getElementById("description").value=json.description
+        document.getElementById("playerCount").value=json.playerCount
+        document.getElementById("imageDescription").value=json.imgAlt
+        document.getElementById("CreateDisplayImg").src=json.imgRef
+       orginalName.value = json.name 
+      
+       console.log("--------------------")
+            console.log(json.imgRef)
+            console.log(json)
+        
+    })
+    
+}
+
+
+
+})
 
 
 
@@ -106,7 +205,7 @@ relative top-[50vh] left-[50vw]
 
   
         <!--h1 empty, so that it can be dynamically changed depending on where it comes from. -->
-    <h1 class="text-2xl">test</h1>
+    <h1 class="text-2xl">{{ route.query.name }}</h1>
 <div class="bg-alt w-[100px] h-[5px] overflow-hidden "></div>
  <!--
     name 
@@ -120,24 +219,24 @@ relative top-[50vh] left-[50vw]
     <div class="w-[100%] flex flex-col lg:flex-row">
     <form class="flex flex-col gap-[20px] grow">
         <div class="flex flex-col">
-            <label for="gameName">game name</label>
+            <label for="gameName">Game name</label>
             <input id="gameName" v-model="gameName"></input>
         </div>
         <div class="flex flex-col">
       
-            <label for="description">description</label>
+            <label for="description">Description</label>
             <input id="description" v-model="description"></input>
         </div>
         <div class="flex flex-col">
-            <label for="playerCount">player count </label>
+            <label for="playerCount">Player count </label>
             <input id="playerCount" type="number" v-model="playerCount"></input>
     </div>
         <div class="flex flex-col">
-            <label for="imageDescription">img alt</label>
+            <label for="imageDescription">Image alt</label>
             <input id="imageDescription" v-model="imageDescription"></input>
         </div>
        <div class="flex flex-col">
-            <label for="imgFileSelection">img</label>
+            <label for="imgFileSelection">Image</label>
             <input @change="imgChange()" id="imgFileSelection" ref="imgSelectRef"type="file" name="image" accept=".png,.jpg" ></input>
         </div>
         
