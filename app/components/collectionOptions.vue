@@ -22,5 +22,5 @@ const props = defineProps(['name'])
     <p @click="$emit('closeMenu')" class="bg-primary rounded-md text-center text-white w-[100px] text-2xl">Close</p>
     </div>
     </div>
-    <delete :name=name v-if="show" @cancel="show=!show"></delete>
+    <delete :name=name v-if="show" @cancel="show=!show" @reload="$emit('reload')"></delete>
 </template>

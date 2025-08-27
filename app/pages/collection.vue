@@ -14,7 +14,10 @@ return navigateTo({name:'gameCreation', query:{name:"Create"}})
 
 //need else nuxt will try to access local stroange on sever side
 onMounted(()=>{
-    //this so that it will show in php $_POST stuff
+ loadGames()
+})
+function loadGames(){
+   //this so that it will show in php $_POST stuff
  const formData = new FormData();
 
  const tokenStore = useTokenStore()
@@ -37,20 +40,16 @@ return res.json()
                Games.value = json;
               }
                spinnyWheelShow.value=false;
-                /* 
-                name.value=json.name;
-                 player.value=json.playerCount;
-                  description.value=json.description;
-            imgRef.value=json.base64
-            imgAlt.value=json.imgAlt
-            */
+                
             },()=>{
                 
                 spinnyWheelShow.value=false;
             } )
      
 
-})
+}
+
+
 </script>
 
 <template>
@@ -65,7 +64,7 @@ return res.json()
     <main class="flex flex-col justify-center items-center gap-[20px] sm:flex  sm:gap-4 sm:flex-row sm:flex-wrap sm:mx-[10px] sm:pt-[40px]  ">
     
     
-<GameCard  v-for="game in Games" :name=game.name :player=game.playerCount :description=game.description :img=game.imgRef :imgAlt=game.imgAlt class="sm:justify-self-center"></GameCard>
+<GameCard  v-for="game in Games" :name=game.name :player=game.playerCount :description=game.description :img=game.imgRef :imgAlt=game.imgAlt class="sm:justify-self-center"@reload="loadGames()"></GameCard>
 
 </main>
 <img v-if="spinnyWheelShow"src="/assets/shinyGengar.png" alt="spinny wheel" class="z-100 fixed top-[50vh] left-[50vw]  w-[400px] translate-x-[-50%] -translate-y-[+50%] animate-spinCentered"></img>

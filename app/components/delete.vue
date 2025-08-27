@@ -1,7 +1,7 @@
 <script setup>
 
 import {useTokenStore} from'~/utils/test.js'
-
+const emit = defineEmits(['reload'])
 
 /*
 
@@ -30,7 +30,7 @@ function confirmDelete(){
         
     })
 
-
+emit('reload')
 
 
 
@@ -55,7 +55,7 @@ all need to do on php side.
             <p class="text-center">are you sure you want to delete</p>
         </div>
         <div class="flex flex-row justify-center gap-[5px] p-[20px]">
-            <a @click="confirmDelete" class="bg-primary rounded-md text-center text-white text-2xl h-fit p-[5px]">confirm</a>
+            <a @click="confirmDelete() "  class="bg-primary rounded-md text-center text-white text-2xl h-fit p-[5px]">confirm</a>
             <a @click="$emit('cancel')" class="bg-primary rounded-md text-center text-white text-2xl h-fit p-[5px]">cancel</a>
         </div>
     </div>
