@@ -96,7 +96,7 @@ navigateTo('/collection')
 
     </main>
     <!--need to implment-->
-    <img v-if="spinnyWheelShow" src="/assets/shinyGengar.png" alt="spinny wheel" class="z-100 fixed top-[50vh] left-[50vw]  w-[400px] translate-x-[-50%] -translate-y-[+50%] animate-spinCentered"></img>
+    <img v-if="spinnyWheelShow" src="/assets/loadingCircle.png" alt="spinny wheel" class="z-100 fixed top-[50vh] left-[50vw]  w-[150px] translate-x-[-50%] -translate-y-[+50%] animate-spinCentered"></img>
 
 
 

@@ -1,6 +1,6 @@
 
 export function userEndValidation(input){
-const re = new RegExp("^[a-zA-Z0-9]+$");
+const re = new RegExp("^[a-zA-Z0-9 ]+$");
 
 
 if(input.value.length <5){
@@ -30,7 +30,7 @@ input.setCustomValidity("only numbers allowed")
  }
 
  export function bigStringUserInputValidation(input){
-const re = new RegExp("^[a-zA-Z0-9]+$");
+const re = new RegExp("^[a-zA-Z0-9 ]+$");
 
 
 if(input.value.length <5){

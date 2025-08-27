@@ -38,7 +38,7 @@ module.exports = {
         },
       },
       animation: {
-        spinCentered: 'spinCentered 1.5s linear infinite', // change 3s to speed you want
+        spinCentered: 'spinCentered 3s linear infinite', // change 3s to speed you want
       },
     }
 }

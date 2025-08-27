@@ -67,13 +67,13 @@ return res.json()
 <GameCard  v-for="game in Games" :name=game.name :player=game.playerCount :description=game.description :img=game.imgRef :imgAlt=game.imgAlt class="sm:justify-self-center"@reload="loadGames()"></GameCard>
 
 </main>
-<img v-if="spinnyWheelShow"src="/assets/shinyGengar.png" alt="spinny wheel" class="z-100 fixed top-[50vh] left-[50vw]  w-[400px] translate-x-[-50%] -translate-y-[+50%] animate-spinCentered"></img>
+<img v-if="spinnyWheelShow"src="/assets/loadingCircle.png" alt="spinny wheel" class="z-100 fixed top-[50vh] left-[50vw]  w-[150px] translate-x-[-50%] -translate-y-[+50%] animate-spinCentered"></img>
 
 
 <!--for if there are no games-->
 
 <div v-if="noGame" class="p-[20px] bg-secondary w-[200px] h-[400px] rounded-lg fixed flex flex-col top-[50vh] left-[50vw] translate-y-[-50%] translate-x-[-50%]">
-       <img src="/assets/shinyGengar.png" alt="placeholder for no game collection" /> 
+       <img src="/assets/loadingCircle.png" alt="placeholder for no game collection" /> 
         <div class="flex flex-col justify-between overflow-hidden gap-[5px] items-center">
             
             <h2 class="text-center underline pt-[10px]">Empty Collection</h2>
