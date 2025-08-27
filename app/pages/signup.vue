@@ -53,13 +53,15 @@ if(!signInUserName.value.checkValidity() ||!signInPassword.value.checkValidity()
       method: "POST",
       body: formData
     }).then(res=>res.json()).then(json=>{
+        console.log("testttttttttt")
         console.log(json)
         if (json.error==''){
             tokenStore.token=json.token
           
 navigateTo('/collection')
         }else{
-            alert("signup failed")
+        signInUserName.value.setCustomValidity(json.error)
+        signInUserName.value.reportValidity()
             spinnyWheelShow.value=false;
         }
         

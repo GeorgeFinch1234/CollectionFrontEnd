@@ -212,6 +212,86 @@ done this was to make yii2 and nuxt work together,
 else other way couldnt get access to var in $_POST
 */
  function sendData() {
+
+
+const formData = new FormData();
+
+ const tokenStore = useTokenStore()
+
+formData.append("username", user.value);
+formData.append("password", password.value);
+
+fetch('http://localhost:8080/login', {
+  method: "POST",
+  body: formData
+})
+            .then(res=>{console.log("hello world")
+return res.json()
+
+            })            
+            .then(json=>{
+console.log(json)
+             
+                
+
+if(json.error == ""){  
+    //redirects if successful.
+
+tokenStore.token=json.token
+
+return navigateTo('/collection')
+}else{
+
+/**
+ * 
+ * so back end message can get shown in the same manner as the front end ones.
+ * 
+ */
+
+ console.log(json.errorFrom)
+if(json.errorFrom != "password"){
+signInUserName.value.setCustomValidity(json.error)
+signInUserName.value.reportValidity()
+}else{
+signInPassword.value.setCustomValidity(json.error)
+signInPassword.value.reportValidity()
+}
+
+    spinnyWheelShow.value = false;
+
+    /*
+
+    temp, rember to remove it.
+
+    */
+    
+    //alert(json)
+
+}
+
+
+
+
+
+
+
+
+
+            },()=>{
+                
+                spinnyWheelShow.value=false;
+            } )
+
+
+    //---------------------------------------------------------
+
+
+
+
+/*
+
+
+
    const xhttp = new XMLHttpRequest();
   xhttp.open("POST", "http://localhost:8080/login");
   xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
@@ -228,11 +308,13 @@ tokenStore.token=JSON.parse(this.responseText).token
 return navigateTo('/collection')
 }else{
     spinnyWheelShow.value = false;
+  */
     /*
 
     temp, rember to remove it.
 
     */
+    /*
     alert(this.responseText)
 
 }
@@ -242,6 +324,7 @@ return navigateTo('/collection')
 
 }
   xhttp.send("username="+user.value + "&password="+password.value);
+  */
   }
 
  
