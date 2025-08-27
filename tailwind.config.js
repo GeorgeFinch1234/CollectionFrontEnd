@@ -30,6 +30,16 @@ module.exports = {
         alt :'#FFDBBB'
         
       },
+       keyframes: {
+        spinCentered: {
+          to: {
+            transform: 'translate(-50%, -50%) rotate(360deg)',
+          },
+        },
+      },
+      animation: {
+        spinCentered: 'spinCentered 3s linear infinite', // change 3s to speed you want
+      },
     }
 }
 }
