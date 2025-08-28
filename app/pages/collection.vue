@@ -4,8 +4,7 @@ let spinnyWheelShow = ref(true)
 let noGame =ref(false)
 let selectedGameId = ref(null);
 let previousSelectedGameId = ref(null);
-let selectedGameIdInfo = ref(null);
-let previousSelectedGameIdInfo = ref(null);
+
 
 
 import {useTokenStore} from'~/utils/test.js'
@@ -65,17 +64,7 @@ function selectGame(gameId) {
   selectedGameId.value = gameId;
     }
 }
-function selectGameInfo(gameId) {
-    if(selectedGameId.value === gameId) {
-        // Deselect if the same game is clicked again
-        previousSelectedGameId.value = selectedGameId.value;
-        selectedGameId.value = null;
-        return;
-    }else{
-  previousSelectedGameId.value = selectedGameId.value;
-  selectedGameId.value = gameId;
-    }
-}
+
 
 </script>
 
@@ -90,16 +79,20 @@ function selectGameInfo(gameId) {
     </div>
     <main class="flex flex-col justify-center items-center gap-[20px] sm:flex  sm:gap-4 sm:flex-row sm:flex-wrap sm:mx-[10px]  m-[10px]  ">
     <!--add the @click to a button in it, or something like that and have it emit and event up and then can keep it the same, ish-->
-  
-<GameCard  v-for="game in Games" :name=game.name :player=game.playerCount :description=game.description :img=game.imgRef :imgAlt=game.imgAlt 
-class="sm:justify-self-center" @reload="loadGames()" :class="{'animate-flipEndWrongWayUp': selectedGameId === game.name, 
-'animate-flipEndfrontWayUp': previousSelectedGameId === game.name && previousSelectedGameId !== selectedGameId}" @click="selectGame(game.name)">
+<div v-for="game in Games" class="relative" :key="game.name">
 
+    <GameInfo class="absolute top-[0] right-[0] transform-3d backface-hidden" :class="{'animate-flipEndfrontWayUp': selectedGameId === game.name, 
+'animate-flipEndWrongWayUp': previousSelectedGameId === game.name && previousSelectedGameId !== selectedGameId,}"></GameInfo>
 
-
-
+    <GameCard   :name=game.name :player=game.playerCount :description=game.description :img=game.imgRef :imgAlt=game.imgAlt 
+class="sm:justify-self-center transform-3d backface-hidden" @reload="loadGames()" :class="{'animate-flipEndWrongWayUp': selectedGameId === game.name, 
+'animate-flipEndfrontWayUp': previousSelectedGameId === game.name && previousSelectedGameId !== selectedGameId,}" @click="selectGame(game.name)">
 
 </GameCard>
+
+</div>
+
+
 
 </main>
 <img v-if="spinnyWheelShow"src="/assets/loadingCircle.png" alt="spinny wheel" class="z-100 fixed top-[50vh] left-[50vw]  w-[150px] translate-x-[-50%] -translate-y-[+50%] animate-spinCentered"></img>

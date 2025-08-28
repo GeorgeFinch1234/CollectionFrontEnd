@@ -41,7 +41,8 @@ module.exports = {
         flipEndWrongWayUp:{
         
          '0%':   { transform: 'rotateY(0deg)', opacity: '1' },
-          '50%':  { opacity: '0.5' },
+          '50%':  { opacity: '1' },
+          '50%': { opacity: '0' },
           '100%': { transform: 'rotateY(180deg)', opacity: '0'},
 
 
@@ -49,7 +50,8 @@ module.exports = {
         flipEndfrontWayUp:{
                 
                 '100%':   { transform: 'rotateY(0deg)', opacity: '1', },
-                  '50%':  { opacity: '0.5' },
+                  '50%':  { opacity: '1' },
+                  '49%': { opacity: '0' },
                   '0%': { transform: 'rotateY(180deg)',opacity: '0', },
 
 
