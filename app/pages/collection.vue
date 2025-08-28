@@ -82,11 +82,11 @@ function selectGame(gameId) {
 <div v-for="game in Games" class="relative" :key="game.name">
 
     <GameInfo class="absolute top-[0] right-[0] transform-3d backface-hidden" :class="{'animate-flipEndfrontWayUp': selectedGameId === game.name, 
-'animate-flipEndWrongWayUp': previousSelectedGameId === game.name && previousSelectedGameId !== selectedGameId,}"></GameInfo>
+'animate-flipEndWrongWayUp': previousSelectedGameId === game.name && previousSelectedGameId !== selectedGameId,}" @flipCard="selectGame(game.name)"></GameInfo>
 
     <GameCard   :name=game.name :player=game.playerCount :description=game.description :img=game.imgRef :imgAlt=game.imgAlt 
 class="sm:justify-self-center transform-3d backface-hidden" @reload="loadGames()" :class="{'animate-flipEndWrongWayUp': selectedGameId === game.name, 
-'animate-flipEndfrontWayUp': previousSelectedGameId === game.name && previousSelectedGameId !== selectedGameId,}" @click="selectGame(game.name)">
+'animate-flipEndfrontWayUp': previousSelectedGameId === game.name && previousSelectedGameId !== selectedGameId,}" @flipCard="selectGame(game.name)">
 
 </GameCard>
 

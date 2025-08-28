@@ -21,7 +21,7 @@ console.log(props.img.replace(/ /g, '+'));
     
     
     <div class=" p-[20px] bg-secondary w-[200px] h-[400px] rounded-lg flex flex-col relative"    >
-
+<img src="/assets/reverseArrows.png" alt="reversable arrows" class="absolute top-[2px] right-[2px] w-[30px] h-30px]" @click="$emit('flipCard')"/>
        <img :src=imgURl :alt=imgAlt /> 
         <div class="flex flex-col justify-between overflow-hidden gap-[5px] items-center">
             
