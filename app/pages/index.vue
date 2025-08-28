@@ -2,8 +2,8 @@
 
 
 //test
-import {useTokenStore} from'~/utils/test.js'
-import {userEndValidation} from'~/utils/frontEndValidation.js'
+import { useTokenStore } from '~/utils/test.js'
+import { userEndValidation } from '~/utils/frontEndValidation.js'
 
 let user = ref("");
 let password = ref("");
@@ -12,7 +12,7 @@ const signInUserName = ref(null)
 const signInPassword = ref(null)
 
 definePageMeta({
-  layout: 'login'
+    layout: 'login'
 })
 
 
@@ -25,185 +25,185 @@ definePageMeta({
 
 onMounted(() => {
     //code taken from old project, dot connection, on same github
-const canvas = document.getElementById("canvas");
-const ctx = canvas.getContext("2d");
-let circleX = 0
-let circleY = 0
-let dotsInCircle = []
-let error=ref(false)
+    const canvas = document.getElementById("canvas");
+    const ctx = canvas.getContext("2d");
+    let circleX = 0
+    let circleY = 0
+    let dotsInCircle = []
+    let error = ref(false)
 
-let dotCount;
-let dots = [];
-//they move in a strught line, when hit the wall they change direction
-class Dot {
-    constructor(initialX, initialY, initialVX, initialVY) {
-        this.x = initialX;
-        this.y = initialY;
-        //velocity x,
-        this.VX = initialVX
-        this.VY = initialVY
+    let dotCount;
+    let dots = [];
+    //they move in a strught line, when hit the wall they change direction
+    class Dot {
+        constructor(initialX, initialY, initialVX, initialVY) {
+            this.x = initialX;
+            this.y = initialY;
+            //velocity x,
+            this.VX = initialVX
+            this.VY = initialVY
+        }
     }
-}
 
 
 
 
-function createDots(){
-    dots = [];
-    dotCount = Math.floor(window.innerWidth / 15);
-    for (let i = 0; i < dotCount; i++) {
-        //to stop it being able to be zero eg not move 
-        let zeroX = 0;
-        while (zeroX == 0) {
-            //-0.5 so can go back
-            //2 is speed bascially
-            zeroX = (Math.random() - 0.5) * 2
+    function createDots() {
+        dots = [];
+        dotCount = Math.floor(window.innerWidth / 15);
+        for (let i = 0; i < dotCount; i++) {
+            //to stop it being able to be zero eg not move 
+            let zeroX = 0;
+            while (zeroX == 0) {
+                //-0.5 so can go back
+                //2 is speed bascially
+                zeroX = (Math.random() - 0.5) * 2
 
-        }
-        let zeroY = 0;
-        while (zeroY == 0) {
-            zeroY = (Math.random() - 0.5) * 2
-        }
-
-
+            }
+            let zeroY = 0;
+            while (zeroY == 0) {
+                zeroY = (Math.random() - 0.5) * 2
+            }
 
 
 
 
-        dots.push(
-            new Dot(
-                Math.floor(Math.random() * window.innerWidth),
-                Math.floor(Math.random() * window.innerHeight),
-                zeroX,
-                zeroY
+
+
+            dots.push(
+                new Dot(
+                    Math.floor(Math.random() * window.innerWidth),
+                    Math.floor(Math.random() * window.innerHeight),
+                    zeroX,
+                    zeroY
+                )
             )
-        )
 
+        }
     }
-}
 
 
-function run() {
-canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-    createDots()
-    draw()
-}
+    function run() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        createDots()
+        draw()
+    }
 
-function draw() {
-    
-    ctx.fillStyle = "#496580"
-    ctx.fillRect(0, 0, window.innerWidth, window.innerHeight)
+    function draw() {
 
-    //floor to stop any issue with being floating point
-    
-    //clear dotsInCirle, so if leave no longer effected
-    dotsInCircle = []
-    for (let i = dots.length - 1; i >= 0; i--) {
+        ctx.fillStyle = "#496580"
+        ctx.fillRect(0, 0, window.innerWidth, window.innerHeight)
 
+        //floor to stop any issue with being floating point
 
-        //-0.5 so get positive and negs
-        //changes 2 for movement speed
-        dots[i].x += dots[i].VX
-        dots[i].y += dots[i].VY
-
-        //dont like this so it just changes direction
-        if (dots[i].x <= 0) {
-            dots[i].VX = (Math.random()) * 2
-        }
-        if (dots[i].x >= window.innerWidth) {
-            dots[i].VX = (Math.random() - 1) * 2
-        }
-        if (dots[i].y <= 0) {
-            dots[i].VY = (Math.random()) * 2
-        }
-        if (dots[i].y >= window.innerHeight) {
-            dots[i].VY = (Math.random() - 1) * 2
-        }
-
-        ctx.beginPath()
-        ctx.arc(dots[i].x, dots[i].y, 1, 0, Math.PI * 2)
-        ctx.fillStyle = "#ffffff"
-        ctx.fill();
-
-        if (dots[i].x > circleX - 200 && dots[i].x < circleX + 200 && dots[i].y > circleY - 200 && dots[i].y < circleY + 200) {
-            dotsInCircle.push(dots[i]);
-        }
+        //clear dotsInCirle, so if leave no longer effected
+        dotsInCircle = []
+        for (let i = dots.length - 1; i >= 0; i--) {
 
 
+            //-0.5 so get positive and negs
+            //changes 2 for movement speed
+            dots[i].x += dots[i].VX
+            dots[i].y += dots[i].VY
 
-//f as in first loop
-        for (let f = 0; f < dotsInCircle.length;f++) {
+            //dont like this so it just changes direction
+            if (dots[i].x <= 0) {
+                dots[i].VX = (Math.random()) * 2
+            }
+            if (dots[i].x >= window.innerWidth) {
+                dots[i].VX = (Math.random() - 1) * 2
+            }
+            if (dots[i].y <= 0) {
+                dots[i].VY = (Math.random()) * 2
+            }
+            if (dots[i].y >= window.innerHeight) {
+                dots[i].VY = (Math.random() - 1) * 2
+            }
 
-//so only do a check once
-//s for second
-            for (let s = f; s <dotsInCircle.length; s++) {
+            ctx.beginPath()
+            ctx.arc(dots[i].x, dots[i].y, 1, 0, Math.PI * 2)
+            ctx.fillStyle = "#ffffff"
+            ctx.fill();
+
+            if (dots[i].x > circleX - 200 && dots[i].x < circleX + 200 && dots[i].y > circleY - 200 && dots[i].y < circleY + 200) {
+                dotsInCircle.push(dots[i]);
+            }
 
 
-                let dx = dotsInCircle[f].x - dotsInCircle[s].x;
-                let dy = dotsInCircle[f].y - dotsInCircle[s].y;
-                let distance = Math.sqrt(dx * dx + dy * dy);
 
-                if (distance < 125) {
-                    ctx.beginPath()
-                    ctx.moveTo(dotsInCircle[f].x, dotsInCircle[f].y)
-                    ctx.lineTo(dotsInCircle[s].x, dotsInCircle[s].y)
-                    ctx.strokeStyle = "rgba(255, 255, 255, 0.1)"
-                    ctx.stroke()
+            //f as in first loop
+            for (let f = 0; f < dotsInCircle.length; f++) {
+
+                //so only do a check once
+                //s for second
+                for (let s = f; s < dotsInCircle.length; s++) {
+
+
+                    let dx = dotsInCircle[f].x - dotsInCircle[s].x;
+                    let dy = dotsInCircle[f].y - dotsInCircle[s].y;
+                    let distance = Math.sqrt(dx * dx + dy * dy);
+
+                    if (distance < 125) {
+                        ctx.beginPath()
+                        ctx.moveTo(dotsInCircle[f].x, dotsInCircle[f].y)
+                        ctx.lineTo(dotsInCircle[s].x, dotsInCircle[s].y)
+                        ctx.strokeStyle = "rgba(255, 255, 255, 0.1)"
+                        ctx.stroke()
+                    }
+                    // sqrt((x2 - x1)^2 + (y2 - y1)^2)
+                    let mdx = circleX - dotsInCircle[s].x;
+                    let mdy = circleY - dotsInCircle[s].y;
+                    let mouseDistance = Math.sqrt(mdx * mdx + mdy * mdy);
+
+                    if (mouseDistance < 125) {
+                        ctx.beginPath()
+                        ctx.moveTo(circleX, circleY)
+                        ctx.lineTo(dotsInCircle[s].x, dotsInCircle[s].y)
+                        ctx.strokeStyle = "rgba(255, 255, 255, 0.1)"
+                        ctx.stroke()
+                    }
+
+
+
+
+
+
+
                 }
-                // sqrt((x2 - x1)^2 + (y2 - y1)^2)
-                let mdx = circleX - dotsInCircle[s].x;
-                let mdy = circleY - dotsInCircle[s].y;
-                let mouseDistance = Math.sqrt(mdx * mdx + mdy * mdy);
-
-                if (mouseDistance < 125) {
-                    ctx.beginPath()
-                    ctx.moveTo(circleX, circleY)
-                    ctx.lineTo(dotsInCircle[s].x, dotsInCircle[s].y)
-                    ctx.strokeStyle = "rgba(255, 255, 255, 0.1)"
-                    ctx.stroke()
-                }
-
-
-
-
-
-              
 
             }
 
+
         }
 
 
+        // circle()
+
+        setTimeout(draw, 25)
     }
 
-    
-   // circle()
+    addEventListener("mousemove", e => {
+        circleX = e.clientX
+        circleY = e.clientY
+    })
+    addEventListener("touchmove", (e) => {
 
-    setTimeout(draw, 25)
-}
+        e.preventDefault();
+        //prevent default so can scroll
+        circleX = e.touches[0].clientX
+        circleY = e.touches[0].clientY
 
-addEventListener("mousemove", e => {
-    circleX = e.clientX
-    circleY = e.clientY
-})
-addEventListener("touchmove", (e) => {
-   
-    e.preventDefault();
-    //prevent default so can scroll
-    circleX = e.touches[0].clientX
-    circleY = e.touches[0].clientY
 
-     
-})
+    })
 
-addEventListener("resize",()=>{
-canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-     createDots()
-    
-})
-run();
+    addEventListener("resize", () => {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        createDots()
+
+    })
+    run();
 
 
 });
@@ -211,76 +211,77 @@ run();
 done this was to make yii2 and nuxt work together, 
 else other way couldnt get access to var in $_POST
 */
- function sendData() {
+function sendData() {
 
 
-const formData = new FormData();
+    const formData = new FormData();
 
- const tokenStore = useTokenStore()
+    const tokenStore = useTokenStore()
 
-formData.append("username", user.value);
-formData.append("password", password.value);
+    formData.append("username", user.value);
+    formData.append("password", password.value);
 
-fetch('http://localhost:8080/login', {
-  method: "POST",
-  body: formData
-})
-            .then(res=>{console.log("hello world")
-return res.json()
+    fetch('http://localhost:8080/login', {
+        method: "POST",
+        body: formData
+    })
+        .then(res => {
+            console.log("hello world")
+            return res.json()
 
-            })            
-            .then(json=>{
-console.log(json)
-             
-                
-
-if(json.error == ""){  
-    //redirects if successful.
-
-tokenStore.token=json.token
-
-return navigateTo('/collection')
-}else{
-
-/**
- * 
- * so back end message can get shown in the same manner as the front end ones.
- * 
- */
-
- console.log(json.errorFrom)
-if(json.errorFrom != "password"){
-signInUserName.value.setCustomValidity(json.error)
-signInUserName.value.reportValidity()
-}else{
-signInPassword.value.setCustomValidity(json.error)
-signInPassword.value.reportValidity()
-}
-
-    spinnyWheelShow.value = false;
-
-    /*
-
-    temp, rember to remove it.
-
-    */
-    
-    //alert(json)
-
-}
+        })
+        .then(json => {
+            console.log(json)
 
 
 
+            if (json.error == "") {
+                //redirects if successful.
 
+                tokenStore.token = json.token
+
+                return navigateTo('/collection')
+            } else {
+
+                /**
+                 * 
+                 * so back end message can get shown in the same manner as the front end ones.
+                 * 
+                 */
+
+                console.log(json.errorFrom)
+                if (json.errorFrom != "password") {
+                    signInUserName.value.setCustomValidity(json.error)
+                    signInUserName.value.reportValidity()
+                } else {
+                    signInPassword.value.setCustomValidity(json.error)
+                    signInPassword.value.reportValidity()
+                }
+
+                spinnyWheelShow.value = false;
+
+                /*
+            
+                temp, rember to remove it.
+            
+                */
+
+                //alert(json)
+
+            }
 
 
 
 
 
-            },()=>{
-                
-                spinnyWheelShow.value=false;
-            } )
+
+
+
+
+        }, () => {
+
+            spinnyWheelShow.value = false;
+        })
 
 
     //---------------------------------------------------------
@@ -288,27 +289,27 @@ signInPassword.value.reportValidity()
 
 
 
-/*
-
-
-
-   const xhttp = new XMLHttpRequest();
-  xhttp.open("POST", "http://localhost:8080/login");
-  xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-  xhttp.onload = function() {
-//as it returns "" from php, which get intptreted as "\"\""
-
-
-if(JSON.parse(this.responseText).error == ""){  
-    //redirects if successful.
-
-const tokenStore = useTokenStore()
-tokenStore.token=JSON.parse(this.responseText).token
-
-return navigateTo('/collection')
-}else{
-    spinnyWheelShow.value = false;
-  */
+    /*
+    
+    
+    
+       const xhttp = new XMLHttpRequest();
+      xhttp.open("POST", "http://localhost:8080/login");
+      xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+      xhttp.onload = function() {
+    //as it returns "" from php, which get intptreted as "\"\""
+    
+    
+    if(JSON.parse(this.responseText).error == ""){  
+        //redirects if successful.
+    
+    const tokenStore = useTokenStore()
+    tokenStore.token=JSON.parse(this.responseText).token
+    
+    return navigateTo('/collection')
+    }else{
+        spinnyWheelShow.value = false;
+      */
     /*
 
     temp, rember to remove it.
@@ -325,73 +326,79 @@ return navigateTo('/collection')
 }
   xhttp.send("username="+user.value + "&password="+password.value);
   */
-  }
+}
 
- 
-    /*
+
+/*
 
 need to make in to vue style not normal js style
-    */
+*/
 
-function submitHandler(){
-
- 
- 
+function submitHandler() {
 
 
-if(!signInUserName.value.checkValidity() ||!signInPassword.value.checkValidity() ){
-   signInUserName.value.reportValidity()
-   signInPassword.value.reportValidity()
-}else{
-spinnyWheelShow.value = true;
-sendData()
+
+
+
+    if (!signInUserName.value.checkValidity() || !signInPassword.value.checkValidity()) {
+        signInUserName.value.reportValidity()
+        signInPassword.value.reportValidity()
+    } else {
+        spinnyWheelShow.value = true;
+        sendData()
+    }
+
+
 }
 
-   
-}
 
 
 
 
- 
 
 
 
 
-function signUp (){
+function signUp() {
     navigateTo('/signup')
 }
 
 </script>
 
 <template>
-    
+
     <canvas id="canvas" role="presentational" class=" bg-primary w-screen h-screen z-0">
 
     </canvas>
-  
+
     <!--transform-[translate(0%,-50%)]-->
-    
-    <main class="p-[20px] gap-[20px] bg-secondary w-[300px] h-[300px]  rounded-lg absolute top-[50vh] left-[50vw] translate-y-[-50%] translate-x-[-50%] sm:w-[600px]">
-    <div class="flex flex-col justify-center items-center">
-        <h1 class="text-center text-2xl">Welcome</h1>
-    <div class="bg-alt w-[150px] h-[5px] "></div>
-    </div>
-   <!--post not get so the password now in the url-->
-    <form action="" method="POST" class="flex flex-col gap-[40px]  pt-[20px]">
-        <div class="flex flex-col gap-[10px]">
-           <!--need labals for aria-->
-            <input @input="e=>userEndValidation(e.target)" v-model="user" placeholder="user name" class="rounded-md  text-xl" ref="signInUserName" required />
-            <input @input="e=>userEndValidation(e.target)" v-model="password" placeholder="password" type="password" class="rounded-md text-xl" ref="signInPassword" required />
+
+    <main
+        class="p-[20px] gap-[20px] bg-secondary w-[300px] h-[300px]  rounded-lg absolute top-[50vh] left-[50vw] translate-y-[-50%] translate-x-[-50%] sm:w-[600px]">
+        <div class="flex flex-col justify-center items-center">
+            <h1 class="text-center text-2xl">Welcome</h1>
+            <div class="bg-alt w-[150px] h-[5px] "></div>
         </div>
-       
-        <div class="flex flex-col gap-[10px]">
-            <input @click.prevent ="submitHandler" type="submit" class="bg-primary rounded-md text-white text-xl" id="loginSubmit"></input>
-            <input @click="signUp()" type="button" class="bg-primary rounded-md text-white text-xl" value="sign up"/>
-        </div>
-    </form>
-    
+        <!--post not get so the password now in the url-->
+        <form action="" method="POST" class="flex flex-col gap-[40px]  pt-[20px]">
+            <div class="flex flex-col gap-[10px]">
+                <!--need labals for aria-->
+                <input @input="e => userEndValidation(e.target)" v-model="user" placeholder="user name"
+                    class="rounded-md  text-xl" ref="signInUserName" required />
+                <input @input="e => userEndValidation(e.target)" v-model="password" placeholder="password" type="password"
+                    class="rounded-md text-xl" ref="signInPassword" required />
+            </div>
+
+            <div class="flex flex-col gap-[10px]">
+                <input @click.prevent="submitHandler" type="submit" class="bg-primary rounded-md text-white text-xl"
+                    id="loginSubmit"></input>
+                <input @click="signUp()" type="button" class="bg-primary rounded-md text-white text-xl"
+                    value="sign up" />
+            </div>
+        </form>
+
 
     </main>
-    <img v-if="spinnyWheelShow" src="/assets/loadingCircle.png" alt="spinny wheel" class="z-100 fixed top-[50vh] left-[50vw]  w-[150px] translate-x-[-50%] -translate-y-[+50%] animate-spinCentered"></img>
+    <img v-if="spinnyWheelShow" src="/assets/loadingCircle.png" alt="spinny wheel"
+        class="z-100 fixed top-[50vh] left-[50vw]  w-[150px] translate-x-[-50%] -translate-y-[+50%] animate-spinCentered"></img>
 </template>

@@ -43,13 +43,13 @@ module.exports = {
          '0%':   { transform: 'rotateY(0deg)', opacity: '1' },
           '50%':  { opacity: '1' },
           '50%': { opacity: '0' },
-          '100%': { transform: 'rotateY(180deg)', opacity: '0', 'z-index': '1' },
+          '100%': { transform: 'rotateY(180deg)', opacity: '0',  },
 
 
         },
         flipEndfrontWayUp:{
                 
-                '100%':   { transform: 'rotateY(0deg)', opacity: '1', 'z-index': '2' },
+                '100%':   { transform: 'rotateY(0deg)', opacity: '1',  },
                   '50%':  { opacity: '1' },
                   '49%': { opacity: '0' },
                   '0%': { transform: 'rotateY(180deg)',opacity: '0', },
