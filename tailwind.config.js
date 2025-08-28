@@ -1,3 +1,5 @@
+const { h } = require("vue");
+
 module.exports = {
   theme: {
     extend: {
@@ -36,10 +38,31 @@ module.exports = {
             transform: 'translate(-50%, -50%) rotate(360deg)',
           },
         },
+        flipEndWrongWayUp:{
+        
+         '0%':   { transform: 'rotateY(0deg)', opacity: '1' },
+          '50%':  { opacity: '0.5' },
+          '100%': { transform: 'rotateY(180deg)', opacity: '0'},
+
+
+        },
+        flipEndfrontWayUp:{
+                
+                '100%':   { transform: 'rotateY(0deg)', opacity: '1', },
+                  '50%':  { opacity: '0.5' },
+                  '0%': { transform: 'rotateY(180deg)',opacity: '0', },
+
+
+                }
+
+
+
       },
+
       animation: {
-        spinCentered: 'spinCentered 3s linear infinite', // change 3s to speed you want
-      },
+        spinCentered: 'spinCentered 3s linear infinite', 
+         flipEndWrongWayUp: 'flipEndWrongWayUp 1s linear forwards',
+         flipEndfrontWayUp: 'flipEndfrontWayUp 1s linear forwards',},
     }
 }
 }
