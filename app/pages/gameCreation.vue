@@ -13,8 +13,12 @@ const gameDescription = ref(null)
 const gamePlayerCount = ref(null)
 const gameImgDescription = ref(null)
 const imgSelectRef = ref(null);
-
-
+const gameCost = ref(null);
+const gamePlayTime = ref(null);
+const gameMinPlayers = ref(null);  
+const gameMaxPlayers = ref(null);
+const fullness = ref(null);
+const radioButtons = ref("yes");
 const props = defineProps(['name'])
 const elem = useTemplateRef("imgSelectRef")
 const displayImg = useTemplateRef("imgRef")
@@ -36,19 +40,29 @@ function cancel (){
 }
 
 async function save(){
-   
+   console.log("---------------")
+console.log(minPlayers.value)
+console.log("--------------------")
 
 if(!gameNameInput.value.checkValidity() ||
  !gameDescription.value.checkValidity()|| 
  !gamePlayerCount.value.checkValidity() ||
  !gameImgDescription.value.checkValidity()||
-!imgSelectRef.value.checkValidity()  ){
+!imgSelectRef.value.checkValidity() ||
+!gameCost.value.checkValidity() ||
+!gamePlayTime.value.checkValidity() ||
+!gameMinPlayers.value.checkValidity() ||
+!gameMaxPlayers.value.checkValidity()) {
    
     gameNameInput.value.reportValidity() 
  gameDescription.value.reportValidity() 
  gamePlayerCount.value.reportValidity() 
  gameImgDescription.value.reportValidity() 
  imgSelectRef.value.reportValidity()
+    gameCost.value.reportValidity()
+    gamePlayTime.value.reportValidity()
+    gameMinPlayers.value.reportValidity()
+    gameMaxPlayers.value.reportValidity()
    
 }else{
 
@@ -77,7 +91,16 @@ formData.append("imgAlt", imageDescription.value);
 formData.append("description", description.value);
 formData.append("token",tokenStore.token );
 formData.append("imgPresent","false" );
+//need so if change name can still find it
 formData.append("orginalGameName",orginalName.value );
+formData.append("cost",cost.value );
+formData.append("time",playTime.value );  
+formData.append("minPlayers",minPlayers.value );
+formData.append("maxPlayers",maxPlayers.value );
+formData.append("fullInBox",radioButtons.value );
+
+
+
 
 
 
@@ -105,6 +128,9 @@ getDataUrl(elem.value.files[0], "edit")
 
 
 function getDataUrl(file, createOrEdit) {
+
+console.log(gameMinPlayers.value)
+    
     return new Promise((resolve, reject) => {
         const reader = new FileReader();
         reader.onload = () => {
@@ -122,6 +148,12 @@ formData.append("description", description.value);
 formData.append("token",tokenStore.token );
 formData.append("imgPresent","true" );
 formData.append("orginalGameName",orginalName.value );
+formData.append("cost",cost.value );
+formData.append("time",playTime.value );  
+formData.append("minPlayers",minPlayers.value );
+formData.append("maxPlayers",maxPlayers.value );
+formData.append("fullInBox",radioButtons.value );
+
 
 
 
@@ -130,7 +162,7 @@ fetch('http://localhost:8080/'+createOrEdit, {
   body: formData
 }).then(res=>res.json()).then(json=>{
     console.log(json) 
-return navigateTo('/collection')
+ return navigateTo('/collection')
 })
 
 
@@ -193,7 +225,15 @@ if(route.query.name == 'Edit'){
         document.getElementById("description").value=json.description
         document.getElementById("playerCount").value=json.playerCount
         document.getElementById("imageDescription").value=json.imgAlt
+        document.getElementById("cost").value=json.cost
+        document.getElementById("minPlayers").value=json.minPlayers
+        document.getElementById("maxPlayers").value=json.maxPlayers
+        document.getElementById("playTime").value=json.time
+        radioButtons.value=json.completed
         document.getElementById("CreateDisplayImg").src=json.imgRef
+    
+        
+        document.getElementById("playTime").src=json.time
        orginalName.value = json.name 
       
        console.log("--------------------")
@@ -236,8 +276,10 @@ relative top-[50vh] left-[50vw]
     
     
     -->
+    
     <div class="w-[100%] flex flex-col lg:flex-row">
-    <form class="flex flex-col gap-[20px] grow">
+    <form class="flex flex-col grow lg:flex lg:flex-row lg:gap-[20px]">
+        <section class="grow">
         <div class="flex flex-col">
             <label for="gameName">Game name</label>
             <input @input="e=>userEndValidation(e.target)" id="gameName" v-model="gameName" ref="gameNameInput" required ></input>
@@ -248,9 +290,47 @@ relative top-[50vh] left-[50vw]
             <input @input="e=>bigStringUserInputValidation(e.target)" id="description" v-model="description" required ref="gameDescription"></input>
         </div>
         <div class="flex flex-col">
-            <label for="playerCount">Player count </label>
+            <label for="playerCount">Average player count </label>
             <input @input="e=>playCount(e.target)" id="playerCount" type="number" v-model="playerCount" required ref="gamePlayerCount"></input>
     </div>
+    <!--new-->
+<div class="flex flex-col">
+            <label for="minPlayers">Min players </label>
+            <input @input="e=>playCount(e.target)" id="minPlayers" type="number"  v-model="minPlayers "required ref="gameMinPlayers"></input>
+    </div>
+    <div class="flex flex-col">
+            <label for="maxPlayers">Max players </label>
+            
+            <input @input="e=>playCount(e.target)" id="maxPlayers" type="number" v-model="maxPlayers" required ref="gameMaxPlayers"></input>
+    </div>
+    </section> 
+    <section class="grow">
+    <div class="flex flex-col">
+            <h2>Full in box</h2>
+            <div class="flex flex-row gap-[10px]">
+                <div>
+                    <input type="radio" name="complete" id="yes" value="yes" ref="fullness" v-model="radioButtons"/>
+                    <label for="complete">Yes</label>
+                </div>
+                <div>
+                    <input type="radio" name="complete" id="no" value="no" ref="fullness" v-model="radioButtons"/>
+                    <label for="complete">No</label>
+                </div>
+                <div>
+                    <input type="radio" name="complete" id="enoughToPlay" value="enoughToPlay" ref="fullness" v-model="radioButtons"/>
+                    <label for="complete">Enough to play</label>
+                </div>
+            </div>
+        </div>
+    <div class="flex flex-col">
+            <label for="cost">Cost </label>
+            <input @input="e=>playCount(e.target)" id="cost" type="number" v-model="cost" required ref="gameCost"></input>
+    </div>
+    <div class="flex flex-col">
+            <label for="playTime">Average playing time </label>
+            <input @input="e=>playCount(e.target)" id="playTime" type="number" v-model="playTime" required ref="gamePlayTime"></input>
+    </div>
+    <!--old-->
         <div class="flex flex-col">
             <label for="imageDescription">Image alt</label>
             <input @input="e=>bigStringUserInputValidation(e.target)" id="imageDescription" v-model="imageDescription" required ref="gameImgDescription"></input>
@@ -258,17 +338,23 @@ relative top-[50vh] left-[50vw]
        <div class="flex flex-col">
             <label for="imgFileSelection">Image</label>
             <input @change="imgChange()" id="imgFileSelection" ref="imgSelectRef"type="file" name="image" accept=".png,.jpg" required ></input>
-        </div>
-        
-            <div class="flex justify-between ">
-            <p @click="save()" class="text-center bg-primary text-white w-[70px] text-center rounded-full">submit</p>
-            <p @click="cancel" class="text-center bg-primary text-white w-[70px] text-center rounded-full">cancel</p>
-        </div>
+       </div>
+   
+    </section>
+    
     </form>
+     
+        
+            
     <div class="max-w-[100%] max-h-[400px] flex items-center justify-center m-[10px] border-2 border-dashed border-[#496580] p-[10px] overflow-hidden">
        <!--in here so it stops being massive--> 
     <img id="CreateDisplayImg" ref="imgRef" alt="Select an image" class=" object-scale-down w-[100%] max-h-[400px] object-scale-down"/> 
     </div>
+
 </div>
+ <div class="flex justify-between w-[100%]">
+            <p @click="save()" class="text-center bg-primary text-white w-[70px] text-center rounded-full">submit</p>
+            <p @click="cancel" class="text-center bg-primary text-white w-[70px] text-center rounded-full">cancel</p>
+        </div>  
 </main>
 </template>

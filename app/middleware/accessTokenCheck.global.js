@@ -24,3 +24,4 @@ if (to.path == "/" || to.path=="/signup" ) {
   
     
 })
+

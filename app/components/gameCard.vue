@@ -7,7 +7,7 @@ const props = defineProps(['name','player','description','imgAlt','img'])
 
 
 const imgURl = computed(() => {
-console.log(props.img.replace(/ /g, '+'));
+
     return props.img.replace(/ /g, '+');
 
 });
