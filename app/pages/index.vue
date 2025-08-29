@@ -226,12 +226,12 @@ function sendData() {
         body: formData
     })
         .then(res => {
-            console.log("hello world")
+           
             return res.json()
 
         })
         .then(json => {
-            console.log(json)
+            
 
 
 
