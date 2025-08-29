@@ -34,10 +34,10 @@ onMounted(() => {
       <NuxtLink @click="handleMenu" to="/gameCreation"
         class="text-[25px] hover:bg-alt w-[300px] self-center rounded-md duration-[1.5s] bg-secondary text-center sm:bg-alt sm:text-[20px] sm:w-[100px] sm:hover:bg-secondary z-10 sm:z-[10]">
         browse</NuxtLink>
-      <NuxtLink @click="handleMenu" to="/"
+      <NuxtLink @click="handleMenu" to="/messaging"
         class="text-[25px] hover:bg-alt w-[300px] self-center rounded-md duration-[1.5s] bg-secondary text-center sm:bg-alt sm:text-[20px] sm:w-[100px] sm:hover:bg-secondary z-10 sm:z-[10]">
         message</NuxtLink>
-      <NuxtLink @click="handleMenu" to="/"
+      <NuxtLink @click="handleMenu" to="/createMessage"
         class="text-[25px] hover:bg-alt w-[300px] self-center rounded-md duration-[1.5s] bg-secondary text-center sm:bg-alt sm:text-[20px] sm:w-[100px] sm:hover:bg-secondary z-10 sm:z-[10]">
         wishlist</NuxtLink>
       <NuxtLink @click="handleMenu" to="/"

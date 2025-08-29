@@ -6,7 +6,6 @@ let selectedGameId = ref(null);
 let previousSelectedGameId = ref(null);
 
 
-
 import { useTokenStore } from '~/utils/test.js'
 
 
@@ -82,24 +81,34 @@ function selectGame(gameId) {
     <main
         class="flex flex-col justify-center items-center gap-[20px] sm:flex  sm:gap-4 sm:flex-row sm:flex-wrap sm:mx-[10px]  m-[10px]  ">
         <!--add the @click to a button in it, or something like that and have it emit and event up and then can keep it the same, ish-->
-        <div v-for="game in Games" class="relative" :key="game.name">
+        <div v-for="game in Games" class="relative" :key="game.name" 
+        :class="{
+'hover:animate-shake':selectedGameId !== game.name
+
+        }">
             <!--
 const props = defineProps(['minPlayers','maxPlayers','completed','cost','time'])
 -->
             <gameInfo :minPlayers=game.minPlayers :maxPlayers=game.maxPlayers :completed=game.completed :cost=game.cost
-                :time=game.time class="absolute top-[0] right-[0] transform-3d backface-hidden" :class="{
+                :time=game.time class="absolute top-[0] right-[0] transform-3d backface-hidden opacity-[0]" :class="{
                     'animate-flipEndfrontWayUp': selectedGameId === game.name,
                     'animate-flipEndWrongWayUp': previousSelectedGameId === game.name && previousSelectedGameId !== selectedGameId,
                 }"
                 @flipCard="selectGame(game.name)"></gameInfo>
 
             <GameCard :name=game.name :player=game.playerCount :description=game.description :img=game.imgRef
-                :imgAlt=game.imgAlt class="sm:justify-self-center transform-3d backface-hidden" @reload="loadGames()"
+                :imgAlt=game.imgAlt  @reload="loadGames()"
                 :class="{
                     'animate-flipEndWrongWayUp': selectedGameId === game.name,
                     'animate-flipEndfrontWayUp': previousSelectedGameId === game.name && previousSelectedGameId !== selectedGameId,
-                }"
-                @flipCard="selectGame(game.name)">
+                
+                    
+
+               }"
+                @flipCard="selectGame(game.name)"
+                class="sm:justify-self-center transform-3d backface-hidden "
+                
+                >
 
             </GameCard>
 
