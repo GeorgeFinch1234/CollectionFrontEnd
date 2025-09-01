@@ -19,7 +19,7 @@ onMounted(() => {
 
 <template>
 
-  <div class="w-[100%] h-[100%] bg-primary relative">
+  <div class="w-[100%] h-[100%] bg-primary relative ">
     <slot />
   </div>
 

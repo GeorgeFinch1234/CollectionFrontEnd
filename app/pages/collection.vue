@@ -83,7 +83,7 @@ function selectGame(gameId) {
         <!--add the @click to a button in it, or something like that and have it emit and event up and then can keep it the same, ish-->
         <div v-for="game in Games" class="relative" :key="game.name" 
         :class="{
-'hover:animate-shake':selectedGameId !== game.name
+'hover:animate-grow':selectedGameId !== game.name
 
         }">
             <!--

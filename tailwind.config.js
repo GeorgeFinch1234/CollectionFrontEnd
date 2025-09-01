@@ -69,6 +69,15 @@ module.exports = {
           '90%':  { transform: 'translate(1px, 2px) rotate(0deg)' },
           '100%': { transform: 'translate(1px, -2px) rotate(-1deg)' },
        
+                },
+                grow:{
+
+
+
+
+                  '0%': { transform: 'scale(1)' },
+                  
+                  '100%': { transform: 'scale(1.05)' } 
                 }
 
 
@@ -79,7 +88,8 @@ module.exports = {
         spinCentered: 'spinCentered 3s linear infinite', 
          flipEndWrongWayUp: 'flipEndWrongWayUp 1s linear forwards',
          flipEndfrontWayUp: 'flipEndfrontWayUp 1s linear forwards',
-        shake: 'shake 10s infinite',
+        shake: 'shake 8s infinite',
+        grow: 'grow 1s linear forwards',
         
         },
     }

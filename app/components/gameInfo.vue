@@ -7,7 +7,7 @@ const props = defineProps(['minPlayers', 'maxPlayers', 'completed', 'cost', 'tim
 <template>
 
     <div
-        class="p-[20px] bg-secondary w-[200px] h-[400px] rounded-lg flex flex-col  items-center justify-center gap-[20px] absolute">
+        class="p-[20px] bg-[linear-gradient(135deg,_#FFDBBB,_#D9D9D9_60%)] w-[200px] h-[400px] rounded-lg flex flex-col  items-center justify-center gap-[20px] absolute">
 
 
         <img src="/assets/reverseArrows.png" alt="reversable arrows"

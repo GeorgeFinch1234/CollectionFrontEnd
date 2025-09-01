@@ -92,7 +92,7 @@ function loadGameCard(aboutGame) {
     formData.append("UserName", toUser.value);
 
 
-    formData.append("Game", "Gyarados");
+    formData.append("Game", gameChosen.value);
   
     fetch('http://localhost:8080/load-game-for-message', {
         method: "POST",
@@ -100,7 +100,7 @@ function loadGameCard(aboutGame) {
     })
         .then(res => res.json())
         .then(json => {
-          
+          console.log(json)
             gameSelected.value = true
             GameInfo.value = json
             show.value = true
@@ -121,7 +121,7 @@ function loadGameCard(aboutGame) {
 
 
     <main
-        class="bg-secondary rounded-2xl text-center absolute top-[50vh] left-[50vw] translate-y-[-50%] translate-x-[-50%] w-[75%]">
+        class="bg-secondary rounded-2xl text-center  ml-auto mr-auto mt-[100px] w-[75%]">
         <h1 class="text-2xl">Message</h1>
         <div class="bg-alt w-[100%] h-[5px]"></div>
         <form class="flex flex-col gap-[5px]">
@@ -166,9 +166,26 @@ function loadGameCard(aboutGame) {
         </form>
 
 <div class="flex justify-center">
-        <GameCard v-if="show" :name=GameInfo.name :player=GameInfo.playerCount :description=GameInfo.description
-            :img=GameInfo.imgRef :imgAlt=GameInfo.imgAlt class="border-2 border-dashed border-[#496580] mt-[5px]"></GameCard>
-</div>
+
+
+   
+    
+
+     <div v-if="show" class="relative border-2 border-dashed border-[#496580] m-[10px]" >
+      
+            <cardFrontAndBack :name="GameInfo.name" :player="GameInfo.playerCount" :description="GameInfo.description" :imgAlt="GameInfo.imgAlt" :img="GameInfo.imgRef" :minPlayers="GameInfo.minPlayers" :maxPlayers="GameInfo.maxPlayers" :completed="GameInfo.completed" :cost="GameInfo.cost" :time="GameInfo.time">
+            </cardFrontAndBack>
+       
+        </div>
+    
+   
+    
+    
+
+
+
+
+        </div>
         <div class="flex flex-row justify-between p-[10px]">
             <input type="submit" @click.prevent="sendMessage()"
                 class="bg-primary rounded-md text-white text-xl w-fit p-[5px]" value="Submit"></input>
