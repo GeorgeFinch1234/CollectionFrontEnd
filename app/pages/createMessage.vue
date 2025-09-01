@@ -1,6 +1,6 @@
 <script setup>
 import GameCard from '~/components/gameCard.vue';
-
+import { useTokenStore } from '~/utils/test.js'
 const toUser = ref("");
 
 const aboutGame = ref("");
@@ -50,20 +50,21 @@ function getUserGames() {
  */
 function backToCollection() {
 
-    return navigateTo('/collection')
+    return navigateTo('/messaging')
 
 }
 
 function sendMessage() {
 
     const formData = new FormData();
-
-
+const tokenStore = useTokenStore()
+console.log(gameChosen.value)
 
     formData.append("findUser", toUser.value);
-    formData.append("aboutGame", aboutGame.value);
+    formData.append("aboutGame", gameChosen.value);
     formData.append("subject", subject.value);
     formData.append("message", message.value);
+    formData.append("from",tokenStore.token);
 
     //need to add a from so it can be sent back to them.
 
@@ -76,6 +77,7 @@ function sendMessage() {
         .then(json => {
             if (json != null) {
                 //Games = ref(json.games)
+                return navigateTo('/messaging')
             } else {
                 //Games.value = null
 
@@ -93,6 +95,7 @@ function loadGameCard(aboutGame) {
 
 
     formData.append("Game", gameChosen.value);
+    
   
     fetch('http://localhost:8080/load-game-for-message', {
         method: "POST",

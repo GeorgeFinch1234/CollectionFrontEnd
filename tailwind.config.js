@@ -27,10 +27,23 @@ module.exports = {
         alt :'#265277'
 
         */
-       primary: '#496580',      // you can now use bg-primary, text-primary
+
+
+        /**
+         * old plate 
+         * primary: '#496580',      
+         * secondary: '#D9D9D9',
+         * alt :'#FFDBBB'
+         * 
+         * 
+         */
+       primary: '#496580',      
         secondary: '#D9D9D9',
         alt :'#FFDBBB'
         
+      },
+       backgroundImage: {
+        //primary: 'linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%)',
       },
        keyframes: {
         spinCentered: {

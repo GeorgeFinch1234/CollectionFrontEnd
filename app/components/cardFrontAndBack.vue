@@ -23,7 +23,7 @@ function flip(){
     
     
 <gameInfo :minPlayers=props.minPlayers :maxPlayers=props.maxPlayers :completed=props.completed :cost=props.cost
-                :time=props.time class="absolute top-[0] right-[0] transform-3d backface-hidden opacity-[0]" :class="{
+                :time=props.time class="absolute top-[0] right-[0] opacity-[0]" :class="{
                    'animate-flipEndWrongWayUp': frontToBeShown,
                     'animate-flipEndfrontWayUp': !frontToBeShown
                 }"
@@ -35,7 +35,7 @@ function flip(){
             <gameCard :name=props.name :player=props.player :description=props.description :img=props.img
                 :imgAlt=props.imgAlt 
               
-                class="sm:justify-self-center transform-3d backface-hidden "
+                class="sm:justify-self-center "
                 :class="{
                     'animate-flipEndWrongWayUp': !frontToBeShown,
                     'animate-flipEndfrontWayUp': frontToBeShown,
