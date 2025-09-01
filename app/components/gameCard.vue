@@ -27,7 +27,7 @@ console.log("inside game card")
 
     <div class=" p-[20px]  w-[200px] h-[400px] rounded-lg flex flex-col relative bg-[linear-gradient(225deg,_#FFDBBB,_#D9D9D9_60%)]">
         <img src="/assets/reverseArrows.png" alt="reversable arrows"
-            class="absolute top-[2px] right-[2px] w-[30px] h-30px]" @click="$emit('flipCard')" />
+            class="absolute top-[2px] right-[2px] w-[30px] h-30px] cursor-pointer" @click="$emit('flipCard')" />
         <img :src=imgURl :alt=imgAlt class='hover:animate-shake' />
         <div class="flex flex-col justify-between overflow-hidden gap-[5px] items-center">
 
@@ -38,7 +38,7 @@ console.log("inside game card")
             <p class="overflow-y-auto text-center border-b-[2px]">
                 {{ description }}
             </p>
-            <a @click="show = !show" class="text-center bg-primary text-white w-[70px] text-center rounded-full ">
+            <a @click="show = !show" class="text-center bg-primary text-white w-[70px] text-center rounded-full cursor-pointer ">
                 options
             </a>
 

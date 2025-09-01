@@ -18,9 +18,9 @@ const props = defineProps(['name'])
             <div class="bg-alt w-[150px] h-[5px] "></div>
         </div>
         <div class="flex flex-col justify-start h-[100%] gap-[40px] p-[20px]">
-            <a @click="loadEdit()" class="bg-primary rounded-md text-center text-white w-[100px] text-2xl">Edit</a>
-            <a @click="show = !show" class="bg-primary rounded-md text-center text-white w-[100px] text-2xl">Delete</a>
-            <p @click="$emit('closeMenu')" class="bg-primary rounded-md text-center text-white w-[100px] text-2xl">Close
+            <a @click="loadEdit()" class="bg-primary rounded-md text-center text-white w-[100px] text-2xl cursor-pointer">Edit</a>
+            <a @click="show = !show" class="bg-primary rounded-md text-center text-white w-[100px] text-2xl cursor-pointer">Delete</a>
+            <p @click="$emit('closeMenu')" class="bg-primary rounded-md text-center text-white w-[100px] text-2xl cursor-pointer">Close
             </p>
         </div>
     </div>

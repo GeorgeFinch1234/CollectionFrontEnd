@@ -398,8 +398,8 @@ relative top-[50vh] left-[50vw]
 
         </div>
         <div class="flex justify-between w-[100%]">
-            <p @click="save()" class="text-center bg-primary text-white w-[70px] text-center rounded-full lg:text-2xl lg:w-[100px]">Submit</p>
-            <p @click="cancel" class="text-center bg-primary text-white w-[70px] text-center rounded-full lg:text-2xl lg:w-[100px]">Cancel</p>
+            <p @click="save()" class="text-center bg-primary text-white w-[70px] text-center rounded-full lg:text-2xl lg:w-[100px] cursor-pointer">Submit</p>
+            <p @click="cancel" class="text-center bg-primary text-white w-[70px] text-center rounded-full lg:text-2xl lg:w-[100px] cursor-pointer">Cancel</p>
         </div>
     </main>
 </template>
