@@ -53,7 +53,7 @@ function loadNewMessage() {
 
 <template>
 <p @click="loadNewMessage()"
-        class="bg-secondary rounded-full w-[80px] text-lg text-center fixed right-[20px] bottom-[20px] z-[9] border-2 border-solid border-[#496580]">
+        class="bg-secondary rounded-full w-[80px] text-lg text-center fixed right-[20px] bottom-[20px] z-[9] border-2 border-solid border-[#496580] cursor-pointer">
         &#128228</p> 
  <div class="flex flex-col justify-center items-center sm:col-span-full m-[10px] sm:mt-[20px]">
         <h1 class="text-white mt-[20px] text-2xl sm:text-4xl">Messages</h1>

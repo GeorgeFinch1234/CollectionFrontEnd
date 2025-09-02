@@ -292,7 +292,7 @@ onMounted(() => {
 relative top-[50vh] left-[50vw]
     -->
     <main
-        class="bg-secondary flex flex-col justify-center w-[70vw] mr-auto ml-auto mt-[50px] mb-[50px] rounded-lg p-[20px] items-center overflow-hidden lg:absolute lg:top-[50vh] lg:left-[50vw] lg:translate-y-[-50%] lg:translate-x-[-50%] lg:mt-0 lg:mb-0   ">
+        class="bg-[linear-gradient(225deg,_#FFDBBB,_#D9D9D9_60%)] flex flex-col justify-center w-[70vw] mr-auto ml-auto mt-[50px] mb-[50px] rounded-lg p-[20px] items-center overflow-hidden lg:absolute lg:top-[50vh] lg:left-[50vw] lg:translate-y-[-50%] lg:translate-x-[-50%] lg:mt-0 lg:mb-0   ">
 
 
         <!--h1 empty, so that it can be dynamically changed depending on where it comes from. -->

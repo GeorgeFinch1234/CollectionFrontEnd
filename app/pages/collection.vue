@@ -4,7 +4,7 @@ let spinnyWheelShow = ref(true)
 let noGame = ref(false)
 let selectedGameId = ref(null);
 let previousSelectedGameId = ref(null);
-
+let showFilters = ref(false);
 
 import { useTokenStore } from '~/utils/test.js'
 
@@ -64,17 +64,72 @@ function selectGame(gameId) {
     }
 }
 
+function applyFilters(filters){
+spinnyWheelShow.value = true
+showFilters.value =false
+
+ const formData = new FormData();
+
+    const tokenStore = useTokenStore()
+
+    formData.append("Token", tokenStore.token);
+    formData.append("filterBy", filters.sort);
+    formData.append("startAt", filters.start);
+    formData.append("endAt", filters.end);
+     fetch('http://localhost:8080/games-filter', {
+        method: "POST",
+        body: formData
+    })
+        .then(res => {
+            return res.json()
+
+        })
+        .then(json => {
+console.log(json)
+            if (json == null) {
+                noGame.value = true;
+            } else {
+                Games.value = json;
+            }
+            spinnyWheelShow.value = false;
+
+        }, () => {
+
+            spinnyWheelShow.value = false;
+        })
+
+
+}
 
 </script>
 
 <template>
 
+<CollectionFilter v-if="showFilters" @filters="(filters)=>{
+
+applyFilters(filters)
 
 
+}" 
+
+class="fixed 
+        rounded-lg top-[50vh] left-[50vw] translate-y-[-50%] translate-x-[-50%]"
+        
+        
+    @close="showFilters = !showFilters"
+        >  
+    
+    </CollectionFilter>
+<div class="bg-secondary rounded-full w-[60px] h-[35px] text-lg text-center fixed right-[20px] bottom-[20px] z-[9] border-2 border-solid border-[#496580] cursor-pointer">
     <p @click="loadCreate()"
-        class="bg-secondary rounded-full w-[60px] text-lg text-center fixed right-[20px] bottom-[20px] z-[9] border-2 border-solid border-[#496580] cursor-pointer">
+        class="">
         +</p>
-    <div class="flex flex-col justify-center items-center sm:col-span-full m-[10px] sm:mt-[20px]">
+</div>
+
+<div class="bg-secondary rounded-full w-[60px] h-[35px] text-lg text-center fixed left-[20px] bottom-[20px] z-[9] border-2 border-solid border-[#496580] cursor-pointer flex justify-center">
+         <img src="/assets/filter.png" alt="filter icon"  @click="showFilters = !showFilters"class="max-h-[100%]"/>
+</div>
+        <div class="flex flex-col justify-center items-center sm:col-span-full m-[10px] sm:mt-[20px]">
         <h1 class="text-white mt-[20px] text-2xl sm:text-4xl">Collection</h1>
         <div class="bg-alt w-[150px] h-[5px] sm:w-[200px]"></div>
     </div>
