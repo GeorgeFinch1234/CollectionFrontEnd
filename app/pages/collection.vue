@@ -1,92 +1,199 @@
-<script setup >
+<script setup>
 let Games = ref(null)
 let spinnyWheelShow = ref(true)
-let noGame =ref(false)
+let noGame = ref(false)
+let selectedGameId = ref(null);
+let previousSelectedGameId = ref(null);
+let showFilters = ref(false);
 
-import {useTokenStore} from'~/utils/test.js'
+import { useTokenStore } from '~/utils/test.js'
 
 
- function loadCreate(){
-return navigateTo({name:'gameCreation', query:{name:"Create"}})
-} 
+function loadCreate() {
+    return navigateTo({ name: 'gameCreation', query: { name: "Create" } })
+}
 
 
 
 //need else nuxt will try to access local stroange on sever side
-onMounted(()=>{
- loadGames()
+onMounted(() => {
+    loadGames()
 })
-function loadGames(){
-   //this so that it will show in php $_POST stuff
- const formData = new FormData();
+function loadGames() {
+    //this so that it will show in php $_POST stuff
+    const formData = new FormData();
 
- const tokenStore = useTokenStore()
+    const tokenStore = useTokenStore()
 
-formData.append("token", tokenStore.token);
+    formData.append("token", tokenStore.token);
 
-fetch('http://localhost:8080/games', {
-  method: "POST",
-  body: formData
-})
-            .then(res=>{console.log("hello world")
-return res.json()
+    fetch('http://localhost:8080/games', {
+        method: "POST",
+        body: formData
+    })
+        .then(res => {
+            return res.json()
 
-            })            
-            .then(json=>{
+        })
+        .then(json => {
 
-              if(json == null){
-                noGame.value=true;
-              }else{
-               Games.value = json;
-              }
-               spinnyWheelShow.value=false;
-                
-            },()=>{
-                
-                spinnyWheelShow.value=false;
-            } )
-     
+            if (json == null) {
+                noGame.value = true;
+            } else {
+                Games.value = json;
+            }
+            spinnyWheelShow.value = false;
+
+        }, () => {
+
+            spinnyWheelShow.value = false;
+        })
+
 
 }
 
+function selectGame(gameId) {
+    if (selectedGameId.value === gameId) {
+        // Deselect if the same game is clicked again
+        previousSelectedGameId.value = selectedGameId.value;
+        selectedGameId.value = null;
+        return;
+    } else {
+        previousSelectedGameId.value = selectedGameId.value;
+        selectedGameId.value = gameId;
+    }
+}
+
+function applyFilters(filters){
+spinnyWheelShow.value = true
+showFilters.value =false
+
+ const formData = new FormData();
+
+    const tokenStore = useTokenStore()
+
+    formData.append("Token", tokenStore.token);
+    formData.append("filterBy", filters.sort);
+    formData.append("startAt", filters.start);
+    formData.append("endAt", filters.end);
+     fetch('http://localhost:8080/games-filter', {
+        method: "POST",
+        body: formData
+    })
+        .then(res => {
+            return res.json()
+
+        })
+        .then(json => {
+console.log(json)
+            if (json == null) {
+                noGame.value = true;
+            } else {
+                Games.value = json;
+            }
+            spinnyWheelShow.value = false;
+
+        }, () => {
+
+            spinnyWheelShow.value = false;
+        })
+
+
+}
 
 </script>
 
 <template>
 
-        
+<CollectionFilter v-if="showFilters" @filters="(filters)=>{
 
-    <p @click="loadCreate()" class="bg-secondary rounded-full w-[60px] text-lg text-center fixed right-[20px] bottom-[20px]">+</p>
-    <div class="flex flex-col justify-center items-center sm:col-span-full m-[10px] sm:mt-[20px]">
-    <h1 class="text-white mt-[20px] text-2xl sm:text-4xl">Collection</h1>
-    <div class="bg-alt w-[150px] h-[5px] sm:w-[200px]"></div>
+applyFilters(filters)
+
+
+}" 
+
+class="fixed 
+        rounded-lg top-[50vh] left-[50vw] translate-y-[-50%] translate-x-[-50%]"
+        
+        
+    @close="showFilters = !showFilters"
+        >  
+    
+    </CollectionFilter>
+<div class="bg-secondary rounded-full w-[60px] h-[35px] text-lg text-center fixed right-[20px] bottom-[20px] z-[9] border-2 border-solid border-[#496580] cursor-pointer">
+    <p @click="loadCreate()"
+        class="z-9">
+        +</p>
+</div>
+
+<div class="bg-secondary rounded-full w-[60px] h-[35px] text-lg text-center fixed left-[20px] bottom-[20px] z-[9] border-2 border-solid border-[#496580] cursor-pointer flex justify-center">
+         <img src="/assets/filter.png" alt="filter icon"  @click="showFilters = !showFilters"class="max-h-[100%]"/>
+</div>
+        <div class="flex flex-col justify-center items-center sm:col-span-full m-[10px] sm:mt-[20px]">
+        <h1 class="text-white mt-[20px] text-2xl sm:text-4xl">Collection</h1>
+        <div class="bg-alt w-[150px] h-[5px] sm:w-[200px]"></div>
     </div>
-    <main class="flex flex-col justify-center items-center gap-[20px] sm:flex  sm:gap-4 sm:flex-row sm:flex-wrap sm:mx-[10px] sm:pt-[40px]  ">
-    
-    
-<GameCard  v-for="game in Games" :name=game.name :player=game.playerCount :description=game.description :img=game.imgRef :imgAlt=game.imgAlt class="sm:justify-self-center"@reload="loadGames()"></GameCard>
+    <main
+        class="flex flex-col justify-center items-center gap-[20px] sm:flex  sm:gap-4 sm:flex-row sm:flex-wrap sm:mx-[10px]  m-[10px]  ">
+        <!--add the @click to a button in it, or something like that and have it emit and event up and then can keep it the same, ish-->
+        <div v-for="game in Games" class="relative" :key="game.name" 
+        :class="{
+'hover:animate-grow':selectedGameId !== game.name
 
-</main>
-<img v-if="spinnyWheelShow"src="/assets/loadingCircle.png" alt="spinny wheel" class="z-100 fixed top-[50vh] left-[50vw]  w-[150px] translate-x-[-50%] -translate-y-[+50%] animate-spinCentered"></img>
+        }">
+            <!--
+const props = defineProps(['minPlayers','maxPlayers','completed','cost','time'])
+-->
+            <gameInfo :minPlayers=game.minPlayers :maxPlayers=game.maxPlayers :completed=game.completed :cost=game.cost
+                :time=game.time class="absolute top-[0] right-[0] transform-3d backface-hidden opacity-[0]" :class="{
+                    'animate-flipEndfrontWayUp': selectedGameId === game.name,
+                    'animate-flipEndWrongWayUp': previousSelectedGameId === game.name && previousSelectedGameId !== selectedGameId,
+                }"
+                @flipCard="selectGame(game.name)"></gameInfo>
 
+            <GameCard :name=game.name :player=game.playerCount :description=game.description :img=game.imgRef
+                :imgAlt=game.imgAlt  @reload="loadGames()"
+                :class="{
+                    'animate-flipEndWrongWayUp': selectedGameId === game.name,
+                    'animate-flipEndfrontWayUp': previousSelectedGameId === game.name && previousSelectedGameId !== selectedGameId,
+                
+                    
 
-<!--for if there are no games-->
+               }"
+                @flipCard="selectGame(game.name)"
+                class="sm:justify-self-center transform-3d backface-hidden "
+                
+                >
 
-<div v-if="noGame" class="p-[20px] bg-secondary w-[200px] h-[400px] rounded-lg fixed flex flex-col top-[50vh] left-[50vw] translate-y-[-50%] translate-x-[-50%]">
-       <img src="/assets/loadingCircle.png" alt="placeholder for no game collection" /> 
-        <div class="flex flex-col justify-between overflow-hidden gap-[5px] items-center">
-            
-            <h2 class="text-center underline pt-[10px]">Empty Collection</h2>
-          
-            <p class="text-center">click the button bellow to add your first game</p>
-            
-               
-                <a @click="loadCreate()" class="text-center bg-primary text-white w-[70px] text-center rounded-full ">
-                Add
-                </a>
-            
+            </GameCard>
+
         </div>
-        
-   
+
+
+
+    </main>
+    <img v-if="spinnyWheelShow" src="/assets/loadingCircle.png" alt="spinny wheel"
+        class="z-100 fixed top-[50vh] left-[50vw]  w-[150px] translate-x-[-50%] -translate-y-[+50%] animate-spinCentered"></img>
+
+
+    <!--for if there are no games-->
+
+    <div v-if="noGame"
+        class="p-[20px] bg-secondary w-[200px] h-[400px] rounded-lg fixed flex flex-col top-[50vh] left-[50vw] translate-y-[-50%] translate-x-[-50%]">
+        <img src="/assets/loadingCircle.png" alt="placeholder for no game collection" />
+        <div class="flex flex-col justify-between overflow-hidden gap-[5px] items-center">
+
+            <h2 class="text-center underline pt-[10px]">Empty Collection</h2>
+
+            <p class="text-center">click the button bellow to add your first game</p>
+
+
+            <a @click="loadCreate()" class="text-center bg-primary text-white w-[70px] text-center rounded-full ">
+                Add
+            </a>
+
+        </div>
+
+
     </div>
 </template>
