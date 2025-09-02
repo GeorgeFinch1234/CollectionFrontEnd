@@ -122,7 +122,7 @@ class="fixed
     </CollectionFilter>
 <div class="bg-secondary rounded-full w-[60px] h-[35px] text-lg text-center fixed right-[20px] bottom-[20px] z-[9] border-2 border-solid border-[#496580] cursor-pointer">
     <p @click="loadCreate()"
-        class="">
+        class="z-9">
         +</p>
 </div>
 
