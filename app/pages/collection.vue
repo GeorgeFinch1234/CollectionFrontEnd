@@ -65,13 +65,18 @@ function selectGame(gameId) {
 }
 
 function applyFilters(filters){
+    
 spinnyWheelShow.value = true
 showFilters.value =false
 
  const formData = new FormData();
 
     const tokenStore = useTokenStore()
-
+console.log("in filter")
+    console.log(tokenStore.token)
+    console.log(filters.sort)
+    console.log(filters.start)
+    console.log(filters.end)
     formData.append("Token", tokenStore.token);
     formData.append("filterBy", filters.sort);
     formData.append("startAt", filters.start);

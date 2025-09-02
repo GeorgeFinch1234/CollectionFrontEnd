@@ -1,10 +1,21 @@
 <script setup>
-const sortBy = ref()
-const startAt = ref()
+
+import { playCount } from '~/utils/frontEndValidation.js'
+
+const sortBy = ref('playerCount')
+const refStartAt = ref()
+const refEndAt = ref()
+const startAt= ref()
 const endAt = ref()
 
 const emit = defineEmits(['filters','close'])
 function filter(){
+
+console.log("here");
+if(refStartAt.value.checkValidity()&&
+refEndAt.value.checkValidity()){
+console.log("passed")
+
 emit('filters',{
 "sort":sortBy.value,
 "start":startAt.value, 
@@ -13,6 +24,17 @@ emit('filters',{
 
 
 })
+
+}else{
+
+refStartAt.value.reportValidity()
+refEndAt.value.reportValidity()
+
+
+}
+
+
+
 }
 
 </script>
@@ -32,8 +54,8 @@ emit('filters',{
         <form class="flex flex-col text-center justify-between h-[100%] gap-[10px]">
         
         <div class="flex flex-col">
-            <h2>Sort by</h2>
-        <select class="text-center" v-model="sortBy">
+            <h2 for="sortTypeSelector">Sort by</h2>
+        <select class="text-center" id="sortTypeSelector"v-model="sortBy" required>
             <option>playerCount</option>
             <option>minPlayers</option>
             <option>maxPlayers</option>
@@ -42,12 +64,12 @@ emit('filters',{
         </select>
         </div>
 <div class="flex flex-col">
-<label>start at</label>
-        <input type="number" class="text-center" v-model="startAt"/>
+<label for="filterStartAt">start at</label>
+        <input id="filterStartAt" type="number" class="text-center" v-model="startAt" required ref="refStartAt" @input="e => playCount(e.target)"/>
        </div>
         <div class="flex flex-col"> 
-        <label>end at</label>
-        <input type="number"  class="text-center" v-model="endAt"/>
+        <label for="filterEndAt">end at</label>
+        <input type="number"id="filterEndAt"  class="text-center" v-model="endAt" required ref="refEndAt" @input="e => playCount(e.target)"/>
         </div>
         <input type="submit" @click.prevent="filter()" class="bg-[#FFCC99]"/>
     

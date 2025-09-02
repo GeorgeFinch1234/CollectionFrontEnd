@@ -1,10 +1,22 @@
 <script setup>
 import { useTokenStore } from '~/utils/test.js'
 
-const props = defineProps(['subject', 'body', 'gameName', 'from'])
+const props = defineProps(['subject', 'body', 'gameName', 'from', 'ID'])
 let loadImg = ref(false)
 
 let GameInfo = ref()
+
+const emit = defineEmits(['reload'])
+
+
+
+
+
+
+
+
+
+
 function loadGameCard(aboutGame) {
 
     const formData = new FormData();
@@ -48,6 +60,24 @@ onMounted(() => {
 })
 
 
+function removeMessage(){
+  const formData = new FormData();
+    const tokenStore = useTokenStore()
+
+
+    formData.append("UserName", tokenStore.token);
+
+
+    formData.append("messageID", props.ID);
+
+
+    fetch('http://localhost:8080/message/delete', {
+        method: "POST",
+        body: formData
+}).then(()=>{
+    emit("reload")
+})
+}
 </script>
 
 <template>
@@ -89,7 +119,7 @@ items-center justify-center gap-[10px] flex flex-col justify-between">
 <p class="bg-[#FFCC99] rounded-lg w-[100%] h-[100%] block w-[60px] text-center cursor-pointer">reply</p>
 
 
-<p class="bg-[#FFCC99] rounded-lg w-[100%] h-[100%] block w-[60px] text-center cursor-pointer">delete</p>
+<p class="bg-[#FFCC99] rounded-lg w-[100%] h-[100%] block w-[60px] text-center cursor-pointer" @click="removeMessage()">delete</p>
 
 
 

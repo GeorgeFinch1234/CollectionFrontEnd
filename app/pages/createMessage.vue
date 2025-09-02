@@ -75,7 +75,10 @@ console.log(gameChosen.value)
     })
         .then(res => res.json())
         .then(json => {
-            if (json != null) {
+            console.log("test bellow")
+            console.log(json)
+            console.log("test above")
+            if (json == null) {
                 //Games = ref(json.games)
                 return navigateTo('/messaging')
             } else {
@@ -144,7 +147,7 @@ function loadGameCard(aboutGame) {
             </div>
             <div class="flex flex-col justify-between">
                 <select class="text-center" v-model="gameChosen" @change="loadGameCard(gameChosen)">
-                    <option>test1</option>
+                    <option v-if="Games == null">no Games found</option>
                     <!--error is it thinks its a type never so cant have .name but
                     its not and does have .name when in use but i dont know how to inform it of that.-->
                     <option v-for="game in Games">{{ game.name }}</option>

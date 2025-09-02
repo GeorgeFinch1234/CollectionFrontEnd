@@ -374,7 +374,7 @@ function signUp() {
     <!--transform-[translate(0%,-50%)]-->
 
     <main
-        class="p-[20px] gap-[20px] bg-secondary w-[300px] h-[300px]  rounded-lg absolute top-[50vh] left-[50vw] translate-y-[-50%] translate-x-[-50%] sm:w-[600px]">
+        class="p-[20px] gap-[20px] bg-[linear-gradient(225deg,_#FFDBBB,_#D9D9D9_100%)] w-[300px] h-[300px]  rounded-lg absolute top-[50vh] left-[50vw] translate-y-[-50%] translate-x-[-50%] sm:w-[600px]">
         <div class="flex flex-col justify-center items-center">
             <h1 class="text-center text-2xl">Welcome</h1>
             <div class="bg-alt w-[150px] h-[5px] "></div>
