@@ -127,8 +127,8 @@ class="fixed
         +</p>
 </div>
 
-<div class="bg-secondary rounded-full w-[60px] h-[35px] text-lg text-center fixed left-[20px] bottom-[20px] z-[9] border-2 border-solid border-primary cursor-pointer flex justify-center">
-         <img src="/assets/filter.png" alt="filter icon"  @click="showFilters = !showFilters"class="max-h-[100%]"/>
+<div  @click="showFilters = !showFilters" class="bg-secondary rounded-full w-[60px] h-[35px] text-lg text-center fixed left-[20px] bottom-[20px] z-[9] border-2 border-solid border-primary cursor-pointer flex justify-center">
+         <img src="/assets/filter.png" alt="filter icon" class="max-h-[100%]"/>
 </div>
         <div class="flex flex-col justify-center items-center sm:col-span-full m-[10px] sm:mt-[20px]">
         <h1 class="text-white mt-[20px] text-2xl sm:text-4xl">Collection</h1>

@@ -2,6 +2,8 @@
 import { useTokenStore } from '~/utils/test.js'
 
 let messages = ref()
+let spinnyWheelShow = ref(false)
+
 
 onMounted(() => {
     
@@ -10,6 +12,7 @@ onMounted(() => {
 
 })
 function loadMessages() {
+    spinnyWheelShow.value=true
    const formData = new FormData();
 
     const tokenStore = useTokenStore()
@@ -31,6 +34,8 @@ function loadMessages() {
         .then(json => {
 
 messages.value = json
+
+spinnyWheelShow.value=false
         })
 
     }
@@ -68,6 +73,9 @@ function loadNewMessage() {
 
 </message>
 </div>
+
+<img v-if="spinnyWheelShow" src="/assets/loadingCircle.png" alt="spinny wheel"
+        class="z-100 fixed top-[50vh] left-[50vw]  w-[150px] translate-x-[-50%] -translate-y-[+50%] animate-spinCentered"></img>
 
 
 </template>

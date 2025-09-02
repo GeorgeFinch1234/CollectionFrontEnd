@@ -55,7 +55,7 @@ refEndAt.value.reportValidity()
         
         <div class="flex flex-col">
             <h2 for="sortTypeSelector">Sort by</h2>
-        <select class="text-center" id="sortTypeSelector"v-model="sortBy" required>
+        <select class="text-center pl-[1em]" id="sortTypeSelector"v-model="sortBy" required>
             <option>playerCount</option>
             <option>minPlayers</option>
             <option>maxPlayers</option>
@@ -65,11 +65,12 @@ refEndAt.value.reportValidity()
         </div>
 <div class="flex flex-col">
 <label for="filterStartAt">start at</label>
-        <input id="filterStartAt" type="number" class="text-center" v-model="startAt" required ref="refStartAt" @input="e => playCount(e.target)" min="0" placeholder="0"/>
+<!--pl-[1em] is to adjust for the off centering by the arrows-->
+        <input id="filterStartAt" type="number" class="text-center pl-[1em]" v-model="startAt" required ref="refStartAt" @input="e => playCount(e.target)" min="0" placeholder="0"/>
        </div>
         <div class="flex flex-col"> 
         <label for="filterEndAt">end at</label>
-        <input type="number"id="filterEndAt"  class="text-center" v-model="endAt" required ref="refEndAt" @input="e => playCount(e.target)" min="0" placeholder="20"/>
+        <input type="number"id="filterEndAt"  class="text-center pl-[1em]" v-model="endAt" required ref="refEndAt" @input="e => playCount(e.target)" min="0" placeholder="20"/>
         </div>
         <input type="submit" @click.prevent="filter()" class="bg-[#FFCC99]"/>
     

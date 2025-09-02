@@ -172,7 +172,7 @@ function loadGameCard(about, target) {
 
             </div>
             <div class="flex flex-col justify-between">
-                <select class="text-center" v-model="gameChosen" @change="(e) => { loadGameCard(gameChosen, e.target) }"
+                <select class="text-center pl-[1em]" v-model="gameChosen" @change="(e) => { loadGameCard(gameChosen, e.target) }"
                     ref="gameChosenRef" id="selectGames" required>
                     <option v-if="Games == null">No Games Found</option>
                     <!--error is it thinks its a type never so cant have .name but
