@@ -65,11 +65,11 @@ refEndAt.value.reportValidity()
         </div>
 <div class="flex flex-col">
 <label for="filterStartAt">start at</label>
-        <input id="filterStartAt" type="number" class="text-center" v-model="startAt" required ref="refStartAt" @input="e => playCount(e.target)"/>
+        <input id="filterStartAt" type="number" class="text-center" v-model="startAt" required ref="refStartAt" @input="e => playCount(e.target)" min="0" placeholder="0"/>
        </div>
         <div class="flex flex-col"> 
         <label for="filterEndAt">end at</label>
-        <input type="number"id="filterEndAt"  class="text-center" v-model="endAt" required ref="refEndAt" @input="e => playCount(e.target)"/>
+        <input type="number"id="filterEndAt"  class="text-center" v-model="endAt" required ref="refEndAt" @input="e => playCount(e.target)" min="0" placeholder="20"/>
         </div>
         <input type="submit" @click.prevent="filter()" class="bg-[#FFCC99]"/>
     

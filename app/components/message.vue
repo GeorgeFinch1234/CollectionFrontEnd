@@ -35,7 +35,7 @@ function loadGameCard(aboutGame) {
     })
         .then(res => res.json())
         .then(json => {
-            console.log(json)
+            
 
 
 
@@ -52,8 +52,7 @@ function loadGameCard(aboutGame) {
 
 
 onMounted(() => {
-    console.log("inside on mounted of message.vue")
-    console.log(props.gameName)
+  
     loadGameCard(props.gameName)
 
 

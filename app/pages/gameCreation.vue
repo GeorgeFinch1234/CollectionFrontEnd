@@ -319,25 +319,25 @@ relative top-[50vh] left-[50vw]
                     <div class="flex flex-col">
 
                         <label for="description">Description</label>
-                        <input @input="e => bigStringUserInputValidation(e.target)" id="description" v-model="description"
-                            required ref="gameDescription"></input>
+                        <input @input="e => bigStringUserInputValidation(e.target)" id="description"
+                            v-model="description" required ref="gameDescription"></input>
                     </div>
                     <div class="flex flex-col">
                         <label for="playerCount">Average player count </label>
                         <input @input="e => playCount(e.target)" id="playerCount" type="number" v-model="playerCount"
-                            required ref="gamePlayerCount"></input>
+                            required ref="gamePlayerCount" min="1"></input>
                     </div>
                     <!--new-->
                     <div class="flex flex-col">
                         <label for="minPlayers">Min players </label>
                         <input @input="e => playCount(e.target)" id="minPlayers" type="number" v-model="minPlayers"
-                            required ref="gameMinPlayers"></input>
+                            required ref="gameMinPlayers" min="1"></input>
                     </div>
                     <div class="flex flex-col">
                         <label for="maxPlayers">Max players </label>
 
                         <input @input="e => playCount(e.target)" id="maxPlayers" type="number" v-model="maxPlayers"
-                            required ref="gameMaxPlayers"></input>
+                            required ref="gameMaxPlayers" min="1"></input>
                     </div>
                 </section>
                 <section class="grow">
@@ -362,14 +362,14 @@ relative top-[50vh] left-[50vw]
                         </div>
                     </div>
                     <div class="flex flex-col">
-                        <label for="cost">Cost </label>
+                        <label for="cost">Cost in pounds </label>
                         <input @input="e => playCount(e.target)" id="cost" type="number" v-model="cost" required
-                            ref="gameCost"></input>
+                            ref="gameCost" min="0"></input>
                     </div>
                     <div class="flex flex-col">
-                        <label for="playTime">Average playing time </label>
+                        <label for="playTime">Average playing time in minutes </label>
                         <input @input="e => playCount(e.target)" id="playTime" type="number" v-model="playTime" required
-                            ref="gamePlayTime"></input>
+                            ref="gamePlayTime" min="1"></input>
                     </div>
                     <!--old-->
                     <div class="flex flex-col">
@@ -398,8 +398,12 @@ relative top-[50vh] left-[50vw]
 
         </div>
         <div class="flex justify-between w-[100%]">
-            <p @click="save()" class="text-center bg-primary text-white w-[70px] text-center rounded-full lg:text-2xl lg:w-[100px] cursor-pointer">Submit</p>
-            <p @click="cancel" class="text-center bg-primary text-white w-[70px] text-center rounded-full lg:text-2xl lg:w-[100px] cursor-pointer">Cancel</p>
+            <p @click="save()"
+                class="text-center bg-primary text-white w-[70px] text-center rounded-full lg:text-2xl lg:w-[100px] cursor-pointer">
+                Submit</p>
+            <p @click="cancel"
+                class="text-center bg-primary text-white w-[70px] text-center rounded-full lg:text-2xl lg:w-[100px] cursor-pointer">
+                Cancel</p>
         </div>
     </main>
 </template>

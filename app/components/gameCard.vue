@@ -13,7 +13,7 @@ const imgURl = computed(() => {
 });
 
 
-console.log("inside game card")
+
 
 </script>
 <template>

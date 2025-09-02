@@ -35,9 +35,19 @@ module.exports = {
          * secondary: '#D9D9D9',
          * alt :'#FFDBBB'
          * 
+         * #6C7A89
+         * #4B5D67
+         * **
+         * #7393B3
+         * #394867
          * 
+         * #175354ff
+         * 
+         * ***
+         * #456268
+         * new default
          */
-       primary: '#496580',      
+       primary: '#456268',      
         secondary: '#D9D9D9',
         alt :'#FFDBBB'
         

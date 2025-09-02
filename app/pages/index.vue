@@ -92,7 +92,7 @@ onMounted(() => {
 
     function draw() {
 
-        ctx.fillStyle = "#496580"
+        ctx.fillStyle = "#456268"
         ctx.fillRect(0, 0, window.innerWidth, window.innerHeight)
 
         //floor to stop any issue with being floating point
@@ -384,9 +384,9 @@ function signUp() {
             <div class="flex flex-col gap-[10px]">
                 <!--need labals for aria-->
                 <input @input="e => userEndValidation(e.target)" v-model="user" placeholder="user name"
-                    class="rounded-md  text-xl" ref="signInUserName" required />
+                    class="rounded-md  text-xl text-center" ref="signInUserName" required />
                 <input @input="e => userEndValidation(e.target)" v-model="password" placeholder="password" type="password"
-                    class="rounded-md text-xl" ref="signInPassword" required />
+                    class="rounded-md text-xl text-center" ref="signInPassword" required />
             </div>
 
             <div class="flex flex-col gap-[10px]">

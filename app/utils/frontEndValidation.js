@@ -47,3 +47,14 @@ export function bigStringUserInputValidation(input) {
     input.reportValidity()
 
 }
+
+export function gameSelectedValidation(game){
+
+    if(game.firstChild.textContent == "No Games Found" || game.firstChild.textContent == ""){
+        game.setCustomValidity("you must select a game" )
+    }   else{
+       game.setCustomValidity("")
+    }
+    game.reportValidity()
+
+}

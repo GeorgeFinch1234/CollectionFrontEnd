@@ -72,11 +72,7 @@ showFilters.value =false
  const formData = new FormData();
 
     const tokenStore = useTokenStore()
-console.log("in filter")
-    console.log(tokenStore.token)
-    console.log(filters.sort)
-    console.log(filters.start)
-    console.log(filters.end)
+
     formData.append("Token", tokenStore.token);
     formData.append("filterBy", filters.sort);
     formData.append("startAt", filters.start);
@@ -90,7 +86,7 @@ console.log("in filter")
 
         })
         .then(json => {
-console.log(json)
+
             if (json == null) {
                 noGame.value = true;
             } else {
@@ -125,13 +121,13 @@ class="fixed
         >  
     
     </CollectionFilter>
-<div class="bg-secondary rounded-full w-[60px] h-[35px] text-lg text-center fixed right-[20px] bottom-[20px] z-[9] border-2 border-solid border-[#496580] cursor-pointer">
+<div class="bg-secondary rounded-full w-[60px] h-[35px] text-lg text-center fixed right-[20px] bottom-[20px] z-[9] border-2 border-solid border-primary cursor-pointer">
     <p @click="loadCreate()"
         class="z-9">
         +</p>
 </div>
 
-<div class="bg-secondary rounded-full w-[60px] h-[35px] text-lg text-center fixed left-[20px] bottom-[20px] z-[9] border-2 border-solid border-[#496580] cursor-pointer flex justify-center">
+<div class="bg-secondary rounded-full w-[60px] h-[35px] text-lg text-center fixed left-[20px] bottom-[20px] z-[9] border-2 border-solid border-primary cursor-pointer flex justify-center">
          <img src="/assets/filter.png" alt="filter icon"  @click="showFilters = !showFilters"class="max-h-[100%]"/>
 </div>
         <div class="flex flex-col justify-center items-center sm:col-span-full m-[10px] sm:mt-[20px]">
