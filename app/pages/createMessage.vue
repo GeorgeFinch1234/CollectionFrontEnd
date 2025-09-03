@@ -1,19 +1,25 @@
 <script setup>
-import GameCard from '~/components/gameCard.vue';
+
 import { userEndValidation, bigStringUserInputValidation, gameSelectedValidation } from '~/utils/frontEndValidation.js'
 
 import { useTokenStore } from '~/utils/test.js'
+/**
+ * 
+ * need as load the file on client side not sever 
+ * so client wont know it exists.
+ * 
+ */
+import message from '~/components/message.vue'
 const toUser = ref("");
 
 const aboutGame = ref("");
 const subject = ref("");
-const message = ref("");
 const gameSelected = ref(false)
 const GameInfo = ref()
 const show = ref(false)
 const gameChosen = ref("")
 const gameChosenRef = ref("")
-
+const messageText=ref("")
 
 const messageSubjectLine = ref(null)
 const messageTo = ref(null)
@@ -21,6 +27,15 @@ const messageBody = ref(null)
 
 let Games = ref();
 
+
+
+const route = useRoute()
+
+const replying = ref(false)
+
+const pastMessage=ref()
+
+const showLastMessage = ref(false)
 
 function getUserGames() {
 
@@ -73,7 +88,7 @@ function sendMessage() {
         gameChosenRef.value.reportValidity()
     } else {
 
-
+if (route.query.from != 'reply') {
 
 
 
@@ -87,7 +102,7 @@ function sendMessage() {
         formData.append("findUser", toUser.value);
         formData.append("aboutGame", gameChosen.value);
         formData.append("subject", subject.value);
-        formData.append("message", message.value);
+        formData.append("message", messageText.value);
         formData.append("from", tokenStore.token);
 
         //need to add a from so it can be sent back to them.
@@ -110,7 +125,48 @@ function sendMessage() {
             })
 
 
-    }
+    
+    
+    
+        }else{
+  const formData = new FormData();
+        const tokenStore = useTokenStore()
+
+
+        formData.append("findUser", toUser.value);
+        formData.append("aboutGame", gameChosen.value);
+        formData.append("subject", subject.value);
+        formData.append("message", messageText.value);
+        formData.append("from", tokenStore.token);
+        formData.append("lastMessageID",pastMessage.value.ID)
+       
+
+        //need to add a from so it can be sent back to them.
+
+
+        fetch('http://localhost:8080/message/reply', {
+            method: "POST",
+            body: formData
+        })
+            .then(res => res.json())
+            .then(json => {
+
+                if (json == null) {
+                    //Games = ref(json.games)
+                    return navigateTo('/messaging')
+                } else {
+                    //Games.value = null
+
+                }
+            })
+
+
+
+
+
+        }
+    
+        }
 
 }
 
@@ -146,7 +202,58 @@ function loadGameCard(about, target) {
 }
 
 
+onMounted(()=>{
 
+
+
+if (route.query.from == 'reply') {
+
+
+    replying.value = true
+loadLastMessage()
+    
+}
+})
+
+function loadLastMessage(){
+
+
+
+  const formData = new FormData();
+    const tokenStore = useTokenStore()
+
+        
+    formData.append("UserName", tokenStore.token);
+
+
+    formData.append("messageID", route.query.lastMessageID);
+
+
+    fetch('http://localhost:8080/message/Specific', {
+        method: "POST",
+        body: formData
+}) .then(res => res.json())
+            .then(json => {
+
+
+
+
+
+
+    pastMessage.value = json
+
+toUser.value = json.from
+
+
+
+
+
+})
+
+
+
+
+}
 </script>
 
 <template>
@@ -154,6 +261,17 @@ function loadGameCard(about, target) {
 
 <!--trying to get it almost gradient from the submit button-->
     <main class="bg-[linear-gradient(351deg,_#FFDBBB,_#D9D9D9_125%)] rounded-2xl text-center  ml-auto mr-auto mt-[100px] w-[75%]">
+     
+
+
+        <message v-if="showLastMessage" :subject="pastMessage.subject" :body="pastMessage.message" 
+:gameName="pastMessage.aboutGame" :from="pastMessage.from" :ID="pastMessage.ID" :lastMessageID="pastMessage.lastMessageID"
+class="fixed top-[50vh] left-[50vw] translate-y-[-50%] translate-x-[-50%] border-2 border-dashed border-[#496580]"
+>
+
+</message>
+       
+       
         <div class="flex flex-col justify-center items-center">
         <h1 class="text-2xl">Message</h1>
         <div class="bg-alt w-[200px] h-[5px]"></div>
@@ -191,7 +309,7 @@ function loadGameCard(about, target) {
             </div>
             <div class="flex flex-col justify-between">
                 <label for="messageBody">Message</label>
-                <textarea class="text-center" v-model="message" required ref="messageBody" id="messageBody"
+                <textarea class="text-center" v-model="messageText" required ref="messageBody" id="messageBody"
                     @input="e => bigStringUserInputValidation(e.target)"></textarea>
             </div>
 
@@ -224,13 +342,19 @@ function loadGameCard(about, target) {
 
 
         </div>
-        <div class="flex flex-row justify-between p-[10px]">
+        <div class="flex flex-col justify-between p-[10px] gap-[10px] md:flex-row ">
             <input type="submit" @click.prevent="backToCollection()"
-                class="bg-primary rounded-md text-white text-xl w-fit p-[5px]" value="Cancel"> </input>
-            <input type="submit" @click.prevent="sendMessage()"
-                class="bg-primary rounded-md text-white text-xl w-fit p-[5px]" value="Submit"></input>
-           
+                class="bg-primary rounded-md text-white text-xl w-[100%] p-[5px]" value="Cancel"> </input>
+           <!--need to make dispeare and actually code it, for when the user is replying to a old message-->
+                <input v-if="replying" type="submit" @click.prevent="showLastMessage = !showLastMessage"
+                class="bg-primary rounded-md text-white text-xl w-[100%] p-[5px]" value="Last Message"></input>
+           <input type="submit" @click.prevent="sendMessage()"
+                class="bg-primary rounded-md text-white text-xl w-[100%] p-[5px]" value="Submit"></input>
         </div>
+         
     </main>
+    
+ 
+
 
 </template>

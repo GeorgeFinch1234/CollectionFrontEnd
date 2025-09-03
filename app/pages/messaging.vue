@@ -34,7 +34,7 @@ function loadMessages() {
         .then(json => {
 
 messages.value = json
-
+console.log(json)
 spinnyWheelShow.value=false
         })
 
@@ -69,7 +69,7 @@ function loadNewMessage() {
 <!--const props = defineProps(['subject', 'body', 'gameName'])-->
 <div class=" flex flex-row justify-center items-center gap-[20px] flex-wrap p-[10px]">
 <message v-for="(message, id) in messages" :subject="message.subject" :body="message.message" 
-:gameName="message.aboutGame" :from="message.from" :ID=id @reload="loadMessages()">
+:gameName="message.aboutGame" :from="message.from" :ID=id :lastMessageID="message.lastMessageID" @reload="loadMessages()">
 
 </message>
 </div>
