@@ -11,10 +11,10 @@ const endAt = ref()
 const emit = defineEmits(['filters','close'])
 function filter(){
 
-console.log("here");
+
 if(refStartAt.value.checkValidity()&&
 refEndAt.value.checkValidity()){
-console.log("passed")
+
 
 emit('filters',{
 "sort":sortBy.value,
@@ -46,12 +46,12 @@ refEndAt.value.reportValidity()
         
         " >
 
-        <h2>Sort / Filter</h2>
+        <h2 class="lg:text-lg">Sort / Filter</h2>
  <div class="bg-alt w-[150px] h-[5px] "></div>
    
 
 
-        <form class="flex flex-col text-center justify-between h-[100%] gap-[10px]">
+        <form class="flex flex-col text-center justify-between h-[100%] gap-[10px] lg:text-lg">
         
         <div class="flex flex-col">
             <h2 for="sortTypeSelector">Sort by</h2>
@@ -72,9 +72,9 @@ refEndAt.value.reportValidity()
         <label for="filterEndAt">end at</label>
         <input type="number"id="filterEndAt"  class="text-center pl-[1em]" v-model="endAt" required ref="refEndAt" @input="e => playCount(e.target)" min="0" placeholder="20"/>
         </div>
-        <input type="submit" @click.prevent="filter()" class="bg-[#FFCC99]"/>
+        <input type="submit" @click.prevent="filter()" class="bg-altButton"/>
     
-        <input type="submit" @click.prevent="$emit('close')" value="close" class="bg-[#FFCC99]"/>
+        <input type="submit" @click.prevent="$emit('close')" value="close" class="bg-altButton"/>
         </form>
     </div>
 </template>

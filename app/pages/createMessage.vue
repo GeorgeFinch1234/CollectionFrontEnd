@@ -275,23 +275,19 @@ class="fixed top-[50vh] left-[50vw] translate-y-[-50%] translate-x-[-50%] border
        
        
         <div class="flex flex-col justify-center items-center">
-        <h1 class="text-2xl">Message</h1>
-        <div class="bg-alt w-[200px] h-[5px]"></div>
+        <h1 class="text-2xl lg:text-4xl">Message</h1>
+        <div class="bg-altButton w-[200px] h-[5px]"></div>
         </div>
-        <form class="flex flex-col gap-[5px]">
+        <div class="lg:flex lg:flex-row">
+        <form class="flex flex-col gap-[5px] grow justify-center lg:text-lg lg:gap-[20px] p-[10px]">
             <div class="flex flex-col justify-between">
                 <label for="messageTo">To</label>
                 <input type="text" class="text-center" v-model="toUser" @blur="getUserGames()" required ref="messageTo"
-                    id="messageTo" @input="e => userEndValidation(e.target)"></input>
+                    id="messageTo" @input="e => userEndValidation(e.target)" placeholder="Recipient"></input>
             </div>
+            
             <div class="flex flex-col justify-between">
                 <label for="selectGames">Game</label>
-
-
-
-
-            </div>
-            <div class="flex flex-col justify-between">
                 <select class="text-center pl-[1em]" v-model="gameChosen" @change="(e) => { loadGameCard(gameChosen, e.target) }"
                     ref="gameChosenRef" id="selectGames" required>
                     <option v-if="Games == null">No Games Found</option>
@@ -307,12 +303,12 @@ class="fixed top-[50vh] left-[50vw] translate-y-[-50%] translate-x-[-50%] border
             <div class="flex flex-col justify-between">
                 <label for="subjectLine">Subject line</label>
                 <input class="text-center" v-model="subject" required ref="messageSubjectLine" id="subjectLine"
-                    @input="e => userEndValidation(e.target)"></input>
+                    @input="e => userEndValidation(e.target)"placeholder="subject"></input>
             </div>
             <div class="flex flex-col justify-between">
                 <label for="messageBody">Message</label>
                 <textarea class="text-center" v-model="messageText" required ref="messageBody" id="messageBody"
-                    @input="e => bigStringUserInputValidation(e.target)"></textarea>
+                    @input="e => bigStringUserInputValidation(e.target)" placeholder="message body"></textarea>
             </div>
 
 
@@ -344,14 +340,15 @@ class="fixed top-[50vh] left-[50vw] translate-y-[-50%] translate-x-[-50%] border
 
 
         </div>
-        <div class="flex flex-col justify-between p-[10px] gap-[10px] md:flex-row ">
-            <input type="submit" @click.prevent="backToCollection()"
-                class="bg-primary rounded-md text-white text-xl w-[100%] p-[5px]" value="Cancel"> </input>
+          </div>
+        <div class="flex flex-col justify-between p-[10px] gap-[10px] md:flex-row-reverse ">
+            <input type="submit" @click.prevent="sendMessage()"
+                class="bg-primary rounded-md text-white text-xl w-[100%] p-[5px] lg:text-lg" value="Submit"></input>
            <!--need to make dispeare and actually code it, for when the user is replying to a old message-->
                 <input v-if="replying" type="submit" @click.prevent="showLastMessage = !showLastMessage"
-                class="bg-primary rounded-md text-white text-xl w-[100%] p-[5px]" value="Last Message"></input>
-           <input type="submit" @click.prevent="sendMessage()"
-                class="bg-primary rounded-md text-white text-xl w-[100%] p-[5px]" value="Submit"></input>
+                class="bg-primary rounded-md text-white text-xl w-[100%] p-[5px] lg:text-lg" value="Last Message"></input>
+          <input type="submit" @click.prevent="backToCollection()"
+                class="bg-primary rounded-md text-white text-xl w-[100%] p-[5px] lg:text-lg" value="Cancel"> </input>
         </div>
          
     </main>

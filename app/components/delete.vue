@@ -46,9 +46,9 @@ all need to do on php side.
 
 
 </script>
-<template>
+<template> 
     <div
-        class="p-[20px] bg-secondary w-[200px] h-[400px] rounded-lg flex flex-col absolute top-[0] right-[0] items-center justify-center">
+        class="p-[20px] bg-[linear-gradient(225deg,_#FFDBBB,_#D9D9D9_60%)] w-[200px] h-[400px] rounded-lg flex flex-col absolute top-[0] right-[0] items-center justify-center">
         <div>
             <h1 class="text-center text-2xl">Delete</h1>
 

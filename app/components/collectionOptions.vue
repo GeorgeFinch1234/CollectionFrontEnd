@@ -11,7 +11,7 @@ const props = defineProps(['name'])
 </script>
 <template>
     <div
-        class="p-[20px] bg-secondary w-[200px] h-[400px] rounded-lg flex flex-col absolute top-[0] right-[0] items-center ">
+        class="p-[20px] bg-[linear-gradient(225deg,_#FFDBBB,_#D9D9D9_60%)] w-[200px] h-[400px] rounded-lg flex flex-col absolute top-[0] right-[0] items-center ">
         <div>
             <h1 class="text-center text-2xl">Options</h1>
 

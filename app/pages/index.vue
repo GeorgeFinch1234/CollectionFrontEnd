@@ -284,55 +284,10 @@ function sendData() {
         })
 
 
-    //---------------------------------------------------------
-
-
-
-
-    /*
-    
-    
-    
-       const xhttp = new XMLHttpRequest();
-      xhttp.open("POST", "http://localhost:8080/login");
-      xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-      xhttp.onload = function() {
-    //as it returns "" from php, which get intptreted as "\"\""
-    
-    
-    if(JSON.parse(this.responseText).error == ""){  
-        //redirects if successful.
-    
-    const tokenStore = useTokenStore()
-    tokenStore.token=JSON.parse(this.responseText).token
-    
-    return navigateTo('/collection')
-    }else{
-        spinnyWheelShow.value = false;
-      */
-    /*
-
-    temp, rember to remove it.
-
-    */
-    /*
-    alert(this.responseText)
-
 }
 
 
 
-
-}
-  xhttp.send("username="+user.value + "&password="+password.value);
-  */
-}
-
-
-/*
-
-need to make in to vue style not normal js style
-*/
 
 function submitHandler() {
 
@@ -376,8 +331,8 @@ function signUp() {
     <main
         class="p-[20px] gap-[20px] bg-[linear-gradient(0deg,_#FFDBBB,_#D9D9D9_120%)] w-[300px] h-[300px]  rounded-lg absolute top-[50vh] left-[50vw] translate-y-[-50%] translate-x-[-50%] sm:w-[600px]">
         <div class="flex flex-col justify-center items-center">
-            <h1 class="text-center text-2xl">Welcome</h1>
-            <div class="bg-alt w-[150px] h-[5px] "></div>
+            <h1 class="text-center text-2xl lg:text-4xl">Welcome</h1>
+            <div class="bg-altButton w-[150px] h-[5px] "></div>
         </div>
         <!--post not get so the password now in the url-->
         <form action="" method="POST" class="flex flex-col gap-[40px]  pt-[20px]">

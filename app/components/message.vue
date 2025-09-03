@@ -148,7 +148,7 @@ showLastMessage.value = true
     <div>
     <div class="relative">
 
-<p v-if="inReply" @click="$emit('close')"class="absolute top-[10px] right-[10px] z-[5] bg-[#FFCC99] pr-[8px] pl-[8px] rounded-full" >X</p>
+<p v-if="inReply" @click="$emit('close')"class="absolute top-[10px] right-[10px] z-[5] bg-[#A3b18A] pr-[8px] pl-[8px] rounded-full" >X</p>
 
 
     <div class="p-[20px]  w-[200px] h-[400px] rounded-lg  bg-[linear-gradient(45deg,_#FFDBBB,_#D9D9D9_100%)]
@@ -186,13 +186,13 @@ items-center justify-center gap-[10px] flex flex-col justify-between relative">
 
  
    
-<div class="flex flex-row justify-between w-[100%]">    
+<div class="flex flex-row justify-between w-[100%] gap-[10px]">    
 
 
-<p class="bg-[#FFCC99] rounded-lg w-[100%] h-[100%] block w-[60px] text-center cursor-pointer" @click="removeMessage()">Delete</p>
+<p class="bg-primary text-white rounded-lg w-[100%] h-[100%] block text-center cursor-pointer" @click="removeMessage()">Delete</p>
 
 
-<p class="bg-[#FFCC99] rounded-lg w-[100%] h-[100%] block w-[60px] text-center cursor-pointer" @click="loadCreateMessagePage()">Reply</p>
+<p class="bg-primary text-white rounded-lg w-[100%] h-[100%] block text-center cursor-pointer" @click="loadCreateMessagePage()">Reply</p>
 
 
 
@@ -200,12 +200,12 @@ items-center justify-center gap-[10px] flex flex-col justify-between relative">
 
 </div>
 
- <div class="flex flex-row justify-between w-[100%]">    
+ <div class="flex flex-row justify-between w-[100%] gap-[10px]">    
 
-<p class="bg-[#FFCC99] rounded-lg w-[100%] h-[100%] block w-[60px] text-center cursor-pointer" @click="loadLastMessage()">&#8592</p>
+<p class="bg-primary text-white rounded-lg w-[100%] h-[100%] block text-center cursor-pointer" @click="loadLastMessage()">&#8592</p>
 
 
-<p class="bg-[#FFCC99] rounded-lg w-[100%] h-[100%] block w-[60px] text-center cursor-pointer" @click="$emit('back')">&#8594</p>
+<p class="bg-primary text-white rounded-lg w-[100%] h-[100%] block text-center cursor-pointer" @click="$emit('back')">&#8594</p>
 
 
 

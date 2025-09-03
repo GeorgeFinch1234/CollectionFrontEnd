@@ -132,12 +132,12 @@ class="fixed
 </div>
         <div class="flex flex-col justify-center items-center sm:col-span-full m-[10px] sm:mt-[20px]">
         <h1 class="text-white mt-[20px] text-2xl sm:text-4xl">Collection</h1>
-        <div class="bg-alt w-[150px] h-[5px] sm:w-[200px]"></div>
+        <div class="bg-altButton w-[150px] h-[5px] sm:w-[200px]"></div>
     </div>
     <main
         class="flex flex-col justify-center items-center gap-[20px] sm:flex  sm:gap-4 sm:flex-row sm:flex-wrap sm:mx-[10px]  m-[10px]  ">
         <!--add the @click to a button in it, or something like that and have it emit and event up and then can keep it the same, ish-->
-        <div v-for="game in Games" class="relative" :key="game.name" 
+        <div v-for="game in Games" class="relative hover:animate-grow" :key="game.name" 
         :class="{
 'hover:animate-grow':selectedGameId !== game.name
 

@@ -54,10 +54,7 @@ function cancel() {
 }
 
 async function save() {
-    console.log("---------------")
-    console.log(minPlayers.value)
-    console.log("--------------------")
-
+    
     if (!gameNameInput.value.checkValidity() ||
         !gameDescription.value.checkValidity() ||
         !gamePlayerCount.value.checkValidity() ||
@@ -123,7 +120,8 @@ async function save() {
                     method: "POST",
                     body: formData
                 }).then(res => res.json()).then(json => {
-                    console.log(json)
+                    
+                    
                     return navigateTo('/collection')
                 })
 
@@ -143,7 +141,7 @@ async function save() {
 
     function getDataUrl(file, createOrEdit) {
 
-        console.log(gameMinPlayers.value)
+       
 
         return new Promise((resolve, reject) => {
             const reader = new FileReader();
@@ -176,7 +174,14 @@ async function save() {
                     body: formData
                 }).then(res => res.json()).then(json => {
                     console.log(json)
+
+
+                    if(json==""){
                     return navigateTo('/collection')
+                    }else{
+                        gameNameInput.value.setCustomValidity(json)
+                         gameNameInput.value.reportValidity()
+                    }
                 })
 
 
@@ -266,10 +271,7 @@ onMounted(() => {
 
             orginalName.value = json.name
 
-            console.log("--------------------")
-            console.log(json.imgRef)
-            console.log(json)
-
+           
         })
 
     }
@@ -296,8 +298,8 @@ relative top-[50vh] left-[50vw]
 
 
         <!--h1 empty, so that it can be dynamically changed depending on where it comes from. -->
-        <h1 class="text-2xl">{{ route.query.name }}</h1>
-        <div class="bg-alt w-[100px] h-[5px] overflow-hidden "></div>
+        <h1 class="text-2xl lg:text-4xl">{{ route.query.name }}</h1>
+        <div class="bg-altButton w-[100px] h-[5px] overflow-hidden "></div>
         <!--
     name 
     img 
@@ -309,35 +311,35 @@ relative top-[50vh] left-[50vw]
     -->
 
         <div class="w-[100%] flex flex-col lg:flex-row">
-            <form class="flex flex-col grow lg:flex lg:flex-row lg:gap-[20px]">
+            <form class="flex flex-col grow lg:flex lg:flex-row lg:gap-[20px] lg:text-lg">
                 <section class="grow">
                     <div class="flex flex-col">
                         <label for="gameName">Game name</label>
                         <input @input="e => userEndValidation(e.target)" id="gameName" v-model="gameName"
-                            ref="gameNameInput" required></input>
+                            ref="gameNameInput" required placeholder="ticket to ride"></input>
                     </div>
                     <div class="flex flex-col">
 
                         <label for="description">Description</label>
                         <input @input="e => bigStringUserInputValidation(e.target)" id="description"
-                            v-model="description" required ref="gameDescription"></input>
+                            v-model="description" required ref="gameDescription" placeholder="All aboard! Collect trains, choo-choo-choose your routes, fulfill your destination!"></input>
                     </div>
                     <div class="flex flex-col">
                         <label for="playerCount">Average player count </label>
                         <input @input="e => playCount(e.target)" id="playerCount" type="number" v-model="playerCount"
-                            required ref="gamePlayerCount" min="1"></input>
+                            required ref="gamePlayerCount" min="1" placeholder="4"></input>
                     </div>
                     <!--new-->
                     <div class="flex flex-col">
                         <label for="minPlayers">Min players </label>
                         <input @input="e => playCount(e.target)" id="minPlayers" type="number" v-model="minPlayers"
-                            required ref="gameMinPlayers" min="1"></input>
+                            required ref="gameMinPlayers" min="1" placeholder="2"></input>
                     </div>
                     <div class="flex flex-col">
                         <label for="maxPlayers">Max players </label>
 
                         <input @input="e => playCount(e.target)" id="maxPlayers" type="number" v-model="maxPlayers"
-                            required ref="gameMaxPlayers" min="1"></input>
+                            required ref="gameMaxPlayers" min="1" placeholder="5"></input>
                     </div>
                 </section>
                 <section class="grow">
@@ -364,12 +366,12 @@ relative top-[50vh] left-[50vw]
                     <div class="flex flex-col">
                         <label for="cost">Cost in pounds </label>
                         <input @input="e => playCount(e.target)" id="cost" type="number" v-model="cost" required
-                            ref="gameCost" min="0"></input>
+                            ref="gameCost" min="0"placeholder="33"></input>
                     </div>
                     <div class="flex flex-col">
                         <label for="playTime">Average playing time in minutes </label>
                         <input @input="e => playCount(e.target)" id="playTime" type="number" v-model="playTime" required
-                            ref="gamePlayTime" min="1"></input>
+                            ref="gamePlayTime" min="1" placeholder="60"></input>
                     </div>
                     <!--old-->
                     <div class="flex flex-col">
@@ -380,7 +382,7 @@ relative top-[50vh] left-[50vw]
                     <div class="flex flex-col">
                         <label for="imgFileSelection">Image</label>
                         <input @change="imgChange()" id="imgFileSelection" ref="imgSelectRef" type="file" name="image"
-                            accept=".png,.jpg" required></input>
+                            accept=".png,.jpg" required placeholder="ttr box art"></input>
                     </div>
 
                 </section>
