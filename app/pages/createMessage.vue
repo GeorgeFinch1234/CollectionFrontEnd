@@ -267,6 +267,8 @@ toUser.value = json.from
         <message v-if="showLastMessage" :subject="pastMessage.subject" :body="pastMessage.message" 
 :gameName="pastMessage.aboutGame" :from="pastMessage.from" :ID="pastMessage.ID" :lastMessageID="pastMessage.lastMessageID"
 class="fixed top-[50vh] left-[50vw] translate-y-[-50%] translate-x-[-50%] border-2 border-dashed border-[#496580]"
+@close="showLastMessage =!showLastMessage" whereUsed="reply"
+
 >
 
 </message>

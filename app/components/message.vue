@@ -1,7 +1,7 @@
 <script setup>
 import { useTokenStore } from '~/utils/test.js'
 
-const props = defineProps(['subject', 'body', 'gameName', 'from', 'ID', 'lastMessageID'])
+const props = defineProps(['subject', 'body', 'gameName', 'from', 'ID', 'lastMessageID','whereUsed'])
 let loadImg = ref(false)
 
 let GameInfo = ref()
@@ -9,7 +9,7 @@ let GameInfo = ref()
 const emit = defineEmits(['reload'])
 const pastMessage =ref()
 const showLastMessage = ref(false)
-
+const inReply = ref(false)
 
 
 
@@ -54,7 +54,11 @@ function loadGameCard(aboutGame) {
 onMounted(() => {
   
     loadGameCard(props.gameName)
+if(props.whereUsed){
 
+inReply.value = true
+
+}
 
 })
 
@@ -110,14 +114,16 @@ if(props.lastMessageID !=""){
 
 
 
-
-
+                   if(json.subject != null){
 
     pastMessage.value = json
 
 
 showLastMessage.value = true
+                   }else{
 
+                    alert("linked list broken message deleted")
+                   }
 
 
 
@@ -141,6 +147,10 @@ showLastMessage.value = true
     <!--as recurions have to have this dic so that it will go over it-->
     <div>
     <div class="relative">
+
+<p v-if="inReply" @click="$emit('close')"class="absolute top-[10px] right-[10px] z-[5] bg-[#FFCC99] pr-[8px] pl-[8px] rounded-full" >X</p>
+
+
     <div class="p-[20px]  w-[200px] h-[400px] rounded-lg  bg-[linear-gradient(45deg,_#FFDBBB,_#D9D9D9_100%)]
 items-center justify-center gap-[10px] flex flex-col justify-between relative">
 
