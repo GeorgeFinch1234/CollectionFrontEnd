@@ -55,22 +55,22 @@ justify-center items-center w-fit rounded-lg p-[40px] gap-[10px]">
             showConfirmation = !showConfirmation
             action = 'Delete Your Account'
             url='delete'
-        }" class="bg-darkAlt text-white rounded-lg pl-[10px] pr-[10px] pt-[2px] pb-[2px] w-[100%] text-center lg:text-lg "> Delete Account </a>
+        }" class="bg-darkAlt text-white rounded-lg pl-[10px] pr-[10px] pt-[2px] pb-[2px] w-[100%] text-center lg:text-lg cursor-pointer "> Delete Account </a>
         <a @click="()=>{
             showConfirmation = !showConfirmation
             action = 'Clear Your Game Collection'
         url='collection'
-        }" class="bg-darkAlt text-white rounded-lg pl-[10px] pr-[10px] pt-[2px] pb-[2px] w-[100%] text-center lg:text-lg"> Clear Collection </a>
+        }" class="bg-darkAlt text-white rounded-lg pl-[10px] pr-[10px] pt-[2px] pb-[2px] w-[100%] text-center lg:text-lg cursor-pointer"> Clear Collection </a>
         <a @click="()=>{
             showConfirmation = !showConfirmation
             action = 'Clear Your Messages'
        url='messages'
-       }"class="bg-darkAlt text-white rounded-lg pl-[10px] pr-[10px] pt-[2px] pb-[2px] w-[100%] text-center lg:text-lg"> Clear Messages </a>
+       }"class="bg-darkAlt text-white rounded-lg pl-[10px] pr-[10px] pt-[2px] pb-[2px] w-[100%] text-center lg:text-lg cursor-pointer"> Clear Messages </a>
         <a @click="()=>{
             showConfirmation = !showConfirmation
             action = 'Get Staticts'
         url='delete'
-        }"class="bg-darkAlt text-white rounded-lg pl-[10px] pr-[10px] pt-[2px] pb-[2px] w-[100%] text-center lg:text-lg"> Get Satistics </a>
+        }"class="bg-darkAlt text-white rounded-lg pl-[10px] pr-[10px] pt-[2px] pb-[2px] w-[100%] text-center lg:text-lg cursor-pointer"> Get Satistics </a>
         <!--
 I am thinking stuff like
 -> total cost

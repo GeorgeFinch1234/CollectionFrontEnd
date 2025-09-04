@@ -56,10 +56,10 @@ all need to do on php side.
             <p class="text-center">are you sure you want to delete</p>
         </div>
         <div class="flex flex-row justify-center gap-[5px] p-[20px]">
-            <a @click="confirmDelete() "
-                class="bg-darkAlt rounded-md text-center text-white text-2xl h-fit p-[5px] cursor-pointer">confirm</a>
             <a @click="$emit('cancel')"
                 class="bg-darkAlt rounded-md text-center text-white text-2xl h-fit p-[5px] cursor-pointer">cancel</a>
+            <a @click="confirmDelete() "
+                class="bg-darkAlt rounded-md text-center text-white text-2xl h-fit p-[5px] cursor-pointer">confirm</a>
         </div>
     </div>
 </template>

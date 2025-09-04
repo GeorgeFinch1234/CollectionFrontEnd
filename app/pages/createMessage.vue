@@ -275,8 +275,8 @@ class="fixed top-[50vh] left-[50vw] translate-y-[-50%] translate-x-[-50%] border
        
        
         <div class="flex flex-col justify-center items-center">
-        <h1 class="text-2xl lg:text-4xl">Message</h1>
-        <div class="bg-primary w-[200px] h-[5px]"></div>
+        <h1 class="text-2xl lg:text-4xl z-[2]">Message</h1>
+        <div class="bg-darkAlt w-[200px] h-[5px]"></div>
         </div>
         <div class="lg:flex lg:flex-row">
         <form class="flex flex-col gap-[5px] grow justify-center lg:text-lg lg:gap-[20px] p-[10px]">

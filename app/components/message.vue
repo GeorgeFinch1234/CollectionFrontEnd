@@ -148,7 +148,7 @@ showLastMessage.value = true
     <div>
     <div class="relative">
 
-<p v-if="inReply" @click="$emit('close')"class="absolute top-[10px] right-[10px] z-[5] bg-[#A3b18A] pr-[8px] pl-[8px] rounded-full" >X</p>
+<p v-if="inReply" @click="$emit('close')"class="absolute top-[10px] right-[10px] z-[5] bg-darkAlt pr-[8px] pl-[8px] rounded-full text-white" >X</p>
 
 
     <div class="p-[20px]  w-[200px] h-[400px] rounded-lg  bg-[linear-gradient(45deg,_#FFDBBB,_#D9D9D9_100%)]

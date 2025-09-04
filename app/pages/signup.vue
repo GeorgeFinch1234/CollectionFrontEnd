@@ -78,7 +78,7 @@ function submit(event) {
     <main
         class="p-[20px] gap-[20px] bg-[linear-gradient(0deg,_#FFDBBB,_#D9D9D9_100%)] w-[300px] h-[330px]  rounded-lg absolute top-[50vh] left-[50vw] translate-y-[-50%] translate-x-[-50%] sm:w-[600px]">
         <div class="flex flex-col justify-center items-center">
-            <h1 class="text-center text-2xl lg:text-4xl">Sign Up</h1>
+            <h1 class="text-center text-2xl lg:text-4xl z-[2]">Sign Up</h1>
             <div class="bg-darkAlt w-[150px] h-[5px] "></div>
         </div>
         <!--post not get so the password now in the url-->
