@@ -132,7 +132,7 @@ class="fixed
 </div>
         <div class="flex flex-col justify-center items-center sm:col-span-full m-[10px] sm:mt-[20px]">
         <h1 class="text-white mt-[20px] text-2xl sm:text-4xl">Collection</h1>
-        <div class="bg-altButton w-[150px] h-[5px] sm:w-[200px]"></div>
+        <div class="bg-alt w-[150px] h-[5px] sm:w-[200px]"></div>
     </div>
     <main
         class="flex flex-col justify-center items-center gap-[20px] sm:flex  sm:gap-4 sm:flex-row sm:flex-wrap sm:mx-[10px]  m-[10px]  ">

@@ -79,7 +79,7 @@ function submit(event) {
         class="p-[20px] gap-[20px] bg-[linear-gradient(0deg,_#FFDBBB,_#D9D9D9_100%)] w-[300px] h-[330px]  rounded-lg absolute top-[50vh] left-[50vw] translate-y-[-50%] translate-x-[-50%] sm:w-[600px]">
         <div class="flex flex-col justify-center items-center">
             <h1 class="text-center text-2xl lg:text-4xl">Sign Up</h1>
-            <div class="bg-altButton w-[150px] h-[5px] "></div>
+            <div class="bg-darkAlt w-[150px] h-[5px] "></div>
         </div>
         <!--post not get so the password now in the url-->
         <form action="" method="POST" class="flex flex-col gap-[40px]  pt-[20px]">
@@ -93,9 +93,9 @@ function submit(event) {
                     type="password" class="rounded-md text-xl text-center"  />
             </div>
             <div class="flex flex-col gap-[10px]">
-                <input @click.prevent="submit()" type="submit" class="bg-primary rounded-md text-white text-xl"
+                <input @click.prevent="submit()" type="submit" class="bg-darkAlt rounded-md text-white text-xl"
                     id="loginSubmit" value="Sign Up"></input>
-                <input @click="login()" type="button" class="bg-primary rounded-md text-white text-xl" value="Login" />
+                <input @click="login()" type="button" class="bg-darkAlt rounded-md text-white text-xl" value="Login" />
             </div>
         </form>
 

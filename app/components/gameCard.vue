@@ -38,7 +38,7 @@ const imgURl = computed(() => {
             <p class="overflow-y-auto text-center border-b-[2px]">
                 {{ description }}
             </p>
-            <a @click="show = !show" class="text-center bg-primary text-white w-[70px] text-center rounded-full cursor-pointer ">
+            <a @click="show = !show" class="text-center bg-darkAlt text-white w-[70px] text-center rounded-full cursor-pointer ">
                 options
             </a>
 

@@ -276,7 +276,7 @@ class="fixed top-[50vh] left-[50vw] translate-y-[-50%] translate-x-[-50%] border
        
         <div class="flex flex-col justify-center items-center">
         <h1 class="text-2xl lg:text-4xl">Message</h1>
-        <div class="bg-altButton w-[200px] h-[5px]"></div>
+        <div class="bg-primary w-[200px] h-[5px]"></div>
         </div>
         <div class="lg:flex lg:flex-row">
         <form class="flex flex-col gap-[5px] grow justify-center lg:text-lg lg:gap-[20px] p-[10px]">
@@ -343,12 +343,12 @@ class="fixed top-[50vh] left-[50vw] translate-y-[-50%] translate-x-[-50%] border
           </div>
         <div class="flex flex-col justify-between p-[10px] gap-[10px] md:flex-row-reverse ">
             <input type="submit" @click.prevent="sendMessage()"
-                class="bg-primary rounded-md text-white text-xl w-[100%] p-[5px] lg:text-lg" value="Submit"></input>
+                class="bg-darkAlt rounded-md text-white text-xl w-[100%] p-[5px] lg:text-lg" value="Submit"></input>
            <!--need to make dispeare and actually code it, for when the user is replying to a old message-->
                 <input v-if="replying" type="submit" @click.prevent="showLastMessage = !showLastMessage"
-                class="bg-primary rounded-md text-white text-xl w-[100%] p-[5px] lg:text-lg" value="Last Message"></input>
+                class="bg-darkAlt rounded-md text-white text-xl w-[100%] p-[5px] lg:text-lg" value="Last Message"></input>
           <input type="submit" @click.prevent="backToCollection()"
-                class="bg-primary rounded-md text-white text-xl w-[100%] p-[5px] lg:text-lg" value="Cancel"> </input>
+                class="bg-darkAlt rounded-md text-white text-xl w-[100%] p-[5px] lg:text-lg" value="Cancel"> </input>
         </div>
          
     </main>

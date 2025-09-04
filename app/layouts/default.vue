@@ -1,5 +1,11 @@
 <script setup>
+import { useTokenStore } from '~/utils/test.js'
+
 let show = ref(true)
+let showAdminOptions = ref(false)
+
+  
+
 
 function handleMenu() {
   if (window.innerWidth > 640) {
@@ -10,8 +16,20 @@ function handleMenu() {
 }
 
 onMounted(() => {
+ 
+
   window.addEventListener('resize', handleMenu)
+const tokenStore = useTokenStore()
+  
+if(tokenStore.adminStatus){
+  showAdminOptions.value = true
+}else{
+  showAdminOptions.value = false
+}
+
+
 })
+
 
 
 
@@ -19,7 +37,7 @@ onMounted(() => {
 
 <template>
 
-  <div class="w-[100%] h-[100%] bg-primary relative ">
+  <div class="w-[100%] h-[100%]  relative ">
     <slot />
   </div>
 
@@ -38,6 +56,9 @@ onMounted(() => {
      <NuxtLink @click="handleMenu" to="/userSettings"
         class="text-[25px] hover:bg-altButton w-[300px] self-center rounded-md duration-[0.5s] bg-alt text-center sm:bg-alt sm:text-[20px] sm:w-[100px] sm:hover:bg-altButton z-10 sm:z-[10] border-2 border-solid border-primary">
         Setting </NuxtLink>
+         <NuxtLink v-if="showAdminOptions" @click="handleMenu" to="/adminSettings"
+        class="text-[25px] hover:bg-altButton w-[300px] self-center rounded-md duration-[0.5s] bg-alt text-center sm:bg-alt sm:text-[20px] sm:w-[100px] sm:hover:bg-altButton z-10 sm:z-[10] border-2 border-solid border-primary">
+        Admin </NuxtLink>
       <NuxtLink @click="handleMenu" to="/"
         class="text-[25px] hover:bg-altButton w-[300px] self-center rounded-md duration-[0.5s] bg-alt text-center sm:bg-alt sm:text-[20px] sm:w-[100px] sm:hover:bg-altButton z-10 sm:z-[10] border-2 border-solid border-primary">
         Logout</NuxtLink>

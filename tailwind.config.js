@@ -47,11 +47,31 @@ module.exports = {
          * #456268
          * new default
          * #FFCC99
-         */
-       primary: '#456268',      
+         * 
+         * 
+         * 
+
+
+primary: '#456268',      
         secondary: '#D9D9D9',
         alt :'#FFDBBB',
         altButton:'#ffc58bff'
+
+
+
+
+
+
+
+
+         */
+
+       primary: '#0F172A',      
+        secondary: '#D9D9D9',
+        alt :'#FFDBBB',
+        altButton:'#ffc58bff',
+        darkAlt:'#334155'
+        
         
       },
        backgroundImage: {

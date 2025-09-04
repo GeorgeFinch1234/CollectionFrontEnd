@@ -189,10 +189,10 @@ items-center justify-center gap-[10px] flex flex-col justify-between relative">
 <div class="flex flex-row justify-between w-[100%] gap-[10px]">    
 
 
-<p class="bg-primary text-white rounded-lg w-[100%] h-[100%] block text-center cursor-pointer" @click="removeMessage()">Delete</p>
+<p class="bg-darkAlt text-white rounded-lg w-[100%] h-[100%] block text-center cursor-pointer" @click="removeMessage()">Delete</p>
 
 
-<p class="bg-primary text-white rounded-lg w-[100%] h-[100%] block text-center cursor-pointer" @click="loadCreateMessagePage()">Reply</p>
+<p class="bg-darkAlt text-white rounded-lg w-[100%] h-[100%] block text-center cursor-pointer" @click="loadCreateMessagePage()">Reply</p>
 
 
 
@@ -202,10 +202,10 @@ items-center justify-center gap-[10px] flex flex-col justify-between relative">
 
  <div class="flex flex-row justify-between w-[100%] gap-[10px]">    
 
-<p class="bg-primary text-white rounded-lg w-[100%] h-[100%] block text-center cursor-pointer" @click="loadLastMessage()">&#8592</p>
+<p class="bg-darkAlt text-white rounded-lg w-[100%] h-[100%] block text-center cursor-pointer" @click="loadLastMessage()">&#8592</p>
 
 
-<p class="bg-primary text-white rounded-lg w-[100%] h-[100%] block text-center cursor-pointer" @click="$emit('back')">&#8594</p>
+<p class="bg-darkAlt text-white rounded-lg w-[100%] h-[100%] block text-center cursor-pointer" @click="$emit('back')">&#8594</p>
 
 
 

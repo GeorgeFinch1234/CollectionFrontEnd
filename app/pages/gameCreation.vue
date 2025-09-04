@@ -74,7 +74,7 @@ async function save() {
         gamePlayTime.value.reportValidity()
         gameMinPlayers.value.reportValidity()
         gameMaxPlayers.value.reportValidity()
-
+console.log("test")
     } else {
 
 
@@ -176,7 +176,7 @@ async function save() {
                     console.log(json)
 
 
-                    if(json==""){
+                    if(json==""||json==null){
                     return navigateTo('/collection')
                     }else{
                         gameNameInput.value.setCustomValidity(json)
@@ -377,12 +377,12 @@ relative top-[50vh] left-[50vw]
                     <div class="flex flex-col">
                         <label for="imageDescription">Image alt</label>
                         <input @input="e => bigStringUserInputValidation(e.target)" id="imageDescription"
-                            v-model="imageDescription" required ref="gameImgDescription"></input>
+                            v-model="imageDescription" required placeholder="ticket to ride box art" ref="gameImgDescription"></input>
                     </div>
                     <div class="flex flex-col">
                         <label for="imgFileSelection">Image</label>
                         <input @change="imgChange()" id="imgFileSelection" ref="imgSelectRef" type="file" name="image"
-                            accept=".png,.jpg" required placeholder="ttr box art"></input>
+                            accept=".png,.jpg" required ></input>
                     </div>
 
                 </section>

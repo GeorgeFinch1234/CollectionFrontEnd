@@ -74,7 +74,7 @@ refEndAt.value.reportValidity()
         </div>
         <input type="submit" @click.prevent="filter()" class="bg-altButton"/>
     
-        <input type="submit" @click.prevent="$emit('close')" value="close" class="bg-altButton"/>
+        <input type="submit" @click.prevent="$emit('close')" value="Close" class="bg-altButton"/>
         </form>
     </div>
 </template>
