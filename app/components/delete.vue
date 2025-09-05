@@ -46,9 +46,9 @@ all need to do on php side.
 
 
 </script>
-<template>
+<template> 
     <div
-        class="p-[20px] bg-secondary w-[200px] h-[400px] rounded-lg flex flex-col absolute top-[0] right-[0] items-center justify-center">
+        class="p-[20px] bg-[linear-gradient(225deg,_#FFDBBB,_#D9D9D9_60%)] w-[200px] h-[400px] rounded-lg flex flex-col absolute top-[0] right-[0] items-center justify-center">
         <div>
             <h1 class="text-center text-2xl">Delete</h1>
 
@@ -56,10 +56,10 @@ all need to do on php side.
             <p class="text-center">are you sure you want to delete</p>
         </div>
         <div class="flex flex-row justify-center gap-[5px] p-[20px]">
-            <a @click="confirmDelete() "
-                class="bg-primary rounded-md text-center text-white text-2xl h-fit p-[5px] cursor-pointer">confirm</a>
             <a @click="$emit('cancel')"
-                class="bg-primary rounded-md text-center text-white text-2xl h-fit p-[5px] cursor-pointer">cancel</a>
+                class="bg-darkAlt rounded-md text-center text-white text-2xl h-fit p-[5px] cursor-pointer">cancel</a>
+            <a @click="confirmDelete() "
+                class="bg-darkAlt rounded-md text-center text-white text-2xl h-fit p-[5px] cursor-pointer">confirm</a>
         </div>
     </div>
 </template>

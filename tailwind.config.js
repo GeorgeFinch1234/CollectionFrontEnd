@@ -35,11 +35,43 @@ module.exports = {
          * secondary: '#D9D9D9',
          * alt :'#FFDBBB'
          * 
+         * #6C7A89
+         * #4B5D67
+         * **
+         * #7393B3
+         * #394867
          * 
-         */
-       primary: '#496580',      
+         * #175354ff
+         * 
+         * ***
+         * #456268
+         * new default
+         * #FFCC99
+         * 
+         * 
+         * 
+
+
+primary: '#456268',      
         secondary: '#D9D9D9',
-        alt :'#FFDBBB'
+        alt :'#FFDBBB',
+        altButton:'#ffc58bff'
+
+
+
+
+
+
+
+
+         */
+
+       primary: '#0F172A',      
+        secondary: '#D9D9D9',
+        alt :'#FFDBBB',
+        altButton:'#ffc58bff',
+        darkAlt:'#334155'
+        
         
       },
        backgroundImage: {
@@ -91,6 +123,38 @@ module.exports = {
                   '0%': { transform: 'scale(1)' },
                   
                   '100%': { transform: 'scale(1.05)' } 
+                },
+                pulse:{
+                  '0%': { transform: 'scale(1)' },
+                  /**
+                   * x then y
+                   */
+                  '50%': { transform: 'scale(1.05,1.5)',opacity: '0.5'},
+                  /**
+                   * so hides when its done
+                   */
+
+                  '70%':{ opacity: '0'},
+                  '100%':{ transform: 'scale(1.05,1.5)',opacity: '0'
+                    
+                  },
+                  
+                },
+                pulse2:{
+                  '0%': { transform: 'scale(1)' },
+                  /**
+                   * x then y
+                   */
+                  '50%': { transform: 'scale(1.02,1.25)',opacity: '0.5'},
+                  /**
+                   * so hides when its done
+                   */
+
+                  '70%':{ opacity: '0'},
+                  '100%':{ transform: 'scale(1.02,1.25)',opacity: '0'
+                    
+                  },
+                  
                 }
 
 
@@ -103,6 +167,9 @@ module.exports = {
          flipEndfrontWayUp: 'flipEndfrontWayUp 1s linear forwards',
         shake: 'shake 8s infinite',
         grow: 'grow 1s linear forwards',
+        pulse: 'pulse 1s linear',
+        pulse2: 'pulse2 1s linear',
+        
         
         },
     }

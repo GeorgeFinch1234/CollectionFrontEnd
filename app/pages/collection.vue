@@ -65,6 +65,7 @@ function selectGame(gameId) {
 }
 
 function applyFilters(filters){
+    
 spinnyWheelShow.value = true
 showFilters.value =false
 
@@ -85,7 +86,7 @@ showFilters.value =false
 
         })
         .then(json => {
-console.log(json)
+
             if (json == null) {
                 noGame.value = true;
             } else {
@@ -120,14 +121,14 @@ class="fixed
         >  
     
     </CollectionFilter>
-<div class="bg-secondary rounded-full w-[60px] h-[35px] text-lg text-center fixed right-[20px] bottom-[20px] z-[9] border-2 border-solid border-[#496580] cursor-pointer">
+<div class="bg-secondary rounded-full w-[60px] h-[35px] text-lg text-center fixed right-[20px] bottom-[20px] z-[9] border-2 border-solid border-primary cursor-pointer">
     <p @click="loadCreate()"
         class="z-9">
         +</p>
 </div>
 
-<div class="bg-secondary rounded-full w-[60px] h-[35px] text-lg text-center fixed left-[20px] bottom-[20px] z-[9] border-2 border-solid border-[#496580] cursor-pointer flex justify-center">
-         <img src="/assets/filter.png" alt="filter icon"  @click="showFilters = !showFilters"class="max-h-[100%]"/>
+<div  @click="showFilters = !showFilters" class="bg-secondary rounded-full w-[60px] h-[35px] text-lg text-center fixed left-[20px] bottom-[20px] z-[9] border-2 border-solid border-primary cursor-pointer flex justify-center">
+         <img src="/assets/filter.png" alt="filter icon" class="max-h-[100%]"/>
 </div>
         <div class="flex flex-col justify-center items-center sm:col-span-full m-[10px] sm:mt-[20px]">
         <h1 class="text-white mt-[20px] text-2xl sm:text-4xl">Collection</h1>
@@ -136,7 +137,7 @@ class="fixed
     <main
         class="flex flex-col justify-center items-center gap-[20px] sm:flex  sm:gap-4 sm:flex-row sm:flex-wrap sm:mx-[10px]  m-[10px]  ">
         <!--add the @click to a button in it, or something like that and have it emit and event up and then can keep it the same, ish-->
-        <div v-for="game in Games" class="relative" :key="game.name" 
+        <div v-for="game in Games" class="relative hover:animate-grow" :key="game.name" 
         :class="{
 'hover:animate-grow':selectedGameId !== game.name
 
