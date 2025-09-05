@@ -11,7 +11,7 @@ The goal of this project was to gain hands-on experience with Tailwind CSS and N
 ## Demo
 Below is a GIF showcasing the Game Collection page of the application. It demonstrates some of the core animations, which are implemented using CSS keyframes and the HTML5 Canvas API.
 ![demo of some of the few animation in the website](/public/assets/aniamtionExample.gif)
-![Alt text](public/assets/collectionDemo.jpg)
+
 
 ## Nuxt Minimal Starter
 
