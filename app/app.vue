@@ -1,4 +1,16 @@
 <script setup>
+
+
+
+
+useHead({
+  title: 'Board Game Collection'
+})
+
+
+
+
+
 onMounted(() => {
     //code taken from old project, dot connection, on same github
     const canvas = document.getElementById("canvas");

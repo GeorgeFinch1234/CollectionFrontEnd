@@ -55,12 +55,12 @@ refEndAt.value.reportValidity()
         
         <div class="flex flex-col">
             <h2 for="sortTypeSelector">Sort by</h2>
-        <select class="text-center pl-[1em]" id="sortTypeSelector"v-model="sortBy" required>
-            <option>playerCount</option>
-            <option>minPlayers</option>
-            <option>maxPlayers</option>
-            <option>cost</option>
-            <option>time</option>
+        <select class="text-center w-full appearance-none cursor-pointer" id="sortTypeSelector"v-model="sortBy" required>
+            <option class="pl-[0]">playerCount</option>
+            <option class="pl-[0]">minPlayers</option>
+            <option class="pl-[0]">maxPlayers</option>
+            <option class="pl-[0]">cost</option>
+            <option class="pl-[0]">time</option>
         </select>
         </div>
 <div class="flex flex-col">

@@ -288,7 +288,7 @@ class="fixed top-[50vh] left-[50vw] translate-y-[-50%] translate-x-[-50%] border
             
             <div class="flex flex-col justify-between">
                 <label for="selectGames">Game</label>
-                <select class="text-center pl-[1em]" v-model="gameChosen" @change="(e) => { loadGameCard(gameChosen, e.target) }"
+                <select class="text-center appearance-none cursor-pointer" v-model="gameChosen" @change="(e) => { loadGameCard(gameChosen, e.target) }"
                     ref="gameChosenRef" id="selectGames" required>
                     <option v-if="Games == null">No Games Found</option>
                     <!--error is it thinks its a type never so cant have .name but
@@ -343,12 +343,12 @@ class="fixed top-[50vh] left-[50vw] translate-y-[-50%] translate-x-[-50%] border
           </div>
         <div class="flex flex-col justify-between p-[10px] gap-[10px] md:flex-row-reverse ">
             <input type="submit" @click.prevent="sendMessage()"
-                class="bg-darkAlt rounded-md text-white text-xl w-[100%] p-[5px] lg:text-lg" value="Submit"></input>
+                class="bg-darkAlt rounded-md text-white text-xl w-[100%] p-[5px] lg:text-lg cursor-pointer" value="Submit"></input>
            <!--need to make dispeare and actually code it, for when the user is replying to a old message-->
                 <input v-if="replying" type="submit" @click.prevent="showLastMessage = !showLastMessage"
-                class="bg-darkAlt rounded-md text-white text-xl w-[100%] p-[5px] lg:text-lg" value="Last Message"></input>
+                class="bg-darkAlt rounded-md text-white text-xl w-[100%] p-[5px] lg:text-lg cursor-pointer" value="Last Message"></input>
           <input type="submit" @click.prevent="backToCollection()"
-                class="bg-darkAlt rounded-md text-white text-xl w-[100%] p-[5px] lg:text-lg" value="Cancel"> </input>
+                class="bg-darkAlt rounded-md text-white text-xl w-[100%] p-[5px] lg:text-lg cursor-pointer" value="Cancel"> </input>
         </div>
          
     </main>

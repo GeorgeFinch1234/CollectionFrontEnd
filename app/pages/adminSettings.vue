@@ -41,7 +41,7 @@ console.log(json)
 
 
 
-<template>
+<template >
  <div class="flex flex-col justify-center items-center sm:col-span-full m-[10px] sm:mt-[20px]">
         <h1 class="text-white mt-[20px] text-2xl sm:text-4xl z-[2]">Admin Settings</h1>
         <div class="bg-alt w-[180px] h-[5px] sm:w-[260px]"></div>
