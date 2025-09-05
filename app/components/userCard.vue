@@ -142,8 +142,8 @@ adminControl.value = false
 <template>
 
 <section class=" flex flex-col text-center w-[200px] h-[300px] rounded-lg gap-[10px] justify-center items-center bg-[linear-gradient(45deg,_#FFDBBB,_#D9D9D9_90%)]">
-<div>
-<p>{{ userName }}</p>
+<div class="flex flex-col justify-center">
+<p class="z-[2]">{{ userName }}</p>
  <div class="bg-darkAlt w-[100px] h-[5px]"></div>
 </div>
  <div class="flex flex-col">

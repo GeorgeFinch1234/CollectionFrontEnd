@@ -163,8 +163,8 @@ primary: '#456268',
 
       animation: {
         spinCentered: 'spinCentered 3s linear infinite', 
-         flipEndWrongWayUp: 'flipEndWrongWayUp 1s linear forwards',
-         flipEndfrontWayUp: 'flipEndfrontWayUp 1s linear forwards',
+         flipEndWrongWayUp: 'flipEndWrongWayUp 0.5s linear forwards',
+         flipEndfrontWayUp: 'flipEndfrontWayUp 0.5s linear forwards',
         shake: 'shake 8s infinite',
         grow: 'grow 1s linear forwards',
         pulse: 'pulse 1s linear',

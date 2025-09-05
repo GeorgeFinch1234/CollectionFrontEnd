@@ -7,6 +7,10 @@ let spinnyWheelShow = ref(false);
 const signInUserName = ref(null)
 const signInPassword = ref(null)
 
+const fireSignUpAnimation = ref(false)
+const fireLoginAnimation = ref(false)
+
+
 
 import { useTokenStore } from '~/utils/test.js'
 /*
@@ -70,6 +74,30 @@ function submit(event) {
 }
 
 
+
+function hoverSignUp(){
+
+fireSignUpAnimation.value = true
+}
+
+function cancelAniamtionSignUp(){
+fireSignUpAnimation.value = false
+}
+
+function hoverLogin(){
+
+fireLoginAnimation.value = true
+
+}
+
+function cancelAniamtionLogin(){
+
+fireLoginAnimation.value = false
+}
+
+
+
+
 </script>
 
 
@@ -93,10 +121,35 @@ function submit(event) {
                     type="password" class="rounded-md text-xl text-center"  />
             </div>
             <div class="flex flex-col gap-[10px]">
-                <input @click.prevent="submit()" type="submit" class="bg-darkAlt rounded-md text-white text-xl"
-                    id="loginSubmit" value="Sign Up"></input>
-                <input @click="login()" type="button" class="bg-darkAlt rounded-md text-white text-xl" value="Login" />
-            </div>
+                 <div class="w-[100%] relative">
+                <input @click.prevent="submit()" type="submit" class="bg-darkAlt rounded-md text-white text-xl cursor-pointer w-[100%] z-[2] relative"
+                    id="loginSubmit" value="Sign Up"
+                     @mouseenter="hoverSignUp()" @mouseleave="cancelAniamtionSignUp()"
+                    
+                    ></input>
+                    <div class="w-[100%] absolute border-2 border-solid border-[#496580] h-[29px] rounded-md top-[0px]"
+                        :class="{ 'animate-pulse': fireSignUpAnimation }"></div>
+                    <div class="w-[100%] absolute border-2 border-solid border-[#496580] h-[29px] rounded-md top-[0px]"
+                        :class="{ 'animate-pulse2': fireSignUpAnimation }"></div>
+             </div>
+             
+             <div class="w-[100%] relative">
+                    <input @click="login()" type="button" class="bg-darkAlt rounded-md text-white text-xl cursor-pointer w-[100%] z-[2] relative" value="Login"
+                     @mouseenter="hoverLogin()" @mouseleave="cancelAniamtionLogin()"
+                    />
+            <div class="w-[100%] absolute border-2 border-solid border-[#496580] h-[29px] rounded-md top-[0px]"
+                        :class="{ 'animate-pulse': fireLoginAnimation }"></div>
+                    <div class="w-[100%] absolute border-2 border-solid border-[#496580] h-[29px] rounded-md top-[0px]"
+                        :class="{ 'animate-pulse2': fireLoginAnimation }"></div>
+             </div>
+            
+            
+            
+            
+            
+            
+            
+                </div>
         </form>
 
 
