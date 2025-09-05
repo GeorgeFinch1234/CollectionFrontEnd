@@ -19,10 +19,12 @@ const formData = new FormData();
     fetch('http://localhost:8080/settings/'+url.value, {
         method: "POST",
         body: formData
-    }).then(res.json()).then(json =>{
+    }).then(res => res.json()).then(json =>{
 
 
         if(url.value == "delete"){
+            console.log(json)
+            
 if(json==""){
 
 
@@ -32,7 +34,9 @@ return navigateTo('/')
 
     alert(json)
 }
-        }else{
+        
+
+}else{
 return navigateTo('/collection')
         }
 
