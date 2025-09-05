@@ -72,9 +72,9 @@ refEndAt.value.reportValidity()
         <label for="filterEndAt">end at</label>
         <input type="number"id="filterEndAt"  class="text-center pl-[1em]" v-model="endAt" required ref="refEndAt" @input="e => playCount(e.target)" min="0" placeholder="20"/>
         </div>
-        <input type="submit" @click.prevent="filter()" class="bg-altButton"/>
+        <input type="submit" @click.prevent="filter()" class="bg-altButton cursor-pointer"/>
     
-        <input type="submit" @click.prevent="$emit('close')" value="Close" class="bg-altButton"/>
+        <input type="submit" @click.prevent="$emit('close')" value="Close" class="bg-altButton cursor-pointer"/>
         </form>
     </div>
 </template>
