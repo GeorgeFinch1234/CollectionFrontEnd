@@ -123,6 +123,38 @@ primary: '#456268',
                   '0%': { transform: 'scale(1)' },
                   
                   '100%': { transform: 'scale(1.05)' } 
+                },
+                pulse:{
+                  '0%': { transform: 'scale(1)' },
+                  /**
+                   * x then y
+                   */
+                  '50%': { transform: 'scale(1.05,1.5)',opacity: '0.5'},
+                  /**
+                   * so hides when its done
+                   */
+
+                  '70%':{ opacity: '0'},
+                  '100%':{ transform: 'scale(1.05,1.5)',opacity: '0'
+                    
+                  },
+                  
+                },
+                pulse2:{
+                  '0%': { transform: 'scale(1)' },
+                  /**
+                   * x then y
+                   */
+                  '50%': { transform: 'scale(1.02,1.25)',opacity: '0.5'},
+                  /**
+                   * so hides when its done
+                   */
+
+                  '70%':{ opacity: '0'},
+                  '100%':{ transform: 'scale(1.02,1.25)',opacity: '0'
+                    
+                  },
+                  
                 }
 
 
@@ -135,6 +167,9 @@ primary: '#456268',
          flipEndfrontWayUp: 'flipEndfrontWayUp 1s linear forwards',
         shake: 'shake 8s infinite',
         grow: 'grow 1s linear forwards',
+        pulse: 'pulse 1s linear',
+        pulse2: 'pulse2 1s linear',
+        
         
         },
     }

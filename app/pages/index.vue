@@ -10,7 +10,7 @@ let password = ref("");
 let spinnyWheelShow = ref(false);
 const signInUserName = ref(null)
 const signInPassword = ref(null)
-
+const fireSubmitAnimation = ref(false)
 const tokenStore = useTokenStore()
 /**
  * so reste ever time
@@ -137,6 +137,19 @@ function signUp() {
     navigateTo('/signup')
 }
 
+function hover(){
+fireSubmitAnimation.value = true
+
+
+}
+function cancelAniamtion(){
+
+fireSubmitAnimation.value = false
+
+
+}
+
+
 </script>
 
 <template>
@@ -155,16 +168,28 @@ function signUp() {
         <form action="" method="POST" class="flex flex-col gap-[40px]  pt-[20px]">
             <div class="flex flex-col gap-[10px]">
                 <!--need labals for aria-->
-                <input @input="e => userEndValidation(e.target)" v-model="user" placeholder="user name"
+                <input @input="e => userEndValidation(e.target)" v-model="user" placeholder="Username"
                     class="rounded-md  text-xl text-center" ref="signInUserName" required />
-                <input @input="e => userEndValidation(e.target)" v-model="password" placeholder="password" type="password"
+                <input @input="e => userEndValidation(e.target)" v-model="password" placeholder="Password" type="password"
                     class="rounded-md text-xl text-center" ref="signInPassword" required />
             </div>
 
             <div class="flex flex-col gap-[10px]">
-                <input @click.prevent="submitHandler" type="submit" class="bg-darkAlt rounded-md text-white text-xl"
-                    id="loginSubmit"></input>
-                <input @click="signUp()" type="button" class="bg-darkAlt rounded-md text-white text-xl"
+                <div class="w-[100%] relative">
+                <input @click.prevent="submitHandler" type="submit" class="bg-darkAlt rounded-md text-white text-xl w-[100%] h-[30px] relative z-[2] "
+                    
+                id="loginSubmit"
+                @mouseenter="hover()"
+                @mouseleave="cancelAniamtion()"
+                
+                
+                ></input>
+                <div class="w-[100%] absolute border-2 border-solid border-[#496580] h-[30px] rounded-md top-[0px]" :class="{'animate-pulse':fireSubmitAnimation}" ></div>
+                <div class="w-[100%] absolute border-2 border-solid border-[#496580] h-[30px] rounded-md top-[0px]" :class="{'animate-pulse2':fireSubmitAnimation}" ></div>
+                <div class="w-[100%] absolute border-2 border-solid border-[#496580] h-[30px] rounded-md top-[0px]" :class="{'animate-pulse':fireSubmitAnimation}" ></div>
+                
+                </div>
+                    <input @click="signUp()" type="button" class="bg-darkAlt rounded-md text-white text-xl  h-[30px]"
                     value="sign up" />
             </div>
         </form>

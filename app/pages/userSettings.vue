@@ -14,16 +14,24 @@ const formData = new FormData();
 
     formData.append("token", tokenStore.token);
     
+    
 
     fetch('http://localhost:8080/settings/'+url.value, {
         method: "POST",
         body: formData
-    }).then(()=>{
+    }).then(res.json()).then(json =>{
 
 
         if(url.value == "delete"){
-return navigateTo('/')
+if(json==""){
 
+
+return navigateTo('/')
+}else{
+
+
+    alert(json)
+}
         }else{
 return navigateTo('/collection')
         }
@@ -66,11 +74,7 @@ justify-center items-center w-fit rounded-lg p-[40px] gap-[10px]">
             action = 'Clear Your Messages'
        url='messages'
        }"class="bg-darkAlt text-white rounded-lg pl-[10px] pr-[10px] pt-[2px] pb-[2px] w-[100%] text-center lg:text-lg cursor-pointer"> Clear Messages </a>
-        <a @click="()=>{
-            showConfirmation = !showConfirmation
-            action = 'Get Staticts'
-        url='delete'
-        }"class="bg-darkAlt text-white rounded-lg pl-[10px] pr-[10px] pt-[2px] pb-[2px] w-[100%] text-center lg:text-lg cursor-pointer"> Get Satistics </a>
+       
         <!--
 I am thinking stuff like
 -> total cost
@@ -91,8 +95,8 @@ I am thinking stuff like
             
             
             <div class="flex flex-row justify-between gap-[10px]">
-                 <a @click="showConfirmation = !showConfirmation" class="bg-primary text-white rounded-lg pl-[10px] pr-[10px] pt-[2px] pb-[2px] w-[100%] text-center lg:text-lg">No</a>
-                <a @click="carryOutAction()"class="bg-primary text-white rounded-lg pl-[10px] pr-[10px] pt-[2px] pb-[2px] w-[100%] text-center lg:text-lg">Yes</a>
+                 <a @click="showConfirmation = !showConfirmation" class="bg-primary text-white rounded-lg pl-[10px] pr-[10px] pt-[2px] pb-[2px] w-[100%] text-center lg:text-lg cursor-pointer">No</a>
+                <a @click="carryOutAction()"class="bg-primary text-white rounded-lg pl-[10px] pr-[10px] pt-[2px] pb-[2px] w-[100%] text-center lg:text-lg cursor-pointer">Yes</a>
             </div>
         </section>
     </main>
